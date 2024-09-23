@@ -2,7 +2,6 @@
 // export const BASE_URL = "http://localhost:5000";
 export const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-
 // cloud base url
 // export const BASE_URL = "https://aryeshsaha-to-do-list.onrender.com";
 

@@ -1,3 +1,3 @@
 import { atom } from "jotai";
 
-export const payHistoryAtom = atom([''])
+export const payHistoryAtom = atom([""]);

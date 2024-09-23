@@ -3,19 +3,20 @@ import React from "react";
 import * as yup from "yup";
 import { useNavigate } from "react-router";
 
-import UseApi from "../hooks/useApi";
+import UseApi from "../../hooks/useApi";
 
-import AppServerErr from "../errors/AppServerErr";
-import FormikErr from "../errors/FormikErr";
+import AppServerErr from "../../errors/AppServerErr";
+import FormikErr from "../../errors/FormikErr";
 
-import Heading from "../components/sign/Heading";
-import Input from "../components/sign/Input";
-import SignButton from "../components/sign/SignButton";
-import Hint from "../components/sign/Hint";
+import Heading from "../sign/Heading";
+import Input from "../sign/Input";
+import SignButton from "../sign/SignButton";
+import Hint from "../sign/Hint";
 
-const ForgotPsd = ({ setShow }) => {
+const ForgotPsdForm = ({ setShow }) => {
   const navigate = useNavigate();
-  const { op, ForgotPsd } = UseApi();
+
+  const { op, handleForgotPsd } = UseApi();
 
   const formSchema = yup.object({
     affiliateId: yup.string().required("Affiliate Id is required"),
@@ -28,7 +29,7 @@ const ForgotPsd = ({ setShow }) => {
       email: "",
     },
     onSubmit: ({ affiliateId, email }) => {
-      ForgotPsd({ affiliateId, password });
+      handleForgotPsd({ affiliateId, password });
     },
     validationSchema: formSchema,
   });
@@ -77,4 +78,4 @@ const ForgotPsd = ({ setShow }) => {
   );
 };
 
-export default ForgotPsd;
+export default ForgotPsdForm;

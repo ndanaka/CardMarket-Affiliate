@@ -1,26 +1,28 @@
 import { useFormik } from "formik";
 import React, { useState } from "react";
-import * as yup from "yup";
 import { useAtom } from "jotai";
-
-import { idAtom } from "../store";
-import UseApi from "../hooks/useApi";
-
-import AppServerErr from "../errors/AppServerErr";
-import FormikErr from "../errors/FormikErr";
-
-import Heading from "../components/sign/Heading";
-import Input from "../components/sign/Input";
-import SignButton from "../components/sign/SignButton";
 import { useNavigate } from "react-router";
-import Hint from "../components/sign/Hint";
-import ForgotPsd from "./ForgotPsd";
+import * as yup from "yup";
 
-const Login = () => {
-  const [show, setShow] = useState(false);
-  const [id, setId] = useAtom(idAtom);
-  const { op, Login, GetTime } = UseApi();
+import { idAtom } from "../../store";
+import UseApi from "../../hooks/useApi";
+
+import AppServerErr from "../../errors/AppServerErr";
+import FormikErr from "../../errors/FormikErr";
+
+import Heading from "../../components/sign/Heading";
+import Input from "../../components/sign/Input";
+import SignButton from "../../components/sign/SignButton";
+import Hint from "../../components/sign/Hint";
+import ForgotPassForm from "./ForgotPsdForm";
+
+const LoginForm = () => {
   const navigate = useNavigate();
+
+  const [show, setShow] = useState(false);
+
+  const [id, setId] = useAtom(idAtom);
+  const { op, submitLogin, GetTime } = UseApi();
 
   const formSchema = yup.object({
     affiliateId: yup.string().required("Affiliate Id is required"),
@@ -33,7 +35,7 @@ const Login = () => {
       password: "",
     },
     onSubmit: ({ affiliateId, password }) => {
-      Login({ affiliateId, password });
+      submitLogin({ affiliateId, password });
     },
     validationSchema: formSchema,
   });
@@ -78,7 +80,6 @@ const Login = () => {
             <AppServerErr>
               {op.appErr === "Affiliate or Password not correct." && op.appErr}
             </AppServerErr>
-
             <SignButton label={"Login"} />
             <Hint
               label={"Register"}
@@ -93,10 +94,10 @@ const Login = () => {
           </form>
         </>
       ) : (
-        <ForgotPsd setShow={setShow} />
+        <ForgotPassForm setShow={setShow} />
       )}
     </>
   );
 };
 
-export default Login;
+export default LoginForm;

@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate, useLocation, Navigate } from "react-router-dom";
+
 import { atom, useAtom } from "jotai";
 import { tokenAtom } from "../store/index";
 import UseApi from "../hooks/useApi";
@@ -13,19 +14,22 @@ const AuthProvider = ({ children }) => {
   // const [user, setUser] = useState('');
   // to decide when to fetch and the frequency to follow
   // const [fetchAgain, setFetchAgain] = useState();
+  const [dData, setDData] = useState([]);
+
   const navigate = useNavigate();
   const location = useLocation();
-
   // to keep a track of the data
-  const [dData, setDData] = useState([]);
   const { GetTime } = UseApi();
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     setToken(token);
+
     if (location.pathname == "/admin/manage/view") {
       GetTime();
     }
   }, [navigate, location]);
+
   // remove the token when close the browser
   useEffect(() => {
     const handleBeforeUnload = (event) => {

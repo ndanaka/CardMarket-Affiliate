@@ -1,18 +1,15 @@
-import React from "react";
+import { useNavigate } from "react-router";
+
 import NavButton from "../header/NavButton";
-import { Navigate, useNavigate } from "react-router";
-import bgImage from "../../../../public/image/bg/bg-3.jpg";
-import { Link } from "react-router-dom";
+
 const Advertise = () => {
   const navigate = useNavigate();
+
   return (
     <div
       className={`overflow-hidden relative text-center bg-[url('/image/bg/bg-3.jpg')] h-[50vh] max w-screen bg-cover`}
     >
-      <img
-        className="w-fit max-lg:hidden"
-        // src={bgImage}
-      />
+      <img className="w-fit max-lg:hidden" />
       <div
         className="w-[800px] max-lg:w-full  lg:absolute top-[50%] left-[50%] bg-[#0c2148ee]  lg:-translate-x-1/2 lg:-translate-y-1/2
              p-2 font-sans text-white  max-lg:bg-[#0c2148] max-lg:pb-4 max-lg:pt-0"

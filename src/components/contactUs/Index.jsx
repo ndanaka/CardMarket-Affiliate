@@ -1,5 +1,4 @@
-import React from "react";
-const Contact = () => {
+const Index = () => {
   return (
     <>
       <div className="flex flex-wrap p-20 justify-between max-[760px]:p-10">
@@ -48,14 +47,15 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <div className="bg-gradient-to-r from-white to-gray-300 w-[40%] max-[1000px]:hidden py-20 px-10 ">
+        <div className="bg-gradient-to-r from-white to-gray-300 w-[40%] h-full max-[1000px]:hidden">
           <img
             className="opacity-50 hover:opacity-100 duration-300 "
             src="/image/bg/building1.jpg"
+            alt="img"
           />
         </div>
       </div>
     </>
   );
 };
-export default Contact;
+export default Index;

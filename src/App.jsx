@@ -12,10 +12,10 @@ import PaymentRequest from "./pages/home/PaymentRequest";
 import Homepage from "./pages/home/Hompage";
 import PaymentHistory from "./pages/home/PaymentHiistory";
 import AffiliateLinks from "./pages/home/AffiliateLinks";
-import Dashboard from "./pages/dashBoard/Dashboard";
+import DashLayout from "./pages/dashBoard/Layout";
+import Dashboard from "./pages/dashBoard/Index";
 import Register from "./pages/dashBoard/Register";
 import LogIn from "./pages/dashBoard/LogIn";
-import DashLayout from "./pages/dashBoard/DashLayout";
 import LevelUpgrade from "./pages/home/LevelUpgrade";
 import ContactUs from "./pages/contactUs/Index";
 import AccountInfo from "./pages/home/AccountInfo";
@@ -37,9 +37,9 @@ const App = () => {
         <BrowserRouter>
           <AuthProvider>
             <Routes>
-              <Route path="/login" element={<LogIn />} />
               <Route path="/" element={<DashLayout />}>
                 <Route path="/" element={<Dashboard />} />
+                <Route path="/login" element={<LogIn />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/contact" element={<ContactUs />} />
               </Route>

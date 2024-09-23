@@ -1,10 +1,10 @@
 import Home from "../../components/home/homepage/Index";
 
-const Homepage = () => {
-    return (
-        <>
-            <Home />
-        </>
-    )
-}
-export default Homepage
+const Index = () => {
+  return (
+    <>
+      <Home />
+    </>
+  );
+};
+export default Index;

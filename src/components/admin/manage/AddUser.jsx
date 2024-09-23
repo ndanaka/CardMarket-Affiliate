@@ -1,15 +1,11 @@
-import Register from "../../../auth/Register";
-
+import RegisterForm from "../../auth/RegisterForm";
 
 const AddUser = () => {
   return (
     <>
       <div className="flex justify-center ]">
         <div className="w-[500px]">
-          <Register
-            title={"ADD USER"}
-            label={"Add"}
-          />
+          <RegisterForm title={"ADD USER"} label={"Add"} />
         </div>
       </div>
     </>

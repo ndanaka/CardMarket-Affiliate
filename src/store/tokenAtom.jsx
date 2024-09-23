@@ -1,3 +1,3 @@
 import { atom } from "jotai";
 
-export const tokenAtom = atom('');
+export const tokenAtom = atom("");

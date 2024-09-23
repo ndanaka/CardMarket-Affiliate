@@ -1,3 +1,3 @@
 import { atom } from "jotai";
 
-export const monthlyProfitAtom = atom('isPaid')
+export const monthlyProfitAtom = atom("isPaid");

@@ -3,23 +3,26 @@ import { useNavigate } from "react-router";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-import UseApi from "../hooks/useApi";
+import UseApi from "../../hooks/useApi";
 
-import AppServerErr from "../errors/AppServerErr";
-import FormikErr from "../errors/FormikErr";
+import AppServerErr from "../../errors/AppServerErr";
+import FormikErr from "../../errors/FormikErr";
 
-import SignButton from "../components/sign/SignButton";
-import Heading from "../components/sign/Heading";
-import Input from "../components/sign/Input";
-import CancelBtn from "../components/sign/CancelBtn";
+import Hint from "../../components/sign/Hint";
+import SignButton from "../sign/SignButton";
+import Heading from "../sign/Heading";
+import Input from "../sign/Input";
+import CancelBtn from "../sign/CancelBtn";
 
-const Register = ({ title, label }) => {
-  const [showPassword, SetShowPassword] = useState(false);
+const RegisterForm = ({ title, label }) => {
   const navigate = useNavigate();
-  const { op, Register } = UseApi();
+
+  const [showPassword, SetShowPassword] = useState(false);
+
+  const { op, submitRegister } = UseApi();
 
   const formSchema = yup.object({
-    fullName: yup.string().required("Name is required"),
+    fullName: yup.string().required("Nddame is required"),
     email: yup.string().email().required("Email is required"),
     password: yup
       .string()
@@ -47,7 +50,7 @@ const Register = ({ title, label }) => {
       role: "",
     },
     onSubmit: ({ fullName, email, password, phoneNumber, country, role }) => {
-      Register({
+      submitRegister({
         fullName,
         email,
         password,
@@ -67,7 +70,7 @@ const Register = ({ title, label }) => {
       </AppServerErr>
       <form className="mt-6 font-sans" onSubmit={formik.handleSubmit}>
         <Input
-          label={"Fullname (フリガナ)"}
+          label={"Fullname *"}
           type={"text"}
           name={"fullName"}
           value={formik.values.fullName}
@@ -78,7 +81,7 @@ const Register = ({ title, label }) => {
           errors={formik.errors.fullName}
         />
         <Input
-          label={"Email"}
+          label={"Email *"}
           type={"email"}
           name={"email"}
           value={formik.values.email}
@@ -94,7 +97,7 @@ const Register = ({ title, label }) => {
         </AppServerErr>
         <div className=" relative">
           <Input
-            label={"Password"}
+            label={"Password *"}
             type={!showPassword ? "password" : "text"}
             name={"password"}
             value={formik.values.password}
@@ -117,7 +120,7 @@ const Register = ({ title, label }) => {
           errors={formik.errors.password}
         />
         <Input
-          label={"Phonenumber"}
+          label={"Phonenumber *"}
           type={"tel"}
           name={"phoneNumber"}
           value={formik.values.phoneNumber}
@@ -128,7 +131,7 @@ const Register = ({ title, label }) => {
           errors={formik.errors.phoneNumber}
         />
         <Input
-          label={"Country"}
+          label={"Country *"}
           type={"text"}
           name={"country"}
           value={formik.values.country}
@@ -181,18 +184,14 @@ const Register = ({ title, label }) => {
         </div>
       </form>
       {label === "Register" && (
-        <p className="mt-8 text-md font-semibold text-center text-gray-700">
-          Already have an account?
-          <button
-            onClick={() => navigate("/LogIn")}
-            className="text-lg text-blue-600 hover:underline font-sans"
-          >
-            Log in
-          </button>
-        </p>
+        <Hint
+          label={"Log in"}
+          question={"Already have an account?"}
+          handle={() => navigate("/LogIn")}
+        />
       )}
     </>
   );
 };
 
-export default Register;
+export default RegisterForm;

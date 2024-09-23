@@ -1,8 +1,11 @@
 import React from "react";
-import Language from "../dashBoard/header/Language";
 import { useNavigate } from "react-router";
+
+import Language from "../dashBoard/header/Language";
+
 const SignHeader = () => {
   const navigate = useNavigate();
+
   return (
     <>
       <div className="flex flex-wrap justify-between max-md:justify-around items-center px-14 border-b-[1px] bg-gray-200 border-b-gray-600 pt-4">

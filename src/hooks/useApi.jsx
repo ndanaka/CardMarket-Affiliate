@@ -1,23 +1,27 @@
 import { useState } from "react";
 import axios from "axios";
-import { useAtom } from "jotai";
 import { useNavigate } from "react-router";
 
+import { useAtom } from "jotai";
+
 import { CHANGEPSD, GETTIME, LOGIN, REGISTER } from "../constant/api";
+
 import { idAtom, timeAtom, tokenAtom } from "../store/index";
 
 const UseApi = () => {
-  const navigate = useNavigate();
-
   // operation characteristics
   const [, setTime] = useAtom(timeAtom);
   const [, setToken] = useAtom(tokenAtom);
+  const [, setId] = useAtom(idAtom);
+
   const [op, setOp] = useState({
     appErr: null,
-    servreErr: null,
+    serverErr: null,
   });
 
-  const [, setId] = useAtom(idAtom);
+  const navigate = useNavigate();
+
+  const token = localStorage.getItem("token");
 
   // configuration
   const config = {
@@ -25,8 +29,6 @@ const UseApi = () => {
       "Content-Type": "application/json",
     },
   };
-
-  const token = localStorage.getItem("token");
 
   // Post Op Configuration
   const postConfig = {
@@ -36,13 +38,16 @@ const UseApi = () => {
   };
 
   //register
-  const Register = async (input) => {
+  const submitRegister = async (formData) => {
     try {
-      const { data } = await axios.post(REGISTER, input, config);
+      const { data } = await axios.post(REGISTER, formData, config);
+
       localStorage.setItem("token", data.token);
+
       setToken(data.token);
       setId(data.id);
-      input.role ? navigate("/admin/manage") : navigate("/login");
+
+      formData.role ? navigate("/admin/manage") : navigate("/login");
     } catch (error) {
       setOp({
         appErr: error?.response?.data?.message,
@@ -51,7 +56,7 @@ const UseApi = () => {
     }
   };
 
-  const Login = async (input) => {
+  const submitLogin = async (input) => {
     try {
       const { data } = await axios.post(LOGIN, input, config);
       localStorage.setItem("token", data.token);
@@ -75,7 +80,7 @@ const UseApi = () => {
     } catch (error) {}
   };
 
-  const ChangePsd = async () => {
+  const submitChangePsd = async () => {
     try {
       const { data } = await axios.post(CHANGEPSD, postConfig);
       localStorage.setItem("token", data.token);
@@ -88,7 +93,7 @@ const UseApi = () => {
     }
   };
 
-  return { Register, Login, setOp, op, GetTime };
+  return { submitRegister, submitLogin, setOp, op, GetTime };
 };
 
 export default UseApi;

@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ReadPost.jsx
+.scrollBar::-webkit-scrollbar {
+  width: 0.3em;
+  background-color: transparent;
+}
+
+.scrollBar:hover::-webkit-scrollbar-thumb {
+  background-color: #4d6d8b6c;
+}
+
+.scrollBar:hover::-webkit-scrollbar-track-piece {
+  background-color: #ffffff50;
+} */

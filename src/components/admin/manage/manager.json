@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Wolf Crum",
+    "country": "Norway",
+    "email": "xxx@xxx.com",
+    "role": "manager"
+  },
+  {
+    "name": "Robert",
+    "country": "Scotland",
+    "email": "xxx@xxx.com",
+    "role": "affiliate"
+  },
+  {
+    "name": "Cron",
+    "country": "Spani",
+    "email": "xxx@xxx.com",
+    "role": "manager"
+  },
+  {
+    "name": "Alrik Susan",
+    "country": "England",
+    "email": "xxx@xxx.com",
+    "role": "affiliate"
+  },
+  {
+    "name": "Wintor Andreb",
+    "country": "Russia",
+    "email": "xxx@xxx.com",
+    "role": "manager"
+  },
+  {
+    "name": "Wolf Crum",
+    "country": "Norway",
+    "email": "xxx@xxx.com",
+    "role": "manager"
+  },
+  {
+    "name": "Robert",
+    "country": "Scotland",
+    "email": "xxx@xxx.com",
+    "role": "affiliate"
+  },
+  {
+    "name": "Cron",
+    "country": "Spanish",
+    "email": "xxx@xxx.com",
+    "role": "manager"
+  },
+  {
+    "name": "Alrik Susan",
+    "country": "England",
+    "email": "xxx@xxx.com",
+    "role": "affiliate"
+  },
+  {
+    "name": "Wintor Andreb",
+    "country": "Rusia",
+    "email": "xxx@xxx.com",
+    "role": "manager"
+  }
+]

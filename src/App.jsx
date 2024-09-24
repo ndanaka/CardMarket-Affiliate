@@ -1,7 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import JotaiProvider from "./providers/JotaiProvider";
-
 import DashLayout from "./pages/dashBoard/Layout";
 import Dashboard from "./pages/dashBoard/Index";
 import Register from "./pages/dashBoard/Register";
@@ -26,7 +24,6 @@ import View from "./pages/admin/manage/View";
 const App = () => {
   return (
     <>
-      {/* <JotaiProvider> */}
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<DashLayout />}>
@@ -62,7 +59,6 @@ const App = () => {
           </Route>
         </Routes>
       </BrowserRouter>
-      {/* </JotaiProvider> */}
     </>
   );
 };

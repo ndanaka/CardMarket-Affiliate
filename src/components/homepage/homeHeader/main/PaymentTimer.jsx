@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import UseApi from "../../../../hooks/useApi";
+import AuthApi from "../../../../api/authApi";
 import { useAtom } from "jotai";
 import { monthlyProfitAtom } from "../../../../atoms/index";
 
 const PaymentTimer = ({ registerDate, currentTime }) => {
-  const { GetTime } = UseApi();
+  const { GetTime } = AuthApi();
   const [monthlyProfit, setMonthlyProfit] = useAtom(monthlyProfitAtom);
 
   const [timeRemaining, setTimeRemaining] = useState({

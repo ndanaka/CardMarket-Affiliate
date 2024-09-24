@@ -7,11 +7,11 @@ import { CHANGEPSD, GETTIME, LOGIN, REGISTER } from "../constant/api";
 import { useAtom } from "jotai";
 import { idAtom, timeAtom, tokenWithPersistenceAtom } from "../atoms/index";
 
-const UseApi = () => {
+const AuthApi = () => {
   // operation characteristics
-  const [, setTime] = useAtom(timeAtom);
-  const [, setToken] = useAtom(tokenWithPersistenceAtom);
-  const [, setId] = useAtom(idAtom);
+  const [time, setTime] = useAtom(timeAtom);
+  const [token, setToken] = useAtom(tokenWithPersistenceAtom);
+  const [id, setId] = useAtom(idAtom);
 
   const [op, setOp] = useState({
     appErr: null,
@@ -19,8 +19,6 @@ const UseApi = () => {
   });
 
   const navigate = useNavigate();
-
-  const token = localStorage.getItem("token");
 
   // configuration
   const config = {
@@ -109,4 +107,4 @@ const UseApi = () => {
   return { submitRegister, submitLogin, setOp, op, GetTime };
 };
 
-export default UseApi;
+export default AuthApi;

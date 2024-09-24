@@ -1,18 +1,25 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useFormik } from "formik";
-import * as yup from "yup";
 import { useNavigate } from "react-router";
-import Heading from "../../sign/Heading";
+import * as yup from "yup";
+
 import AppServerErr from "../../../errors/AppServerErr";
 import FormikErr from "../../../errors/FormikErr";
+
+import Heading from "../../sign/Heading";
 import Input from "../../sign/Input";
 import SignButton from "../../sign/SignButton";
-import UseApi from "../../../hooks/useApi";
 import CancelBtn from "../../sign/CancelBtn";
+
+import AuthApi from "../../../api/authApi";
+
 const Edit = ({ label }) => {
   const [showPassword, SetShowPassword] = useState(false);
+
+  const { op, Register } = AuthApi();
+
   const navigate = useNavigate();
-  const { op, Register } = UseApi();
+
   const formSchema = yup.object({
     fullName: yup.string().required("Name is required"),
     email: yup.string().email().required("Email is required"),
@@ -28,6 +35,7 @@ const Edit = ({ label }) => {
     country: yup.string().required("Country is required"),
     role: yup.string().required("You must choose a role"),
   });
+
   const formik = useFormik({
     initialValues: {
       fullName: "",
@@ -49,6 +57,7 @@ const Edit = ({ label }) => {
     },
     validationSchema: formSchema,
   });
+
   return (
     <>
       <Heading label={"Edit the User's Profile"} />
@@ -169,4 +178,5 @@ const Edit = ({ label }) => {
     </>
   );
 };
+
 export default Edit;

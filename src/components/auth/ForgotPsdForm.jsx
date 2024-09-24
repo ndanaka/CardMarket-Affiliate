@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router";
 
-import UseApi from "../../hooks/useApi";
+import AuthApi from "../../api/authApi";
 
 import AppServerErr from "../../errors/AppServerErr";
 import FormikErr from "../../errors/FormikErr";
@@ -15,7 +15,7 @@ import Hint from "../sign/Hint";
 const ForgotPsdForm = ({ setShow }) => {
   const navigate = useNavigate();
 
-  const { op, handleForgotPsd } = UseApi();
+  const { op, handleForgotPsd } = AuthApi();
 
   const formSchema = yup.object({
     affiliateId: yup.string().required("Affiliate Id is required"),

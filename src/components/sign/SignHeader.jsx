@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router";
 
 import Language from "../dashBoard/header/Language";
@@ -21,4 +20,5 @@ const SignHeader = () => {
     </>
   );
 };
+
 export default SignHeader;

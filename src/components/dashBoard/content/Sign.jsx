@@ -15,4 +15,5 @@ const Sign = () => {
     </div>
   );
 };
+
 export default Sign;

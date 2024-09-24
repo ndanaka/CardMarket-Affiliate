@@ -55,10 +55,7 @@ const Edit = ({ label }) => {
       <AppServerErr>
         {op.serverErr === "Network Error" ? op.serverErr : null}
       </AppServerErr>
-      <form
-        className="mt-6 font-sans"
-        onSubmit={formik.handleSubmit}
-      >
+      <form className="mt-6 font-sans" onSubmit={formik.handleSubmit}>
         <Input
           label={"Fullname (フリガナ)"}
           type={"text"}
@@ -163,10 +160,7 @@ const Edit = ({ label }) => {
             <span>Affiliate</span>
           </label>
         </div>
-        <FormikErr
-          touched={formik.touched.role}
-          errors={formik.errors.role}
-        />
+        <FormikErr touched={formik.touched.role} errors={formik.errors.role} />
         <div className="flex justify-end gap-5">
           <SignButton label={"Confirm"} />
           <CancelBtn handle={() => navigate("/admin/manage")} />

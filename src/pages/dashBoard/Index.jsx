@@ -1,11 +1,9 @@
-import React from "react";
-
-import Content from "../../components/dashBoard/content/Index";
+import DashContent from "../../components/dashBoard/content/Index";
 
 const Index = () => {
   return (
     <div>
-      <Content />
+      <DashContent />
     </div>
   );
 };

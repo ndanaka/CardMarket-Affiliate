@@ -3,7 +3,7 @@ const Button = ({ label, handle, select }) => {
     <>
       <button
         className={`${
-          select === label 
+          select === label
             ? "bg-slate-200 text-black"
             : "bg-white text-gray-400"
         } hover:bg-slate-200 hover:text-black rounded-md px-3 py-1 font-semibold`}
@@ -14,4 +14,5 @@ const Button = ({ label, handle, select }) => {
     </>
   );
 };
+
 export default Button;

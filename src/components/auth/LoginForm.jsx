@@ -83,7 +83,7 @@ const LoginForm = () => {
             <SignButton label={"Login"} />
             <Hint
               label={"Register"}
-              question={"Do you wnat to register?"}
+              question={"Do you wnat to register? "}
               handle={() => navigate("/register")}
             />
             <Hint

@@ -1,4 +1,3 @@
-import React from "react";
 const Payment = () => {
   return (
     <>
@@ -6,4 +5,5 @@ const Payment = () => {
     </>
   );
 };
+
 export default Payment;

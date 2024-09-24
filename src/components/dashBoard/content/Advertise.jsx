@@ -7,7 +7,7 @@ const Advertise = () => {
 
   return (
     <div
-      className={`overflow-hidden relative text-center bg-[url('/image/bg/bg-3.jpg')] h-[50vh] max w-screen bg-cover`}
+      className={`overflow-hidden relative text-center bg-[url('/image/bg/bg-3.jpg')] h-[50vh] max bg-cover`}
     >
       <img className="w-fit max-lg:hidden" />
       <div
@@ -31,4 +31,5 @@ const Advertise = () => {
     </div>
   );
 };
+
 export default Advertise;

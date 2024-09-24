@@ -1,4 +1,4 @@
-const Index = () => {
+const ContactUs = () => {
   return (
     <>
       <div className="flex flex-wrap p-20 justify-between max-[760px]:p-10">
@@ -58,4 +58,5 @@ const Index = () => {
     </>
   );
 };
-export default Index;
+
+export default ContactUs;

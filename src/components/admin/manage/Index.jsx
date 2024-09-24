@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+
 import Search from "../common/Search";
 import member from "./manager.json";
 import Members from "./Members";
@@ -9,7 +10,9 @@ const Manage = () => {
   const [select, setSelect] = useState("All");
   const [members, setMembers] = useState([]);
   const [fltSignal, setFltSignal] = useState(false);
+
   const navigate = useNavigate();
+
   useEffect(() => {
     if (select === "All") {
       setMembers(member);
@@ -20,6 +23,7 @@ const Manage = () => {
     );
     setMembers(filter);
   }, [select, fltSignal]);
+
   return (
     <>
       <div className="mt-10 border-[1px] border-gray-200 rounded-lg p-10 pb-5 max-[700px]:p-2">
@@ -48,10 +52,7 @@ const Manage = () => {
                 Search results...
               </div>
             )}
-            <Search
-              setMembers={setMembers}
-              setFltSignal={setFltSignal}
-            />
+            <Search setMembers={setMembers} setFltSignal={setFltSignal} />
           </div>
           <button
             onClick={() => navigate("/admin/manage/adduser")}
@@ -67,4 +68,5 @@ const Manage = () => {
     </>
   );
 };
+
 export default Manage;

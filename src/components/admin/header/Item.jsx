@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+
 const Item = ({ item, icon }) => {
   const [path, setPath] = useState("");
   const location = useLocation();
+
   useEffect(() => {
     const name = location.pathname.split("/", 3);
     setPath(name[2]);
   }, [location]);
+
   return (
     <>
       <li
@@ -21,4 +24,5 @@ const Item = ({ item, icon }) => {
     </>
   );
 };
+
 export default Item;

@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { HashRouter, useNavigate } from "react-router-dom";
-import NavButton from "./NavButton";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useAtom } from "jotai";
-import { languageAtom, tokenAtom } from "../../../store";
+import { languageAtom } from "../../../store";
+
+import NavButton from "./NavButton";
 import Language from "./Language";
 
 const NavBar1 = ({ setCollapse }) => {
   const navigate = useNavigate();
   const [language, setLanguage] = useAtom(languageAtom);
-  // const [token, setToken] = useAtom(tokenAtom)
+  // const [token, setToken] = useAtom(tokenAtom);
+
   const handleLanguage = () => {
     if (language === "日本語") {
       setLanguage("ENGLISH");
@@ -17,41 +18,27 @@ const NavBar1 = ({ setCollapse }) => {
       setLanguage("日本語");
     }
   };
+
   return (
     <div>
       <div className="flex justify-between px-[10%] py-3 lg:hidden z-30">
-        <button
-          className=" text-white"
-          onClick={() => setCollapse(true)}
-        >
+        <button className=" text-white" onClick={() => setCollapse(true)}>
           MENU
         </button>
         <Language />
       </div>
       <nav className="flex flex-wrap justify-between border-b-[0.1px] border-gray-500 border-collapse px-20 items-center">
         <div className="border-x-[0.1px] border-gray-500 p-2 max-lg:hidden ">
-          <Link
-            to={"https://oripa.clove.jp/en/oripa/All"}
-            target="blank"
-          >
-            <NavButton
-              label="Oripa Homepage"
-              className={"text-[12px]"}
-            />
+          <Link to={"https://oripa.clove.jp/en/oripa/All"} target="blank">
+            <NavButton label="Oripa Homepage" className={"text-[12px]"} />
           </Link>
-          <Link
-            to={"https://oripa.clove.jp/en/oripa/All"}
-            target="blank"
-          >
-            <NavButton
-              label="Help Center"
-              className={"text-[12px]"}
-            />
+          <Link to={"https://oripa.clove.jp/en/oripa/All"} target="blank">
+            <NavButton label="Help Center" className={"text-[12px]"} />
           </Link>
           <NavButton
             label="Contact Us"
             className={"text-[12px]"}
-            handle={() => navigate('/contact')}
+            handle={() => navigate("/contact")}
           />
         </div>
         <div className="flex flex-wrap -tracking-tight scale-y-150 max-lg:hidden ">
@@ -75,4 +62,5 @@ const NavBar1 = ({ setCollapse }) => {
     </div>
   );
 };
+
 export default NavBar1;

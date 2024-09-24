@@ -186,7 +186,7 @@ const RegisterForm = ({ title, label }) => {
       {label === "Register" && (
         <Hint
           label={"Log in"}
-          question={"Already have an account?"}
+          question={"Already have an account? "}
           handle={() => navigate("/LogIn")}
         />
       )}

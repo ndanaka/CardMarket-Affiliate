@@ -1,13 +1,15 @@
 import { useNavigate } from "react-router";
-import Button from "./Button";
 import { useState } from "react";
-import AccountInfo from "../../home/account/AccountInfo";
-import Home from "../../home/homepage/Index";
-import PaymentHistroy from "../../home/paymentHistory/Index";
+
+import Button from "./Button";
+import AccountInfo from "../../homepage/account/AccountInfo";
+import HomeContent from "../../homepage/content/Index";
+import PaymentHistroy from "../../homepage/paymentHistory/Index";
 
 const View = () => {
   const [select, setSelect] = useState("Profile");
   const navigate = useNavigate();
+
   return (
     <>
       <div className="mt-10 border-[1px] border-gray-200 rounded-lg p-10 max-[700px]:p-2">
@@ -41,7 +43,7 @@ const View = () => {
           {select === "Profile" ? (
             <AccountInfo role={"manager"} />
           ) : select === "Progress" ? (
-            <Home role="manager" />
+            <HomeContent role="manager" />
           ) : (
             <PaymentHistroy />
           )}
@@ -50,4 +52,5 @@ const View = () => {
     </>
   );
 };
+
 export default View;

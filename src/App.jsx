@@ -1,4 +1,3 @@
-import React from "react";
 import { useAtom } from "jotai";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -7,18 +6,18 @@ import { tokenAtom } from "./store/index";
 import JotaiProvider from "./providers/JotaiProvider";
 import AuthProvider from "./context/Auth";
 
-import HomeLayout from "./pages/home/HomeLayout";
-import PaymentRequest from "./pages/home/PaymentRequest";
-import Homepage from "./pages/home/Hompage";
-import PaymentHistory from "./pages/home/PaymentHiistory";
-import AffiliateLinks from "./pages/home/AffiliateLinks";
 import DashLayout from "./pages/dashBoard/Layout";
 import Dashboard from "./pages/dashBoard/Index";
 import Register from "./pages/dashBoard/Register";
 import LogIn from "./pages/dashBoard/LogIn";
-import LevelUpgrade from "./pages/home/LevelUpgrade";
+import HomeLayout from "./pages/homepage/Layout";
+import Homepage from "./pages/homepage/Index";
+import PaymentRequest from "./pages/homepage/PaymentRequest";
+import PaymentHistory from "./pages/homepage/PaymentHiistory";
+import AffiliateLinks from "./pages/homepage/AffiliateLinks";
+import LevelUpgrade from "./pages/homepage/LevelUpgrade";
 import ContactUs from "./pages/contactUs/Index";
-import AccountInfo from "./pages/home/AccountInfo";
+import AccountInfo from "./pages/homepage/AccountInfo";
 import AdminLayout from "./pages/admin/AdminLayout";
 import Payment from "./pages/admin/Payment";
 import Message from "./pages/admin/Message";

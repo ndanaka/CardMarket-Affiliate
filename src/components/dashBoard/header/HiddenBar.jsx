@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
-import NavButton from "./NavButton";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+
 import { useAtom } from "jotai";
 import { tokenAtom } from "../../../store";
+
+import NavButton from "./NavButton";
 
 const HiddenBar = ({ collapse, setCollapse }) => {
   const navigate = useNavigate();
   const [token] = useAtom(tokenAtom);
+
   return (
     <div
       className={`${
@@ -51,16 +53,11 @@ const HiddenBar = ({ collapse, setCollapse }) => {
           setCollapse(false);
         }}
       />
-      <Link
-        to={"https://oripa.clove.jp/en/oripa/All"}
-        target="blank"
-      >
-        <NavButton
-          label="HELP CENTER"
-          className={"text-[14px]"}
-        />
+      <Link to={"https://oripa.clove.jp/en/oripa/All"} target="blank">
+        <NavButton label="HELP CENTER" className={"text-[14px]"} />
       </Link>
     </div>
   );
 };
+
 export default HiddenBar;

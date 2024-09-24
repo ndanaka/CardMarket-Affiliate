@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import AccountInfo from "../../home/homeHeader/top/AccountInfoModal";
+import { useState } from "react";
 import { useNavigate } from "react-router";
+
+import AccountInfo from "../../homepage/homeHeader/top/AccountInfoModal";
 import Item from "./Item";
+
 const Header = () => {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
@@ -27,12 +29,10 @@ const Header = () => {
             Dashboard
           </button> */}
         </div>
-        <AccountInfo
-          show={show}
-          setShow={setShow}
-        />
+        <AccountInfo show={show} setShow={setShow} />
       </div>
     </>
   );
 };
+
 export default Header;

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 import * as yup from "yup";
 
 import { idAtom } from "../../atoms";
-import UseApi from "../../hooks/useApi";
+import AuthApi from "../../api/authApi";
 
 import AppServerErr from "../../errors/AppServerErr";
 import FormikErr from "../../errors/FormikErr";
@@ -22,7 +22,7 @@ const LoginForm = () => {
   const [show, setShow] = useState(false);
 
   const [id, setId] = useAtom(idAtom);
-  const { op, submitLogin } = UseApi();
+  const { op, submitLogin } = AuthApi();
 
   const formSchema = yup.object({
     affiliateId: yup.string().required("Affiliate Id is required"),

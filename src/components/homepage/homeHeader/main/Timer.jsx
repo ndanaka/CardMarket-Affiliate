@@ -3,7 +3,7 @@ import PaymentTimer from "./PaymentTimer";
 import { useLocation, useNavigate } from "react-router";
 import { useAtom } from "jotai";
 import { timeAtom } from "../../../../atoms/index";
-import UseApi from "../../../../hooks/useApi";
+import AuthApi from "../../../../api/authApi";
 
 const Timer = () => {
   const [props, setProps] = useState({ registerDate: "", currentTime: "" });

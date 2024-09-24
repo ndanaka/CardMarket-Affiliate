@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-import UseApi from "../../hooks/useApi";
+import AuthApi from "../../api/authApi";
 
 import AppServerErr from "../../errors/AppServerErr";
 import FormikErr from "../../errors/FormikErr";
@@ -19,7 +19,7 @@ const RegisterForm = ({ title, label }) => {
 
   const [showPassword, SetShowPassword] = useState(false);
 
-  const { op, submitRegister } = UseApi();
+  const { op, submitRegister } = AuthApi();
 
   const formSchema = yup.object({
     fullName: yup.string().required("Nddame is required"),

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-import UseApi from "../../../hooks/useApi";
+import AuthApi from "../../../api/authApi";
 
 import FormikErr from "../../../errors/FormikErr";
 import AppServerErr from "../../../errors/AppServerErr";
@@ -16,7 +16,7 @@ const ChangePsd = ({ setShow }) => {
   const [showNew, SetShowNew] = useState(false);
   const [showConfirm, SetShowConfirm] = useState(false);
 
-  const { op, Register } = UseApi();
+  const { op, Register } = AuthApi();
 
   const formSchema = yup.object({
     currentPsd: yup.string().required("Name is required"),

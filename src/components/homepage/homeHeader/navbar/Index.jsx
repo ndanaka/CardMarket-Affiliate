@@ -6,7 +6,7 @@ import NavItem from "./Item";
 import NavLinks from "./LInks";
 import NavPayment from "./Payment";
 
-import { showNavAtom } from "../../../../store/index";
+import { showNavAtom } from "../../../../atoms/index";
 
 const Navbar = () => {
   const [showNav, setShowNav] = useAtom(showNavAtom);

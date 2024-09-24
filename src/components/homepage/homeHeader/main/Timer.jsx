@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import PaymentTimer from "./PaymentTimer";
 import { useLocation, useNavigate } from "react-router";
 import { useAtom } from "jotai";
-import { timeAtom } from "../../../../store/index";
+import { timeAtom } from "../../../../atoms/index";
 import UseApi from "../../../../hooks/useApi";
 
 const Timer = () => {
-  const location = useLocation();
-  //time
-  const [time] = useAtom(timeAtom);
-  const { GetTime } = UseApi();
   const [props, setProps] = useState({ registerDate: "", currentTime: "" });
+
+  const location = useLocation();
+  const [time] = useAtom(timeAtom);
+
   useEffect(() => {
     const { registerDate, currentTime } = { ...time };
     setProps({ registerDate, currentTime });

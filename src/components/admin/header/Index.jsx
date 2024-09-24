@@ -7,6 +7,7 @@ import Item from "./Item";
 const Header = () => {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
+
   return (
     <>
       <div className="flex flex-wrap justify-between items-baseline gap-2 text-slate-900 border-b-[1px] border-b-slate-300">

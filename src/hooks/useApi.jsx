@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
-import { useAtom } from "jotai";
 
 import { CHANGEPSD, GETTIME, LOGIN, REGISTER } from "../constant/api";
 
-import { idAtom, timeAtom, tokenAtom } from "../store/index";
+import { useAtom } from "jotai";
+import { idAtom, timeAtom, tokenWithPersistenceAtom } from "../atoms/index";
 
 const UseApi = () => {
   // operation characteristics
   const [, setTime] = useAtom(timeAtom);
-  const [, setToken] = useAtom(tokenAtom);
+  const [, setToken] = useAtom(tokenWithPersistenceAtom);
   const [, setId] = useAtom(idAtom);
 
   const [op, setOp] = useState({
@@ -45,7 +45,8 @@ const UseApi = () => {
       setToken(data.token);
       setId(data.id);
 
-      formData.role ? navigate("/admin/manage") : navigate("/login");
+      navigate("/login");
+      // formData.role ? navigate("/admin/manage") : navigate("/login");
     } catch (error) {
       setOp({
         appErr: error?.response?.data?.message,
@@ -59,11 +60,23 @@ const UseApi = () => {
       const { data } = await axios.post(LOGIN, formData, config);
 
       localStorage.setItem("token", data.token);
-      navigate("/homepage");
-
       setToken(data.token);
-      setCookie();
-      GetTime();
+
+      switch (data.name) {
+        case "Manager":
+          navigate("/admin/manage");
+          break;
+
+        case "Admin":
+          navigate("/homepage");
+          break;
+
+        default:
+          navigate("/homepage");
+          break;
+      }
+
+      // GetTime();
       setId("");
     } catch (error) {
       setOp({

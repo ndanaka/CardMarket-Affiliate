@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import UseApi from "../../../../hooks/useApi";
 import { useAtom } from "jotai";
-import { monthlyProfitAtom } from "../../../../store/index";
+import { monthlyProfitAtom } from "../../../../atoms/index";
 
 const PaymentTimer = ({ registerDate, currentTime }) => {
   const { GetTime } = UseApi();
@@ -52,7 +52,7 @@ const PaymentTimer = ({ registerDate, currentTime }) => {
         if (monthlyProfit === "") {
         }
       } else {
-        GetTime();
+        // GetTime();
         // setMonthlyProfit('mustPay')
       }
     };

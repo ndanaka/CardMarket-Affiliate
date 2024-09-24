@@ -3,7 +3,7 @@ import { useAtom } from "jotai";
 import { Tooltip } from "react-tooltip";
 import { useLocation } from "react-router";
 
-import { totalStatsAtom } from "../../../store/index";
+import { totalStatsAtom } from "../../../atoms/index";
 
 const TotalStats = ({ filtTotal, setFiltClient }) => {
   const [totalStats, setTotalStats] = useAtom(totalStatsAtom);

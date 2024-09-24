@@ -1,13 +1,13 @@
-import { useAtom } from "jotai";
 import { useNavigate } from "react-router";
 
-import { tokenAtom } from "../../../store";
+import { useAtom } from "jotai";
+import { tokenWithPersistenceAtom } from "../../../atoms";
 
 import NavButton from "./NavButton";
 
 const NavBar2 = () => {
   const navigate = useNavigate();
-  const [token] = useAtom(tokenAtom);
+  const [token] = useAtom(tokenWithPersistenceAtom);
 
   return (
     <nav className=" flex flex-wrap justify-between items-center">

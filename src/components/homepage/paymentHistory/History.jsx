@@ -3,7 +3,7 @@ import { useLocation } from "react-router";
 
 import { useAtom } from "jotai";
 
-import { payHistoryAtom } from "../../../store/index";
+import { payHistoryAtom } from "../../../atoms/index";
 
 const History = ({ timeFrame }) => {
   const [histroy, setHistory] = useAtom(payHistoryAtom);

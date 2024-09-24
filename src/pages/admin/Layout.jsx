@@ -2,12 +2,12 @@ import { Outlet, useNavigate } from "react-router";
 import { useEffect } from "react";
 
 import { useAtom } from "jotai";
-import { tokenAtom } from "../../store";
+import { tokenWithPersistenceAtom } from "../../atoms";
 
 import Header from "../../components/admin/header/Index";
 
-const AdminLayout = () => {
-  const [token, setToken] = useAtom(tokenAtom);
+const Layout = () => {
+  const [token, setToken] = useAtom(tokenWithPersistenceAtom);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,4 +26,4 @@ const AdminLayout = () => {
   );
 };
 
-export default AdminLayout;
+export default Layout;

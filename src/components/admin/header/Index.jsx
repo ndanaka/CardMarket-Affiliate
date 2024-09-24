@@ -23,12 +23,6 @@ const Header = () => {
             <Item item={"Payment"} />
             <Item item={"Message"} />
           </ul>
-          {/* <button
-            className="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold px-2 py-1 rounded-md "
-            onClick={() => navigate("/")}
-          >
-            Dashboard
-          </button> */}
         </div>
         <AccountInfo show={show} setShow={setShow} />
       </div>

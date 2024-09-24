@@ -62,7 +62,7 @@ const AuthApi = () => {
 
       switch (data.name) {
         case "Manager":
-          navigate("/admin/manage");
+          navigate("/admin");
           break;
 
         case "Admin":

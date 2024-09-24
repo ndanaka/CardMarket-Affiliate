@@ -1,8 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
+import { jwtDecode } from "jwt-decode";
 
-import { showNavAtom } from "../../../atoms/index";
 import { useAtom } from "jotai";
+import { showNavAtom } from "../../../atoms/index";
+import { tokenWithPersistenceAtom } from "../../../atoms/index";
 
 import Button from "./Button";
 
@@ -12,6 +14,8 @@ const Account = ({ setShow }) => {
   const accountBtn = useRef();
 
   const [, setShowNav] = useAtom(showNavAtom);
+  const [token, setToken] = useAtom(tokenWithPersistenceAtom);
+  const [payload, setPayload] = useState();
 
   const handleClickOutside = (event) => {
     // Check if the clicked element is outside the list
@@ -21,13 +25,14 @@ const Account = ({ setShow }) => {
   };
 
   useEffect(() => {
+    setPayload(jwtDecode(token));
     // Add event listener for clicks
     document.addEventListener("mousedown", handleClickOutside);
     // Cleanup the event listener on component unmount
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [token]);
 
   return (
     <>
@@ -35,24 +40,28 @@ const Account = ({ setShow }) => {
         ref={accountBtn}
         className=" absolute top-8 -left-3 py-2  bg-white w-[200px] rounded-md shadow-lg shadow-gray-600"
       >
-        <Button
-          src={"setting.svg"}
-          label={"Account Info"}
-          handle={() => {
-            navigate("/homepage/accountsetting");
-            setShow(false);
-            setShowNav((t) => ({ ...t, color: "" }));
-          }}
-        />
-        <Button
-          src={"level.svg"}
-          label={"Account Level"}
-          handle={() => {
-            navigate("/homepage/level");
-            setShow(false);
-            setShowNav((t) => ({ ...t, color: "Homepage" }));
-          }}
-        />
+        {payload?.fullName !== "Admin" && payload?.fullName !== "Manager" && (
+          <>
+            <Button
+              src={"setting.svg"}
+              label={"Account Info"}
+              handle={() => {
+                navigate("/homepage/accountsetting");
+                setShow(false);
+                setShowNav((t) => ({ ...t, color: "" }));
+              }}
+            />
+            <Button
+              src={"level.svg"}
+              label={"Account Level"}
+              handle={() => {
+                navigate("/homepage/level");
+                setShow(false);
+                setShowNav((t) => ({ ...t, color: "Homepage" }));
+              }}
+            />
+          </>
+        )}
         <Button
           src={"T&C.svg"}
           label={"T&C"}
@@ -66,6 +75,7 @@ const Account = ({ setShow }) => {
           label={"Log Out"}
           handle={() => {
             localStorage.removeItem("token");
+            setToken("");
             setShow(false);
             navigate("/");
           }}

@@ -11,8 +11,8 @@ const Language = ({ className }) => {
       value={lang}
       onChange={(e) => setLanguage(e.target.value)}
     >
-      <option value="日本語">日本語</option>
       <option value="ENGLISH">ENLISH</option>
+      <option value="日本語">日本語</option>
     </select>
   );
 };

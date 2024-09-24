@@ -1,10 +1,8 @@
-import React from "react";
-
 import Advertise from "./Advertise";
 import Sign from "./Sign";
 import Testimonials from "./Testimonials";
 
-const Index = () => {
+const Content = () => {
   return (
     <>
       <Advertise />
@@ -13,4 +11,5 @@ const Index = () => {
     </>
   );
 };
-export default Index;
+
+export default Content;

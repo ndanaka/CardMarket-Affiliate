@@ -33,4 +33,5 @@ const Search = ({ setMembers, setFltSignal }) => {
     </>
   );
 };
+
 export default Search;

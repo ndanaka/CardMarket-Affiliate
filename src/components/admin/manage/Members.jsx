@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from "react";
-import Pagination from "../common/Pagination";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+
+import Pagination from "../common/Pagination";
 
 const Members = ({ members }) => {
   const [count, setCount] = useState(1);
   const [member, setMember] = useState([]);
+
   const navigate = useNavigate();
+
   useEffect(() => {
     const Piece = members.slice(10 * (count - 1), 10 * count);
     setMember(Piece);
   }, [count, members]);
+
   return (
     <>
       <table className=" w-full text-[14px]  font-medium">
@@ -66,4 +70,5 @@ const Members = ({ members }) => {
     </>
   );
 };
+
 export default Members;

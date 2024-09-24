@@ -1,7 +1,6 @@
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router";
-
+import axios from "axios";
 import { useAtom } from "jotai";
 
 import { CHANGEPSD, GETTIME, LOGIN, REGISTER } from "../constant/api";
@@ -43,7 +42,6 @@ const UseApi = () => {
       const { data } = await axios.post(REGISTER, formData, config);
 
       localStorage.setItem("token", data.token);
-
       setToken(data.token);
       setId(data.id);
 
@@ -56,11 +54,13 @@ const UseApi = () => {
     }
   };
 
-  const submitLogin = async (input) => {
+  const submitLogin = async (formData) => {
     try {
-      const { data } = await axios.post(LOGIN, input, config);
+      const { data } = await axios.post(LOGIN, formData, config);
+
       localStorage.setItem("token", data.token);
       navigate("/homepage");
+
       setToken(data.token);
       setCookie();
       GetTime();

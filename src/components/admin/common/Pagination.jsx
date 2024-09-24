@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 
 const Pagination = ({ pages, results, setCount, count }) => {
   const [page, setPage] = useState([]);
+
   useEffect(() => {
     const toArray = Array.from({ length: pages }, (_, index) => index + 1);
     setPage(toArray);
   }, [pages]);
+
   return (
     <>
       <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6 pt-5">
@@ -58,7 +60,7 @@ const Pagination = ({ pages, results, setCount, count }) => {
                       item === count && "bg-indigo-600 text-white"
                     } py-2 w-10 text-center text-sm font-semibold ring-1 ring-inset ring-gray-300 `}
                     onClick={() => {
-                      setCount(item);    
+                      setCount(item);
                     }}
                   >
                     {item}
@@ -79,7 +81,7 @@ const Pagination = ({ pages, results, setCount, count }) => {
                   src="/image/icon/previous.png"
                   className="w-5 mr-2 rotate-180"
                   onClick={() => count <= pages - 1 && setCount((t) => t + 1)}
-                  />
+                />
                 <img
                   src="/image/icon/first.png"
                   className="w-5 rotate-180"
@@ -93,4 +95,5 @@ const Pagination = ({ pages, results, setCount, count }) => {
     </>
   );
 };
+
 export default Pagination;

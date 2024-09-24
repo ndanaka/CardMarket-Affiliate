@@ -1,11 +1,14 @@
-import React from "react";
-import NavButton from "./NavButton";
-import { useNavigate } from "react-router";
 import { useAtom } from "jotai";
+import { useNavigate } from "react-router";
+
 import { tokenAtom } from "../../../store";
+
+import NavButton from "./NavButton";
+
 const NavBar2 = () => {
   const navigate = useNavigate();
   const [token] = useAtom(tokenAtom);
+
   return (
     <nav className=" flex flex-wrap justify-between items-center">
       <div>
@@ -37,4 +40,5 @@ const NavBar2 = () => {
     </nav>
   );
 };
+
 export default NavBar2;

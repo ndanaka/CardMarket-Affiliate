@@ -1,14 +1,14 @@
-import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 import { useAtom } from "jotai";
-import { tokenAtom } from "../../../store";
+import { tokenWithPersistenceAtom } from "../../../atoms";
 
 import NavButton from "./NavButton";
 
 const HiddenBar = ({ collapse, setCollapse }) => {
   const navigate = useNavigate();
-  const [token] = useAtom(tokenAtom);
+  const [token] = useAtom(tokenWithPersistenceAtom);
 
   return (
     <div

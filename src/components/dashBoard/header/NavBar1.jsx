@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useAtom } from "jotai";
-import { languageAtom } from "../../../store";
+import { languageAtom } from "../../../atoms";
 
 import NavButton from "./NavButton";
 import Language from "./Language";
@@ -9,7 +9,6 @@ import Language from "./Language";
 const NavBar1 = ({ setCollapse }) => {
   const navigate = useNavigate();
   const [language, setLanguage] = useAtom(languageAtom);
-  // const [token, setToken] = useAtom(tokenAtom);
 
   const handleLanguage = () => {
     if (language === "日本語") {

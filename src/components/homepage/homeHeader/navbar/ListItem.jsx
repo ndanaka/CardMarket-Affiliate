@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 
-import { showNavAtom } from "../../../../store/index";
+import { showNavAtom } from "../../../../atoms/index";
 
 const NavListItem = ({ label, handle, coloredName }) => {
   const [showNav, setShowNav] = useAtom(showNavAtom);

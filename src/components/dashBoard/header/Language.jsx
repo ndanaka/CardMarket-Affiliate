@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 
-import { languageAtom } from "../../../store/index";
+import { languageAtom } from "../../../atoms/index";
 
 const Language = ({ className }) => {
   const [lang, setLanguage] = useAtom(languageAtom);

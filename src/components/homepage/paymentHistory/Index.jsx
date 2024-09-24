@@ -4,7 +4,7 @@ import { useAtom } from "jotai";
 import History from "./History";
 import TimeFrame from "./TimeFrame";
 
-import { timeAtom } from "../../../store/index";
+import { timeAtom } from "../../../atoms/index";
 
 const PaymentHistroy = () => {
   const [timeFrame, setTimeFrame] = useState({ year: 0, month: 0 });

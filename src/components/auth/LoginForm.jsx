@@ -4,7 +4,7 @@ import { useAtom } from "jotai";
 import { useNavigate } from "react-router";
 import * as yup from "yup";
 
-import { idAtom } from "../../store";
+import { idAtom } from "../../atoms";
 import UseApi from "../../hooks/useApi";
 
 import AppServerErr from "../../errors/AppServerErr";
@@ -22,7 +22,7 @@ const LoginForm = () => {
   const [show, setShow] = useState(false);
 
   const [id, setId] = useAtom(idAtom);
-  const { op, submitLogin, GetTime } = UseApi();
+  const { op, submitLogin } = UseApi();
 
   const formSchema = yup.object({
     affiliateId: yup.string().required("Affiliate Id is required"),

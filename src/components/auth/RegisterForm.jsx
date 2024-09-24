@@ -142,9 +142,10 @@ const RegisterForm = ({ title, label }) => {
           errors={formik.errors.country}
         />
         {label === "Add" && (
-          <div className="flex gap-5">
+          <div className="flex flex-wrap justify-between gap-5 my-2">
             <label>
               <input
+                className="mr-1"
                 type="radio"
                 name="role"
                 value="manager"
@@ -155,16 +156,18 @@ const RegisterForm = ({ title, label }) => {
             </label>
             <label>
               <input
+                className="mr-1"
                 type="radio"
                 name="role"
-                value="readManager"
+                value="admin"
                 onChange={formik.handleChange}
-                checked={formik.values.role === "readManager"}
+                checked={formik.values.role === "admin"}
               />
-              <span>Manager(Only-Read)</span>
+              <span>Admin(Only-Read)</span>
             </label>
             <label>
               <input
+                className="mr-1"
                 type="radio"
                 name="role"
                 value="affiliate"

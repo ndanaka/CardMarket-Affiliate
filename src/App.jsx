@@ -1,10 +1,6 @@
-import { useAtom } from "jotai";
-
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { tokenAtom } from "./store/index";
 import JotaiProvider from "./providers/JotaiProvider";
-import AuthProvider from "./context/Auth";
 
 import DashLayout from "./pages/dashBoard/Layout";
 import Dashboard from "./pages/dashBoard/Index";
@@ -16,9 +12,9 @@ import PaymentRequest from "./pages/homepage/PaymentRequest";
 import PaymentHistory from "./pages/homepage/PaymentHiistory";
 import AffiliateLinks from "./pages/homepage/AffiliateLinks";
 import LevelUpgrade from "./pages/homepage/LevelUpgrade";
-import ContactUs from "./pages/contactUs/Index";
 import AccountInfo from "./pages/homepage/AccountInfo";
-import AdminLayout from "./pages/admin/AdminLayout";
+import ContactUs from "./pages/contactUs/Index";
+import AdminLayout from "./pages/admin/Layout";
 import Payment from "./pages/admin/Payment";
 import Message from "./pages/admin/Message";
 import Introduce from "./pages/admin/Introduce";
@@ -28,52 +24,45 @@ import Edit from "./pages/admin/manage/Edit";
 import View from "./pages/admin/manage/View";
 
 const App = () => {
-  const [token, setToken] = useAtom(tokenAtom);
-
   return (
     <>
-      <JotaiProvider>
-        <BrowserRouter>
-          <AuthProvider>
-            <Routes>
-              <Route path="/" element={<DashLayout />}>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/login" element={<LogIn />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/contact" element={<ContactUs />} />
-              </Route>
+      {/* <JotaiProvider> */}
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<DashLayout />}>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/login" element={<LogIn />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/contact" element={<ContactUs />} />
+          </Route>
 
-              <Route path="/homepage" element={<HomeLayout />}>
-                <Route path="/homepage" element={<Homepage />} />
-                <Route path="/homepage/payments" element={<PaymentRequest />} />
-                <Route
-                  path="/homepage/payments/history"
-                  element={<PaymentHistory />}
-                />
-                <Route
-                  path="/homepage/links/affiliatelinks"
-                  element={<AffiliateLinks />}
-                />
-                <Route path="/homepage/level" element={<LevelUpgrade />} />
-                <Route
-                  path="/homepage/accountsetting"
-                  element={<AccountInfo />}
-                />
-              </Route>
+          <Route path="/homepage" element={<HomeLayout />}>
+            <Route path="/homepage" element={<Homepage />} />
+            <Route path="/homepage/payments" element={<PaymentRequest />} />
+            <Route
+              path="/homepage/payments/history"
+              element={<PaymentHistory />}
+            />
+            <Route
+              path="/homepage/links/affiliatelinks"
+              element={<AffiliateLinks />}
+            />
+            <Route path="/homepage/level" element={<LevelUpgrade />} />
+            <Route path="/homepage/accountsetting" element={<AccountInfo />} />
+          </Route>
 
-              <Route path="/admin" element={<AdminLayout />}>
-                <Route path="/admin" element={<Introduce />} />
-                <Route path="/admin/manage" element={<Manage />} />
-                <Route path="/admin/manage/adduser" element={<AddUser />} />
-                <Route path="/admin/manage/edit" element={<Edit />} />
-                <Route path="/admin/manage/view" element={<View />} />
-                <Route path="/admin/payment" element={<Payment />} />
-                <Route path="/admin/message" element={<Message />} />
-              </Route>
-            </Routes>
-          </AuthProvider>
-        </BrowserRouter>
-      </JotaiProvider>
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route path="/admin" element={<Introduce />} />
+            <Route path="/admin/manage" element={<Manage />} />
+            <Route path="/admin/manage/adduser" element={<AddUser />} />
+            <Route path="/admin/manage/edit" element={<Edit />} />
+            <Route path="/admin/manage/view" element={<View />} />
+            <Route path="/admin/payment" element={<Payment />} />
+            <Route path="/admin/message" element={<Message />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+      {/* </JotaiProvider> */}
     </>
   );
 };

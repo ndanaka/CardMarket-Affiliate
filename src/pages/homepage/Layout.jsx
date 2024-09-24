@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Navigate, Outlet, useNavigate } from "react-router";
+import { jwtDecode } from "jwt-decode";
 
 import { useAtom } from "jotai";
 import { tokenWithPersistenceAtom } from "../../atoms";
@@ -13,8 +14,16 @@ const Layout = () => {
   useEffect(() => {
     if (!token) {
       navigate("/");
+    } else {
+      const payload = jwtDecode(token);
+
+      if (payload?.fullName === "Affiliate") {
+        navigate("/homepage");
+      } else {
+        navigate("/admin");
+      }
     }
-  }, [navigate]);
+  }, [token]);
 
   return (
     <>

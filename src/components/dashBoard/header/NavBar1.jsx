@@ -1,14 +1,19 @@
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+
 import { useAtom } from "jotai";
 import { languageAtom } from "../../../atoms";
+import { tokenWithPersistenceAtom } from "../../../atoms";
 
 import NavButton from "./NavButton";
 import Language from "./Language";
+import AccountInfo from "../../homepage/homeHeader/top/AccountInfoModal";
 
 const NavBar1 = ({ setCollapse }) => {
   const navigate = useNavigate();
+
   const [language, setLanguage] = useAtom(languageAtom);
+  const [token, setToken] = useAtom(tokenWithPersistenceAtom);
 
   const handleLanguage = () => {
     if (language === "日本語") {
@@ -41,16 +46,21 @@ const NavBar1 = ({ setCollapse }) => {
           />
         </div>
         <div className="flex flex-wrap -tracking-tight scale-y-150 max-lg:hidden ">
-          <NavButton
-            label="PATNER LOGIN"
-            className={"text-[10px] border-[0.5px] px-4 py-1"}
-            handle={() => navigate("/login")}
-          />
-          <NavButton
-            label="REGISTER A PATNER ACCOUNT"
-            className={"text-[10px] bg-green-600 px-4 py-1 "}
-            handle={() => navigate("/register")}
-          />
+          {!token && (
+            <>
+              <NavButton
+                label="PATNER LOGIN"
+                className={"text-[10px] border-[0.5px] px-4 py-1"}
+                handle={() => navigate("/login")}
+              />
+              <NavButton
+                label="REGISTER A PATNER ACCOUNT"
+                className={"text-[10px] bg-green-600 px-4 py-1 "}
+                handle={() => navigate("/register")}
+              />
+            </>
+          )}
+
           <NavButton
             label={language}
             className={"text-[10px] border-[0.5px] px-4 py-1 font-[500] w-20"}

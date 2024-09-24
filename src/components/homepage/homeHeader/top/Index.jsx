@@ -10,9 +10,9 @@ const Top = () => {
     <>
       <div className="flex flex-wrap justify-between items-center bg-gray-200 px-10 text-[14px] pl-12 p-3 border-b-[1px] border-b-gray-300">
         <div>
-          <Link to="/" target="blank">
+          <Link to="/homepage" target="blank">
             <i className="fas fa-home" aria-hidden="true" />
-            &nbsp;Affiliate
+            &nbsp;Home
           </Link>
           <Link
             to={"/oripapartner.pdf"}

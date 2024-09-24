@@ -42,7 +42,7 @@
     "react-redux": "^9.1.2",
     "react-router": "^6.26.1",
     "react-router-dom": "^6.26.1",
-    "react-scripts": "^3.0.1",
+    "react-scripts": "^5.0.1",
     "react-timer-hook": "^3.0.7",
     "react-tooltip": "^5.28.0",
     "react18-input-otp": "^1.1.4",

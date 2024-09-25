@@ -4,42 +4,30 @@ import { useNavigate } from "react-router";
 import MemberApi from "../../../api/memberApi";
 
 import Search from "../common/Search";
-import member from "./manager.json";
 import Members from "./Members";
 import Button from "./Button";
 
 const Index = () => {
   const navigate = useNavigate();
 
-  const [select, setSelect] = useState("All");
+  const [role, setRole] = useState("All");
   const [members, setMembers] = useState([]);
   const [fltSignal, setFltSignal] = useState(false);
 
   const { op, GetMembers } = MemberApi();
 
+  useEffect(() => {
+    getMembers();
+  }, [role]);
+
   const getMembers = async () => {
     try {
-      const res = await GetMembers();
-      const members = res.data.members;
-
-      if (select === "All") {
-        setMembers(members);
-        return;
-      }
-
-      const filter = members.filter(
-        (t) => t.role.toUpperCase() === select.toUpperCase()
-      );
-
-      setMembers(filter);
+      const res = await GetMembers(role);
+      setMembers(res.data.members);
     } catch (error) {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    getMembers();
-  });
 
   return (
     <>
@@ -50,18 +38,23 @@ const Index = () => {
               <>
                 <Button
                   label={"All"}
-                  handle={() => setSelect("All")}
-                  select={select}
+                  handle={() => setRole("All")}
+                  select={role}
                 />
                 <Button
                   label={"Manager"}
-                  handle={() => setSelect("Manager")}
-                  select={select}
+                  handle={() => setRole("Manager")}
+                  select={role}
+                />
+                <Button
+                  label={"Admin"}
+                  handle={() => setRole("Admin")}
+                  select={role}
                 />
                 <Button
                   label={"Affiliate"}
-                  handle={() => setSelect("Affiliate")}
-                  select={select}
+                  handle={() => setRole("Affiliate")}
+                  select={role}
                 />
               </>
             ) : (
@@ -69,7 +62,7 @@ const Index = () => {
                 Search results...
               </div>
             )}
-            <Search setMembers={setMembers} setFltSignal={setFltSignal} />
+            <Search setMembers={setMembers} setFltSignal={setFltSignal} setRole={setRole} />
           </div>
           <button
             onClick={() => navigate("/admin/manage/adduser")}

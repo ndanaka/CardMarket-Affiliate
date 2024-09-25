@@ -66,7 +66,7 @@ const RegisterForm = ({ title, label }) => {
     <>
       <Heading label={title} />
       <AppServerErr>
-        {op.serverErr === "Network Error" ? op.serverErr : null}
+        {op.serverErr === "Network Error" ? op.serverErr : op.appErr}
       </AppServerErr>
       <form className="mt-6 font-sans" onSubmit={formik.handleSubmit}>
         <Input

@@ -9,9 +9,9 @@ import { idAtom, timeAtom, tokenWithPersistenceAtom } from "../atoms/index";
 
 const AuthApi = () => {
   // operation characteristics
-  const [time, setTime] = useAtom(timeAtom);
+  const [, setTime] = useAtom(timeAtom);
   const [token, setToken] = useAtom(tokenWithPersistenceAtom);
-  const [id, setId] = useAtom(idAtom);
+  const [, setId] = useAtom(idAtom);
 
   const [op, setOp] = useState({
     appErr: null,
@@ -39,12 +39,17 @@ const AuthApi = () => {
     try {
       const { data } = await axios.post(REGISTER, formData, config);
 
-      localStorage.setItem("token", data.token);
-      setToken(data.token);
-      setId(data.id);
-
-      navigate("/login");
-      // formData.role ? navigate("/admin/manage") : navigate("/login");
+      if (data.status) {
+        localStorage.setItem("token", data.token);
+        setToken(data.token);
+        setId(data.id);
+        navigate("/login");
+      } else {
+        setOp({
+          appErr: data.message,
+          serverErr: data.message,
+        });
+      }
     } catch (error) {
       setOp({
         appErr: error?.response?.data?.message,
@@ -57,25 +62,32 @@ const AuthApi = () => {
     try {
       const { data } = await axios.post(LOGIN, formData, config);
 
-      localStorage.setItem("token", data.token);
-      setToken(data.token);
+      if (data.status) {
+        localStorage.setItem("token", data.token);
+        setToken(data.token);
 
-      switch (data.name) {
-        case "Manager":
-          navigate("/admin");
-          break;
+        switch (data.name) {
+          case "Manager":
+            navigate("/admin");
+            break;
 
-        case "Admin":
-          navigate("/homepage");
-          break;
+          case "Admin":
+            navigate("/admin");
+            break;
 
-        default:
-          navigate("/homepage");
-          break;
+          default:
+            navigate("/homepage");
+            break;
+        }
+
+        // GetTime();
+        setId("");
+      } else {
+        setOp({
+          appErr: data.message,
+          serverErr: data.message,
+        });
       }
-
-      // GetTime();
-      setId("");
     } catch (error) {
       setOp({
         appErr: error?.response?.data?.message,

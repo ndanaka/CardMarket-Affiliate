@@ -46,7 +46,7 @@ const LoginForm = () => {
         <>
           <Heading label={"Log Account"} />
           <AppServerErr>
-            {op.serverErr === "Network Error" ? op.serverErr : null}
+            {op.serverErr === "Network Error" ? op.serverErr : op.appErr}
           </AppServerErr>
           <form className="mt-6 font-sans" onSubmit={formik.handleSubmit}>
             {id !== "" && (

@@ -7,7 +7,6 @@ import { tokenWithPersistenceAtom } from "../../../atoms";
 
 import NavButton from "./NavButton";
 import Language from "./Language";
-import AccountInfo from "../../homepage/homeHeader/top/AccountInfoModal";
 
 const NavBar1 = ({ setCollapse }) => {
   const navigate = useNavigate();

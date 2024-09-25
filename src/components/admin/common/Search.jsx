@@ -1,21 +1,29 @@
-import member from "../manage/manager.json";
+import MemberApi from "../../../api/memberApi";
 
 const Search = ({ setMembers, setFltSignal }) => {
-  const handleSearch = (e) => {
-    const filter = member?.filter(
-      (t) =>
-        t.email.toUpperCase().includes(e) ||
-        t.name.toUpperCase().includes(e) ||
-        t.country.toUpperCase().includes(e) ||
-        t.role.toUpperCase().includes(e)
+  const { GetMembers } = MemberApi();
+
+  const handleSearch = async (e) => {
+    const res = await GetMembers("All");
+    const members = res.data.members;
+
+    const filter = members.filter(
+      (member) =>
+        member.fullName.toUpperCase().includes(e) ||
+        member.country.toUpperCase().includes(e) ||
+        member.email.toUpperCase().includes(e) ||
+        member.role.toUpperCase().includes(e)
     );
+
     setMembers(filter);
+
     if (e !== "") {
       setFltSignal(true);
     } else {
       setFltSignal(false);
     }
   };
+
   return (
     <>
       <div className=" relative">

@@ -58,9 +58,12 @@ const MemberApi = () => {
     }
   };
 
-  const GetMembers = async () => {
+  const GetMembers = async (role) => {
     try {
-      return await axios.get(GET_MEMBERS, postConfig);
+      const formData = {
+        role: role,
+      };
+      return await axios.post(GET_MEMBERS, formData, postConfig);
     } catch (error) {
       console.log(error);
     }

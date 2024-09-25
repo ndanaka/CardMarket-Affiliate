@@ -1,62 +1,62 @@
 [
   {
-    "name": "Wolf Crum",
+    "fullName": "Wolf Crum",
     "country": "Norway",
     "email": "xxx@xxx.com",
-    "role": "manager"
+    "role": "Manager"
   },
   {
-    "name": "Robert",
+    "fullName": "Robert",
     "country": "Scotland",
     "email": "xxx@xxx.com",
-    "role": "affiliate"
+    "role": "Admin"
   },
   {
-    "name": "Cron",
+    "fullName": "Cron",
     "country": "Spani",
     "email": "xxx@xxx.com",
-    "role": "manager"
+    "role": "Manager"
   },
   {
-    "name": "Alrik Susan",
+    "fullName": "Alrik Susan",
     "country": "England",
     "email": "xxx@xxx.com",
-    "role": "affiliate"
+    "role": "Admin"
   },
   {
-    "name": "Wintor Andreb",
+    "fullName": "Wintor Andreb",
     "country": "Russia",
     "email": "xxx@xxx.com",
-    "role": "manager"
+    "role": "Admin"
   },
   {
-    "name": "Wolf Crum",
+    "fullName": "Wolf Crum",
     "country": "Norway",
     "email": "xxx@xxx.com",
-    "role": "manager"
+    "role": "Manager"
   },
   {
-    "name": "Robert",
+    "fullName": "Robert",
     "country": "Scotland",
     "email": "xxx@xxx.com",
-    "role": "affiliate"
+    "role": "Admin"
   },
   {
-    "name": "Cron",
+    "fullName": "Cron",
     "country": "Spanish",
     "email": "xxx@xxx.com",
-    "role": "manager"
+    "role": "Manager"
   },
   {
-    "name": "Alrik Susan",
+    "fullName": "Alrik Susan",
     "country": "England",
     "email": "xxx@xxx.com",
-    "role": "affiliate"
+    "role": "Admin"
   },
   {
-    "name": "Wintor Andreb",
+    "fullName": "Wintor Andreb",
     "country": "Rusia",
     "email": "xxx@xxx.com",
-    "role": "manager"
+    "role": "Manager"
   }
 ]

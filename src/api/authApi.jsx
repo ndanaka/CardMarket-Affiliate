@@ -40,10 +40,14 @@ const AuthApi = () => {
       const { data } = await axios.post(REGISTER, formData, config);
 
       if (data.status) {
-        localStorage.setItem("token", data.token);
-        setToken(data.token);
-        setId(data.id);
-        navigate("/login");
+        if (!token) {
+          localStorage.setItem("token", data.token);
+          setToken(data.token);
+          setId(data.id);
+          navigate("/login");
+        } else {
+          navigate("/admin/manage");
+        }
       } else {
         setOp({
           appErr: data.message,

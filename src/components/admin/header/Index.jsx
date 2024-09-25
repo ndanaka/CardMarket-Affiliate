@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import AccountInfo from "../../homepage/homeHeader/top/AccountInfoModal";
 import Item from "./Item";
 
-const Header = () => {
+const Index = () => {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
 
@@ -30,4 +30,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Index;

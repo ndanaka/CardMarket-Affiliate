@@ -16,7 +16,7 @@ import AdminLayout from "./pages/admin/Layout";
 import Payment from "./pages/admin/Payment";
 import Message from "./pages/admin/Message";
 import Introduce from "./pages/admin/Introduce";
-import Manage from "./pages/admin/manage/Manage";
+import Manage from "./pages/admin/manage/Index";
 import AddUser from "./pages/admin/manage/AddUser";
 import Edit from "./pages/admin/manage/Edit";
 import View from "./pages/admin/manage/View";

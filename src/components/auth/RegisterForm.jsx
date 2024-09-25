@@ -148,7 +148,7 @@ const RegisterForm = ({ title, label }) => {
                 className="mr-1"
                 type="radio"
                 name="role"
-                value="manager"
+                value="Manager"
                 onChange={formik.handleChange}
                 checked={formik.values.role === "manager"}
               />
@@ -159,7 +159,7 @@ const RegisterForm = ({ title, label }) => {
                 className="mr-1"
                 type="radio"
                 name="role"
-                value="admin"
+                value="Admin"
                 onChange={formik.handleChange}
                 checked={formik.values.role === "admin"}
               />
@@ -170,7 +170,7 @@ const RegisterForm = ({ title, label }) => {
                 className="mr-1"
                 type="radio"
                 name="role"
-                value="affiliate"
+                value="Affiliate"
                 onChange={formik.handleChange}
                 checked={formik.values.role === "affiliate"}
               />

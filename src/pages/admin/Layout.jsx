@@ -17,10 +17,10 @@ const Layout = () => {
     } else {
       const payload = jwtDecode(token);
 
-      if (payload?.fullName === "Manager" || payload?.fullName === "Admin") {
-        navigate("/admin");
-      } else {
+      if (payload?.role === "Affiliate") {
         navigate("/homepage");
+      } else {
+        navigate("/admin");
       }
     }
   }, [token]);

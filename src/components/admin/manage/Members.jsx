@@ -19,7 +19,7 @@ const Members = ({ members }) => {
       <table className=" w-full text-[14px]  font-medium">
         <thead className="h-14 text-left">
           <tr>
-            <th>Name</th>
+            <th>Full Name</th>
             <th>Country</th>
             <th>Email</th>
             <th>Role</th>
@@ -31,7 +31,7 @@ const Members = ({ members }) => {
               key={index}
               className={` border-t-gray-300 border-t-[1px] text-gray-600  h-9`}
             >
-              <td className="w-[25%] ">{item.name}</td>
+              <td className="w-[25%] ">{item.fullName}</td>
               <td className=" w-[25%] ">{item.country}</td>
               <td>{item.email}</td>
               <td

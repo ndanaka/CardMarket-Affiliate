@@ -1,28 +1,45 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
+import MemberApi from "../../../api/memberApi";
+
 import Search from "../common/Search";
 import member from "./manager.json";
 import Members from "./Members";
 import Button from "./Button";
 
-const Manage = () => {
+const Index = () => {
+  const navigate = useNavigate();
+
   const [select, setSelect] = useState("All");
   const [members, setMembers] = useState([]);
   const [fltSignal, setFltSignal] = useState(false);
 
-  const navigate = useNavigate();
+  const { op, GetMembers } = MemberApi();
+
+  const getMembers = async () => {
+    try {
+      const res = await GetMembers();
+      const members = res.data.members;
+
+      if (select === "All") {
+        setMembers(members);
+        return;
+      }
+
+      const filter = members.filter(
+        (t) => t.role.toUpperCase() === select.toUpperCase()
+      );
+
+      setMembers(filter);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    if (select === "All") {
-      setMembers(member);
-      return;
-    }
-    const filter = member.filter(
-      (t) => t.role.toUpperCase() === select.toUpperCase()
-    );
-    setMembers(filter);
-  }, [select, fltSignal]);
+    getMembers();
+  });
 
   return (
     <>
@@ -69,4 +86,4 @@ const Manage = () => {
   );
 };
 
-export default Manage;
+export default Index;

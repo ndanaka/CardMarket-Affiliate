@@ -28,26 +28,19 @@ const NavBar2 = () => {
         />
       </div>
       <div className="scale-y-150 text-center max-lg:hidden pr-20">
-        {token && (
-          <>
-            {payload?.fullName === "Affiliate" && (
-              <NavButton
-                label="HOME"
-                className={"text-[13px] font-semibold"}
-                handle={() => navigate("/homepage")}
-              />
-            )}
-            {payload?.fullName === "Admin" ||
-              (payload?.fullName === "Manager" && (
-                <>
-                  <NavButton
-                    label="ADMIN"
-                    className={"text-[13px] font-semibold"}
-                    handle={() => navigate("/admin")}
-                  />
-                </>
-              ))}
-          </>
+        {token &&
+        (payload?.fullName === "Admin" || payload?.fullName === "Manager") ? (
+          <NavButton
+            label="ADMIN"
+            className={"text-[13px] font-semibold"}
+            handle={() => navigate("/admin")}
+          />
+        ) : (
+          <NavButton
+            label="HOME"
+            className={"text-[13px] font-semibold"}
+            handle={() => navigate("/homepage")}
+          />
         )}
         <NavButton
           label="CONTACT US"

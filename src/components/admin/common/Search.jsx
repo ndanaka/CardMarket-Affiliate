@@ -1,6 +1,6 @@
 import MemberApi from "../../../api/memberApi";
 
-const Search = ({ setMembers, setFltSignal }) => {
+const Search = ({ setMembers, setFltSignal, setRole }) => {
   const { GetMembers } = MemberApi();
 
   const handleSearch = async (e) => {
@@ -19,6 +19,7 @@ const Search = ({ setMembers, setFltSignal }) => {
 
     if (e !== "") {
       setFltSignal(true);
+      setRole("All");
     } else {
       setFltSignal(false);
     }

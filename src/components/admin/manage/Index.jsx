@@ -62,7 +62,7 @@ const Index = () => {
                 Search results...
               </div>
             )}
-            <Search setMembers={setMembers} setFltSignal={setFltSignal} />
+            <Search setMembers={setMembers} setFltSignal={setFltSignal} setRole={setRole} />
           </div>
           <button
             onClick={() => navigate("/admin/manage/adduser")}

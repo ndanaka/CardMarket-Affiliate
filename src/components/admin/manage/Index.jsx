@@ -42,18 +42,18 @@ const Index = () => {
                   select={role}
                 />
                 <Button
-                  label={"Manager"}
-                  handle={() => setRole("Manager")}
+                  label={"Admin"}
+                  handle={() => setRole("admin")}
                   select={role}
                 />
                 <Button
-                  label={"Admin"}
-                  handle={() => setRole("Admin")}
+                  label={"Manager"}
+                  handle={() => setRole("manager")}
                   select={role}
                 />
                 <Button
                   label={"Affiliate"}
-                  handle={() => setRole("Affiliate")}
+                  handle={() => setRole("affiliate")}
                   select={role}
                 />
               </>
@@ -62,7 +62,11 @@ const Index = () => {
                 Search results...
               </div>
             )}
-            <Search setMembers={setMembers} setFltSignal={setFltSignal} setRole={setRole} />
+            <Search
+              setMembers={setMembers}
+              setFltSignal={setFltSignal}
+              setRole={setRole}
+            />
           </div>
           <button
             onClick={() => navigate("/admin/manage/adduser")}

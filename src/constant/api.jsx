@@ -4,13 +4,15 @@ export const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 // register
 export const REGISTER = `${BASE_URL}/auth/register`;
+
 // login
 export const LOGIN = `${BASE_URL}/auth/login`;
-// change password
-export const CHANGEPSD = `${BASE_URL}/auth/changePsd`;
 
 // get the backend time(GET)
 export const GETTIME = `${BASE_URL}/auth/time`;
+
+// change password
+export const CHANGEPSD = `${BASE_URL}/auth/changePsd`;
 
 // get my posts from db
 export const MYPOSTS = `${BASE_URL}/auth/myPosts`;

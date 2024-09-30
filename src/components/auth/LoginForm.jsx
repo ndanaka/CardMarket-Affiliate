@@ -44,7 +44,7 @@ const LoginForm = () => {
     <>
       {!show ? (
         <>
-          <Heading label={"Log Account"} />
+          <Heading label={"Log In"} />
           <AppServerErr>
             {op.serverErr === "Network Error" ? op.serverErr : op.appErr}
           </AppServerErr>

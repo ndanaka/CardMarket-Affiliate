@@ -40,7 +40,7 @@ const Account = ({ setShow }) => {
         ref={accountBtn}
         className=" absolute top-8 -left-3 py-2  bg-white w-[200px] rounded-md shadow-lg shadow-gray-600"
       >
-        {payload?.role === "Affiliate" && (
+        {payload?.role === "affiliate" && (
           <>
             <Button
               src={"setting.svg"}

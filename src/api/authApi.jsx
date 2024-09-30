@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 import { CHANGEPSD, GETTIME, LOGIN, REGISTER } from "../constant/api";
 
@@ -69,13 +70,14 @@ const AuthApi = () => {
       if (data.status) {
         localStorage.setItem("token", data.token);
         setToken(data.token);
+        const payload = jwtDecode(data.token);
 
-        switch (data.name) {
-          case "Manager":
+        switch (payload.role) {
+          case "manager":
             navigate("/admin");
             break;
 
-          case "Admin":
+          case "admin":
             navigate("/admin");
             break;
 
@@ -84,8 +86,8 @@ const AuthApi = () => {
             break;
         }
 
-        // GetTime();
         setId("");
+        GetTime();
       } else {
         setOp({
           appErr: data.message,
@@ -103,7 +105,8 @@ const AuthApi = () => {
   const GetTime = async () => {
     try {
       const { data } = await axios.get(GETTIME, postConfig);
-      setTime(data);
+      console.log(data);
+      // setTime(data);
     } catch (error) {}
   };
 

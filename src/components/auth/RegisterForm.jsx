@@ -47,7 +47,7 @@ const RegisterForm = ({ title, label }) => {
       password: "",
       phoneNumber: "",
       country: "",
-      role: "",
+      role: "affiliate",
     },
     onSubmit: ({ fullName, email, password, phoneNumber, country, role }) => {
       submitRegister({
@@ -148,7 +148,7 @@ const RegisterForm = ({ title, label }) => {
                 className="mr-1"
                 type="radio"
                 name="role"
-                value="Manager"
+                value="manager"
                 onChange={formik.handleChange}
                 checked={formik.values.role === "manager"}
               />
@@ -159,7 +159,7 @@ const RegisterForm = ({ title, label }) => {
                 className="mr-1"
                 type="radio"
                 name="role"
-                value="Admin"
+                value="admin"
                 onChange={formik.handleChange}
                 checked={formik.values.role === "admin"}
               />
@@ -170,7 +170,7 @@ const RegisterForm = ({ title, label }) => {
                 className="mr-1"
                 type="radio"
                 name="role"
-                value="Affiliate"
+                value="affiliate"
                 onChange={formik.handleChange}
                 checked={formik.values.role === "affiliate"}
               />

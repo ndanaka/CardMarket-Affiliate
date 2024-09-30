@@ -34,30 +34,6 @@ const MemberApi = () => {
     },
   };
 
-  //register
-  const submitRegister = async (formData) => {
-    try {
-      const { data } = await axios.post(REGISTER, formData, config);
-
-      if (data.status) {
-        localStorage.setItem("token", data.token);
-        setToken(data.token);
-        setId(data.id);
-        navigate("/login");
-      } else {
-        setOp({
-          appErr: data.message,
-          serverErr: data.message,
-        });
-      }
-    } catch (error) {
-      setOp({
-        appErr: error?.response?.data?.message,
-        serverErr: error?.message,
-      });
-    }
-  };
-
   const GetMembers = async (role) => {
     try {
       const formData = {

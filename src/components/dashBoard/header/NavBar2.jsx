@@ -30,7 +30,7 @@ const NavBar2 = () => {
       <div className="scale-y-150 text-center max-lg:hidden pr-20">
         {token && (
           <>
-            {payload?.role === "Affiliate" ? (
+            {payload?.role === "affiliate" ? (
               <NavButton
                 label="HOME"
                 className={"text-[13px] font-semibold"}

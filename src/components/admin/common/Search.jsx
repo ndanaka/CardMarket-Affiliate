@@ -1,7 +1,7 @@
-import MemberApi from "../../../api/memberApi";
+import HomeApi from "../../../api/homeApi";
 
 const Search = ({ setMembers, setFltSignal, setRole }) => {
-  const { GetMembers } = MemberApi();
+  const { GetMembers } = HomeApi();
 
   const handleSearch = async (e) => {
     const res = await GetMembers("All");

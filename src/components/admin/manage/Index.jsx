@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
-import MemberApi from "../../../api/memberApi";
+import HomeApi from "../../../api/homeApi";
 
 import Search from "../common/Search";
 import Members from "./Members";
@@ -14,7 +14,7 @@ const Index = () => {
   const [members, setMembers] = useState([]);
   const [fltSignal, setFltSignal] = useState(false);
 
-  const { op, GetMembers } = MemberApi();
+  const { op, GetMembers } = HomeApi();
 
   useEffect(() => {
     getMembers();

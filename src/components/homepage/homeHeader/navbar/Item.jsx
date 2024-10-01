@@ -2,7 +2,7 @@ import { useAtom } from "jotai";
 
 import { showNavAtom } from "../../../../atoms/index";
 
-const NavItem = ({ label, handle }) => {
+const NavItem = ({ label, child, handle }) => {
   const [showNav] = useAtom(showNavAtom);
 
   return (
@@ -16,7 +16,7 @@ const NavItem = ({ label, handle }) => {
             font-sans font-semibold h-full px-5 max-[410px]:px-1 `}
       >
         {label}&nbsp;
-        <i className="fa fa-chevron-down " />
+        {child ? <i className="fa fa-chevron-down " /> : ""}
       </button>
     </>
   );

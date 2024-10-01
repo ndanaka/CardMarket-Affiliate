@@ -2,12 +2,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 
-import { GET_MEMBERS } from "../constant/api";
+import { GET_STATISTICS, GET_CLIENTS } from "../constant/api";
 
 import { useAtom } from "jotai";
 import { idAtom, timeAtom, tokenWithPersistenceAtom } from "../atoms/index";
 
-const MemberApi = () => {
+const HomeApi = () => {
   const navigate = useNavigate();
 
   // operation characteristics
@@ -45,7 +45,32 @@ const MemberApi = () => {
     }
   };
 
-  return { GetMembers };
+  const GetStatistics = async (affId) => {
+    try {
+      const formData = {
+        affId: affId,
+      };
+
+      return await axios.post(GET_STATISTICS, formData, postConfig);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const GetClients = async (affId, period) => {
+    try {
+      const formData = {
+        affId: affId,
+        period: period,
+      };
+
+      return await axios.post(GET_CLIENTS, formData, postConfig);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return { GetMembers, GetStatistics, GetClients };
 };
 
-export default MemberApi;
+export default HomeApi;

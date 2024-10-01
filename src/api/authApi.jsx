@@ -87,7 +87,6 @@ const AuthApi = () => {
         }
 
         setId("");
-        GetTime();
       } else {
         setOp({
           appErr: data.message,
@@ -105,8 +104,7 @@ const AuthApi = () => {
   const GetTime = async () => {
     try {
       const { data } = await axios.get(GETTIME, postConfig);
-      console.log(data);
-      // setTime(data);
+      setTime(data);
     } catch (error) {}
   };
 

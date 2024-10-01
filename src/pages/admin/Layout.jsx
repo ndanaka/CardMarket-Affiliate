@@ -17,6 +17,13 @@ const Layout = () => {
     } else {
       const payload = jwtDecode(token);
 
+      const currentTime = Math.floor(Date.now() / 1000);
+      if (currentTime > payload.exp) {
+        setToken("");
+        localStorage.removeItem("token");
+        navigate("/");
+      }
+
       if (payload?.role === "admin" || payload?.role === "manager") {
         navigate("/admin");
       } else {

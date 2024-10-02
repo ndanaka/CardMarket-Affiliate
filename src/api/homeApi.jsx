@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 
-import { GET_STATISTICS, GET_CLIENTS } from "../constant/api";
+import { GET_MEMBERS, GET_STATISTICS, GET_CLIENTS } from "../constant/api";
 
 import { useAtom } from "jotai";
 import { idAtom, timeAtom, tokenWithPersistenceAtom } from "../atoms/index";

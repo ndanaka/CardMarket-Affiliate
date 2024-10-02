@@ -40,7 +40,9 @@ const ClientStats = ({ affId, period }) => {
           </thead>
           <tbody className="text-[14px]">
             {clients?.length === 0 ? (
-              <td colSpan={3}>No client data</td>
+              <tr>
+                <td colSpan={3}>No client data</td>
+              </tr>
             ) : (
               clients?.map((item, index) => (
                 <tr

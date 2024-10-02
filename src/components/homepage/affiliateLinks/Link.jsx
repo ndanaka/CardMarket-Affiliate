@@ -1,52 +1,67 @@
 import React, { useState } from "react";
 import { Tooltip } from "react-tooltip";
+import { useAtom } from "jotai";
+import { jwtDecode } from "jwt-decode";
 
-const Links = ({ pageName, ReqId, PageId }) => {
+import { tokenWithPersistenceAtom } from "../../../atoms";
+
+const Links = ({ pageName, link }) => {
+  const [token, setToken] = useAtom(tokenWithPersistenceAtom);
   const [copy, setCopy] = useState("");
 
+  let affiliateID;
+  let affiliateLink;
+
+  if (token) {
+    affiliateID = jwtDecode(token).aff_id;
+    affiliateLink = `${link}?aff_id=${affiliateID}`;
+  }
+
   const handleLinkCopy = (t) => {
-    if (t === "htmlTag") {
-      const htmlTag = `<a href="https://clicks.affstrack.com/c?c=${ReqId}&p=${PageId}">${pageName}</a>`;
-      navigator.clipboard.writeText(htmlTag);
-    }
-    if (t === "url") {
-      const url = `https://clicks.affstrack.com/c?c=${ReqId}&p=${PageId}`;
-      navigator.clipboard.writeText(url);
-    }
+    navigator.clipboard.writeText(affiliateLink);
+
+    // if (t === "htmlTag") {
+    //   const htmlTag = `<a href="${ORIPA_BASE_URL}?aff_id=${affiliateID}">${pageName}</a>`;
+    //   navigator.clipboard.writeText(htmlTag);
+    // }
+    // if (t === "url") {
+    //   const url = `https://clicks.affstrack.com/c?c=${ReqId}&p=${PageId}`;
+    //   navigator.clipboard.writeText(url);
+    // }
+
     //3s later disapear "copied"
     setCopy(t);
-    const time = setTimeout(() => {
+    setTimeout(() => {
       setCopy("");
     }, 3000);
-    // return () => clearTimeout(time)
   };
 
   return (
     <>
       <div
-        className="font-sans text-gray-700 p-10 m-4 max-[1000px]:p-5 bg-gradient-to-t from-[#8080802e] to-white w-[400px] max-[1000px]:w-[350px] max-[500px]:w-[280px] max-[500px]:px-3 shadow-lg 
+        className="w-[400px] max-[1000px]:w-[300px] max-[500px]:w-[280px] p-10 max-[1000px]:p-5 max-[500px]:px-3 m-4 font-sans text-gray-700 bg-gradient-to-t from-[#8080802e] to-white shadow-lg 
             drop-shadow-gray-300 hover:-translate-y-1 duration-200"
       >
         <p className="text-2xl font-semibold pb-5">{pageName}</p>
         <p className="text-[18px] font-medium py-3">For your own WebSite:</p>
-        <div className="flex gap-3 py-1 items-center bg-white rounded-sm px-3 ">
-          <p className="">{`<a href="https://clicks.affstrack.com/c?c=${ReqId}&p=${PageId}"> ${pageName} </a>`}</p>
+        <div className="flex gap-3 py-1 items-center bg-white rounded-sm px-3">
+          <span className="inline-block truncate">{`<a href="${link}"> ${pageName} </a>`}</span>
           <div
-            className="w-6 max-[500px]:w-[10%] "
-            data-tooltip-id="htmlTag"
-            data-tooltip-content={`${copy === "htmlTag" ? "Copied" : "Copy the link"}`}
+            className="w-[10%] flex flex-wrap justify-center w-6 cursor-pointer items-center"
+            data-tooltip-id="copy"
+            data-tooltip-content={`${copy === "" ? "Copy the link" : "Copied"}`}
           >
-            {copy === "htmlTag" ? (
+            {copy === pageName ? (
               <i className="fa fa-check" />
             ) : (
               <i
-                onClick={() => handleLinkCopy("htmlTag")}
+                onClick={() => handleLinkCopy(pageName)}
                 className="far fa-copy text-[20px] cursor-pointer"
               />
             )}
           </div>
         </div>
-        <p className="text-[18px] font-medium py-3">For your own Friends:</p>
+        {/* <p className="text-[18px] font-medium py-3">For your own Friends:</p>
         <div className="flex gap-3 py-1 items-center bg-white rounded-sm px-3">
           <p>{`https://clicks.affstrack.com/c?c=${ReqId}&p=${PageId}`}</p>
           <div
@@ -63,7 +78,7 @@ const Links = ({ pageName, ReqId, PageId }) => {
               />
             )}
           </div>
-        </div>
+        </div> */}
       </div>
       <Tooltip id="htmlTag" />
       <Tooltip id="url" />

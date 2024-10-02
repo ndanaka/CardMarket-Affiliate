@@ -22,7 +22,7 @@ const Links = ({ link, label, icon }) => {
     //10s later non display of "copied"
     setCopy(t);
 
-    const time = setTimeout(() => {
+    setTimeout(() => {
       setCopy("");
     }, 3000);
   };

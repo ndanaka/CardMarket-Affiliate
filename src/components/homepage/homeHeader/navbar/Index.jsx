@@ -25,7 +25,7 @@ const Navbar = () => {
   useEffect(() => {
     const pathName = location.pathname.split("/", 3);
     if (pathName[2] === "links") {
-      setShowNav((t) => ({ ...t, color: "Links" }));
+      setShowNav((t) => ({ ...t, color: "My Links" }));
     }
     if (pathName[2] === "payments") {
       setShowNav((t) => ({ ...t, color: "Payments" }));
@@ -67,11 +67,11 @@ const Navbar = () => {
           }}
         />
         <NavItem
-          label={"Links"}
+          label={"My Links"}
           child={false}
           handle={() => {
             navigate("/homepage/links/affiliatelinks");
-            setShowNav((t) => ({ ...t, color: "Links" }));
+            setShowNav((t) => ({ ...t, color: "My Links" }));
           }}
         />
         <div className="relative">

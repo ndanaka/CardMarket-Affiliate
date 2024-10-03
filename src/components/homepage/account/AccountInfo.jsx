@@ -3,7 +3,7 @@ import formatDate from "../../../utils/formatDate";
 
 const AccountInfo = ({ affInfo }) => {
   return (
-    <div className="flex flex-col items-center mt-8 gap-3">
+    <div className="flex flex-col justify-center items-center mt-8 gap-3 py-4 px-4 lg:px-10 mx-auto w-full lg:w-3/5">
       <Item
         icon={"far fa-clock"}
         label={"Register Date"}

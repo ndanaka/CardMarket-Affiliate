@@ -37,7 +37,7 @@ const TotalStats = ({ affId, setPeriod }) => {
           <thead className="h-10 text-[14px] text-white bg-[#4B5563]">
             <tr>
               <th>Period</th>
-              <th>Payment</th>
+              <th>Deposit</th>
               <th>Clicks</th>
               <th>Registeration</th>
               <th>CVR</th>

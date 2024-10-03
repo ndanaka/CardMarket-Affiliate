@@ -8,7 +8,7 @@ const Main = () => {
 
   return (
     <>
-      <div className="flex flex-wrap justify-between max-[1230px]:justify-center items-center lg:px-14 px-2 border-b-[1px] bg-white border-b-gray-600 py-3 leading-6">
+      <div className="flex flex-wrap justify-between max-[1230px]:justify-center items-center lg:px-10 px-2 border-b-[1px] bg-white border-b-gray-600 py-3 leading-6">
         <img
           className=" cursor-pointer"
           src="/image/title/title2.png"

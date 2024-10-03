@@ -35,7 +35,7 @@ const ClientStats = ({ affId, period }) => {
             <tr>
               <th>Name</th>
               <th>Country</th>
-              <th>Payment</th>
+              <th>Deposit</th>
             </tr>
           </thead>
           <tbody className="text-[14px]">

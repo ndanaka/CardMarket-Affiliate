@@ -1,11 +1,7 @@
 import Level from "../../components/homepage/levelUpgrade/Index";
 
 const LevelUpgrade = () => {
-  return (
-    <>
-      <Level />
-    </>
-  );
+  return <Level />;
 };
 
 export default LevelUpgrade;

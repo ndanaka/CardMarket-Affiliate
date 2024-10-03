@@ -1,5 +1,7 @@
 import CircleChart from "./CircleChart";
 
+import formatPrice from "../../../utils/formatPrice";
+
 const CurrentLevel = () => {
   return (
     <>
@@ -10,10 +12,10 @@ const CurrentLevel = () => {
           <CircleChart />
           <div className=" absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
             <p className="text-[red] text-xl font-semibold">700 DEPOSIT</p>
-            <p>TO REACH DIAMOND</p>
+            <p>TO REACH PLATINUM</p>
           </div>
         </div>
-        <h3 className="py-3 font-semibold text-center">My CurrentLevel</h3>
+        <h3 className="py-3 font-semibold text-center">My Current Level</h3>
         <p className="text-gray-500 text-justify">
           Move through the levels by earning Affiliate Level Points and benefit
           from increased commissions and other exclusive rewards.

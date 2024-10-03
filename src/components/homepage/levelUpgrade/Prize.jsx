@@ -11,7 +11,7 @@ const Prize = ({ url, revenue, active, startPrice, limitPrice }) => {
           <span className="text-[red] text-3xl font-semibold ">
             {revenue} %<br />
           </span>
-          &nbsp; PER PAYMENT
+          &nbsp; PER DEPOSIT
         </p>
         <p className="text-center font-semibold text-[14px] py-2">
           {limitPrice !== 0 && (

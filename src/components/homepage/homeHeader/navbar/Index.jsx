@@ -2,14 +2,12 @@ import { useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { Tooltip } from "react-tooltip";
 import { jwtDecode } from "jwt-decode";
-
 import { useAtom } from "jotai";
+
 import { tokenWithPersistenceAtom } from "../../../../atoms/index";
+import { showNavAtom } from "../../../../atoms/index";
 
 import NavItem from "./Item";
-import NavPayment from "./Payment";
-
-import { showNavAtom } from "../../../../atoms/index";
 
 const Navbar = () => {
   const [showNav, setShowNav] = useAtom(showNavAtom);
@@ -74,14 +72,14 @@ const Navbar = () => {
             setShowNav((t) => ({ ...t, color: "My Links" }));
           }}
         />
-        <div className="relative">
-          <NavItem
-            label={"Payments"}
-            child={true}
-            handle={() => setShowNav((t) => ({ ...t, list: "Payments" }))}
-          />
-          {showNav.list === "Payments" && <NavPayment />}
-        </div>
+        <NavItem
+          label={"Payments"}
+          child={false}
+          handle={() => {
+            navigate("/homepage/payments");
+            setShowNav((t) => ({ ...t, color: "Payments" }));
+          }}
+        />
       </div>
       <div className="text-gray-400 font-semibold flex items-center justify-center px-5">
         Current Level :&nbsp;

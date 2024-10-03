@@ -1,5 +1,7 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
+import { jwtDecode } from "jwt-decode";
 
 import { useAtom } from "jotai";
 import { tokenWithPersistenceAtom } from "../../../atoms";
@@ -9,13 +11,20 @@ import NavButton from "./NavButton";
 const HiddenBar = ({ collapse, setCollapse }) => {
   const navigate = useNavigate();
   const [token] = useAtom(tokenWithPersistenceAtom);
+  const [payload, setPayload] = useState(null);
+
+  useEffect(() => {
+    if (token) {
+      setPayload(jwtDecode(token));
+    }
+  }, [token]);
 
   return (
     <div
       className={`${
         collapse ? "blcok" : "hidden"
-      } w-[250px] lg:hidden fixed left-0 top-0 z-10  flex
-         flex-col items-start h-full bg-gray-600 tracking-tighter overflow-hidden font-sans pt-10 pl-10 !text-white`}
+      } w-[250px] lg:hidden fixed left-0 top-0 z-10 flex
+         flex-col items-start h-full bg-gray-600 tracking-tighter overflow-hidden font-sans pl-4 pt-10 !text-white`}
     >
       <button
         className="absolute right-3 top-3 text-white"
@@ -23,17 +32,22 @@ const HiddenBar = ({ collapse, setCollapse }) => {
       >
         Close
       </button>
-      <NavButton
-        label="HOME"
-        className={"text-[14px]"}
-        handle={() => navigate("/homepage")}
-      />
       {token && (
-        <NavButton
-          label="ADMIN"
-          className={"text-[14px]"}
-          handle={() => navigate("/ADMIN")}
-        />
+        <>
+          {payload?.role === "affiliate" ? (
+            <NavButton
+              label="HOME"
+              className={"text-[14px]"}
+              handle={() => navigate("/homepage")}
+            />
+          ) : (
+            <NavButton
+              label="ADMIN"
+              className={"text-[14px]"}
+              handle={() => navigate("/admin")}
+            />
+          )}
+        </>
       )}
       <NavButton
         label="PATNER LOGIN"

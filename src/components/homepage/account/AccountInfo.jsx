@@ -1,42 +1,42 @@
 import Item from "./Item";
+import formatDate from "../../../utils/formatDate";
 
-const AccountInfo = ({ setShow, role }) => {
+const AccountInfo = ({ affInfo }) => {
   return (
-    <>
-      <div className="flex flex-col items-center mt-8 gap-3">
-        <Item
-          icon={"far fa-clock"}
-          label={"Register Date"}
-          content={"2024.8.14"}
-        />
-        <Item
-          icon={"fas fa-medal"}
-          label={"Current Level/Points"}
-          content={"Platinum/540"}
-        />
-        <Item
-          icon={"fas fa-envelope"}
-          label={"Email"}
-          content={"partner2024@gmail.com"}
-        />
-        <Item icon={"fas fa-phone"} label={"Phone"} content={"+815364254786"} />
-        <Item
-          icon={"fas fa-globe-americas"}
-          label={"Country"}
-          content={"Japan"}
-        />
-        <Item
-          icon={"fas fa-sign-in-alt"}
-          label={"Login Id"}
-          content={"20247aa@aa.aaaa"}
-        />
-        <Item
-          icon={"far fa-credit-card"}
-          label={"E-wallet"}
-          content={"700546324"}
-        />
-        <Item icon={"fa fa-key"} label={"Password"} content={"*********"} />
-        {role == "manager" || (
+    <div className="flex flex-col items-center mt-8 gap-3">
+      <Item
+        icon={"far fa-clock"}
+        label={"Register Date"}
+        content={formatDate(affInfo?.createdAt)}
+      />
+      <Item
+        icon={"fas fa-medal"}
+        label={"Current Level/Points"}
+        content={affInfo?.rank}
+      />
+      <Item icon={"fas fa-envelope"} label={"Email"} content={affInfo?.email} />
+      <Item
+        icon={"fas fa-phone"}
+        label={"Phone"}
+        content={affInfo?.phoneNumber}
+      />
+      <Item
+        icon={"fas fa-globe-americas"}
+        label={"Country"}
+        content={affInfo?.country}
+      />
+      <Item
+        icon={"fas fa-sign-in-alt"}
+        label={"Login Id"}
+        content={affInfo?.affiliateId}
+      />
+      <Item
+        icon={"far fa-credit-card"}
+        label={"Bank Account"}
+        content={"700546324"}
+      />
+      {/* <Item icon={"fa fa-key"} label={"Password"} content={"*********"} />
+        {role == "admin" || (
           <div className="relative">
             <Item icon={"fas fa-cogs"} label={"Change Password"} />
             <button
@@ -49,9 +49,8 @@ const AccountInfo = ({ setShow, role }) => {
               &nbsp; Edit
             </button>
           </div>
-        )}
-      </div>
-    </>
+        )} */}
+    </div>
   );
 };
 

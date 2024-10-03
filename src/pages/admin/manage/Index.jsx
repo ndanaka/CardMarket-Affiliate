@@ -1,11 +1,7 @@
 import ManageContent from "../../../components/admin/manage/Index";
 
 const Index = () => {
-  return (
-    <>
-      <ManageContent />
-    </>
-  );
+  return <ManageContent />;
 };
 
 export default Index;

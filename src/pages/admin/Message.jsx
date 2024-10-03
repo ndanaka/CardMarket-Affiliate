@@ -1,11 +1,7 @@
 import Messages from "../../components/admin/message/Index";
 
 const Message = () => {
-  return (
-    <>
-      <Messages />
-    </>
-  );
+  return <Messages />;
 };
 
 export default Message;

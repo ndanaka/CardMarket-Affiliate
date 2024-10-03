@@ -1,11 +1,7 @@
 import ViewUser from "../../../components/admin/manage/View";
 
 const View = () => {
-  return (
-    <>
-      <ViewUser />
-    </>
-  );
+  return <ViewUser />;
 };
 
 export default View;

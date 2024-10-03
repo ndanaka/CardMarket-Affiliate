@@ -22,6 +22,7 @@ const Index = () => {
           <Item item={"Manage"} />
           <Item item={"Payment"} />
           <Item item={"Message"} />
+          <Item item={"Rank"} />
         </ul>
       </div>
 
@@ -69,6 +70,15 @@ const Index = () => {
           className={`text-gray-300 m-3 border-white font-semibold`}
         >
           Message
+        </button>
+        <button
+          onClick={() => {
+            navigate("/admin/rank");
+            setCollapse(false);
+          }}
+          className={`text-gray-300 m-3 border-white font-semibold`}
+        >
+          Rank
         </button>
       </div>
       <AccountInfo show={show} setShow={setShow} />

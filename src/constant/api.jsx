@@ -1,7 +1,7 @@
-import { VITE_BASE_URL } from "./baseUrl";
+import { SERVER_BASE_URL } from "./baseUrl";
 
 // local base url
-export const BASE_URL = VITE_BASE_URL;
+export const BASE_URL = SERVER_BASE_URL;
 // export const BASE_URL = "https://aryeshsaha-to-do-list.onrender.com";
 
 // register

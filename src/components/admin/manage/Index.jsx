@@ -32,7 +32,7 @@ const Index = () => {
   return (
     <>
       <div className="mt-10 border-[1px] border-gray-200 rounded-lg p-10 pb-5 max-[700px]:p-2">
-        <div className="flex flex-wrap justify-between pr-10 gap-3 pb-3">
+        <div className="flex flex-wrap justify-between gap-3 pb-3">
           <div className="flex flex-wrap gap-2 justify-center items-center">
             {!fltSignal ? (
               <>

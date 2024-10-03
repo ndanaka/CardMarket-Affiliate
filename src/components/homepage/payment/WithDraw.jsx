@@ -70,7 +70,7 @@ const WithDraw = () => {
   return (
     <>
       <div
-        className={`flex min-[1050]:flex-wrap max-[1050px]:flex-col justify-center items-center gap-44 max-[1050px]:gap-10 ${
+        className={`pt-4 flex min-[1050]:flex-wrap max-[1050px]:flex-col justify-center items-center gap-44 max-[1050px]:gap-10 ${
           !method && "gap-0"
         }`}
       >

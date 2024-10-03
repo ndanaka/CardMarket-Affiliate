@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
 import { useAtom } from "jotai";
 import { jwtDecode } from "jwt-decode";
 
@@ -9,14 +8,16 @@ import QuickLinks from "./QuickLInks";
 
 import { tokenWithPersistenceAtom } from "../../../atoms";
 
-const Content = () => {
+const Content = ({ aff_Id }) => {
   const [period, setPeriod] = useState("Today");
 
-  const navigate = useNavigate();
-
-  const [token, setToken] = useAtom(tokenWithPersistenceAtom);
   let affId;
-  if (token) affId = jwtDecode(token).aff_id;
+  if (aff_Id) {
+    affId = aff_Id;
+  } else {
+    const [token, setToken] = useAtom(tokenWithPersistenceAtom);
+    if (token) affId = jwtDecode(token).aff_id;
+  }
 
   return (
     <>

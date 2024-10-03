@@ -19,7 +19,7 @@ const Members = ({ members }) => {
       <table className=" w-full text-[14px]  font-medium">
         <thead className="h-14 text-left">
           <tr>
-            <th>Full Name</th>
+            <th>Name</th>
             <th>Country</th>
             <th>Email</th>
             <th>Role</th>
@@ -43,7 +43,13 @@ const Members = ({ members }) => {
               </td>
               <td className="text-right w-[5%] ">
                 <button
-                  onClick={() => navigate("/admin/manage/view")}
+                  onClick={() =>
+                    navigate("/admin/manage/view", {
+                      state: {
+                        affId: item._id,
+                      },
+                    })
+                  }
                   className="text-indigo-600 hover:bg-indigo-600 hover:text-white px-2 py-1 rounded-md duration-150"
                 >
                   View

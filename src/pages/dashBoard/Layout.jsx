@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router";
 import { jwtDecode } from "jwt-decode";
-
 import { useAtom } from "jotai";
+
 import { tokenWithPersistenceAtom } from "../../atoms";
 
 import Header from "../../components/dashBoard/header/Index";

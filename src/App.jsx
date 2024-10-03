@@ -6,14 +6,13 @@ import Register from "./pages/dashBoard/Register";
 import LogIn from "./pages/dashBoard/LogIn";
 import HomeLayout from "./pages/homepage/Layout";
 import Homepage from "./pages/homepage/Index";
-import PaymentRequest from "./pages/homepage/PaymentRequest";
-import PaymentHistory from "./pages/homepage/PaymentHiistory";
+import HomePayments from "./pages/homepage/Payments";
 import AffiliateLinks from "./pages/homepage/AffiliateLinks";
 import LevelUpgrade from "./pages/homepage/LevelUpgrade";
 import AccountInfo from "./pages/homepage/AccountInfo";
 import ContactUs from "./pages/contactUs/Index";
 import AdminLayout from "./pages/admin/Layout";
-import Payment from "./pages/admin/Payment";
+import AdminPayments from "./pages/admin/Payment";
 import Message from "./pages/admin/Message";
 import Introduce from "./pages/admin/Introduce";
 import Manage from "./pages/admin/manage/Index";
@@ -35,11 +34,7 @@ const App = () => {
 
           <Route path="/homepage" element={<HomeLayout />}>
             <Route path="/homepage" element={<Homepage />} />
-            <Route path="/homepage/payments" element={<PaymentRequest />} />
-            <Route
-              path="/homepage/payments/history"
-              element={<PaymentHistory />}
-            />
+            <Route path="/homepage/payments" element={<HomePayments />} />
             <Route
               path="/homepage/links/affiliatelinks"
               element={<AffiliateLinks />}
@@ -54,7 +49,7 @@ const App = () => {
             <Route path="/admin/manage/adduser" element={<AddUser />} />
             <Route path="/admin/manage/edit" element={<Edit />} />
             <Route path="/admin/manage/view" element={<View />} />
-            <Route path="/admin/payment" element={<Payment />} />
+            <Route path="/admin/payment" element={<AdminPayments />} />
             <Route path="/admin/message" element={<Message />} />
           </Route>
         </Routes>

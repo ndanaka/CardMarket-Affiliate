@@ -21,6 +21,7 @@ export const MYPOSTS = `${BASE_URL}/auth/myPosts`;
 
 // get members
 export const GET_MEMBERS = `${BASE_URL}/members`;
+export const GET_AFF_INFO = `${BASE_URL}/members/getAffInfo`;
 
 // get statistics for affiliate
 export const GET_STATISTICS = `${BASE_URL}/status/statistics`;

@@ -1,10 +1,6 @@
 import AddUsers from "../../../components/admin/manage/AddUser";
 
 const AddUser = () => {
-  return (
-    <>
-      <AddUsers />
-    </>
-  );
+  return <AddUsers />;
 };
 export default AddUser;

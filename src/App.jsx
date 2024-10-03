@@ -14,6 +14,7 @@ import ContactUs from "./pages/contactUs/Index";
 import AdminLayout from "./pages/admin/Layout";
 import AdminPayments from "./pages/admin/Payment";
 import Message from "./pages/admin/Message";
+import Rank from "./pages/admin/Rank";
 import Introduce from "./pages/admin/Introduce";
 import Manage from "./pages/admin/manage/Index";
 import AddUser from "./pages/admin/manage/AddUser";
@@ -51,6 +52,7 @@ const App = () => {
             <Route path="/admin/manage/view" element={<View />} />
             <Route path="/admin/payment" element={<AdminPayments />} />
             <Route path="/admin/message" element={<Message />} />
+            <Route path="/admin/rank" element={<Rank />} />
           </Route>
         </Routes>
       </BrowserRouter>

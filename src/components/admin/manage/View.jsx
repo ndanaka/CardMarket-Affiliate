@@ -33,43 +33,41 @@ const View = () => {
   };
 
   return (
-    <>
-      <div className="mt-10 border-[1px] border-gray-200 rounded-lg p-10 max-[700px]:p-2">
-        <div className="flex flex-wrap justify-between mx-auto w-full md:w-4/5">
-          <button
-            className="mt-2 hover:opacity-75 bg-indigo-600 text-white rounded-md px-2 py-1 font-semibold"
-            onClick={() => navigate(-1)}
-          >
-            <i className="fas fa-arrow-left" />
-            &nbsp;<span>To Manage</span>
-          </button>
-          <div className="mt-2">
-            <Button
-              label={"Profile"}
-              handle={() => setSelect("Profile")}
-              select={select}
-            />
-            <Button
-              label={"Progress"}
-              handle={() => setSelect("Progress")}
-              select={select}
-            />
-            <Button
-              label={"Payment History"}
-              handle={() => setSelect("Payment History")}
-              select={select}
-            />
-          </div>
+    <div className="mt-10 border-[1px] border-gray-200 rounded-lg p-10 max-[700px]:p-2">
+      <div className="flex flex-wrap justify-between mx-auto w-full md:w-4/5">
+        <button
+          className="mt-2 hover:opacity-75 bg-indigo-600 text-white rounded-md px-2 py-1 font-semibold"
+          onClick={() => navigate(-1)}
+        >
+          <i className="fas fa-arrow-left" />
+          &nbsp;<span>To Manage</span>
+        </button>
+        <div className="mt-2">
+          <Button
+            label={"Profile"}
+            handle={() => setSelect("Profile")}
+            select={select}
+          />
+          <Button
+            label={"Progress"}
+            handle={() => setSelect("Progress")}
+            select={select}
+          />
+          <Button
+            label={"Payment History"}
+            handle={() => setSelect("Payment History")}
+            select={select}
+          />
         </div>
-        {select === "Profile" ? (
-          <AccountInfo affInfo={affInfo} />
-        ) : select === "Progress" ? (
-          <HomeContent aff_Id={affId} />
-        ) : (
-          <PaymentHistroy aff_Id={affId} />
-        )}
       </div>
-    </>
+      {select === "Profile" ? (
+        <AccountInfo affInfo={affInfo} />
+      ) : select === "Progress" ? (
+        <HomeContent aff_Id={affId} />
+      ) : (
+        <PaymentHistroy aff_Id={affId} />
+      )}
+    </div>
   );
 };
 

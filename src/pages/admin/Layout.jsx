@@ -33,12 +33,10 @@ const Layout = () => {
   }, [token]);
 
   return (
-    <>
-      <div className="mx-36 max-[1000px]:mx-10 max-[700px]:mx-2">
-        {!token ? <Navigate to="/" /> : <AdminHeader />}
-        <Outlet />
-      </div>
-    </>
+    <div className="mx-36 max-[1000px]:mx-10 max-[700px]:mx-2">
+      {!token ? <Navigate to="/" /> : <AdminHeader />}
+      <Outlet />
+    </div>
   );
 };
 

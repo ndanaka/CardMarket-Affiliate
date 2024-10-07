@@ -9,19 +9,19 @@ const Links = ({ pageName, link }) => {
   const [token, setToken] = useAtom(tokenWithPersistenceAtom);
   const [copy, setCopy] = useState("");
 
-  let affiliateID;
-  let affiliateLink;
+  let affId;
+  let affLink;
 
   if (token) {
-    affiliateID = jwtDecode(token).aff_id;
-    affiliateLink = `${link}?aff_id=${affiliateID}`;
+    affId = jwtDecode(token).id;
+    affLink = `${link}?aff_id=${affId}`;
   }
 
   const handleLinkCopy = (t) => {
-    navigator.clipboard.writeText(affiliateLink);
+    navigator.clipboard.writeText(affLink);
 
     // if (t === "htmlTag") {
-    //   const htmlTag = `<a href="${ORIPA_BASE_URL}?aff_id=${affiliateID}">${pageName}</a>`;
+    //   const htmlTag = `<a href="${ORIPA_BASE_URL}?aff_id=${affId}">${pageName}</a>`;
     //   navigator.clipboard.writeText(htmlTag);
     // }
     // if (t === "url") {

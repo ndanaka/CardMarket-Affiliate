@@ -23,40 +23,38 @@ import View from "./pages/admin/manage/View";
 
 const App = () => {
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<DashLayout />}>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/login" element={<LogIn />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/contact" element={<ContactUs />} />
-          </Route>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<DashLayout />}>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/login" element={<LogIn />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/contact" element={<ContactUs />} />
+        </Route>
 
-          <Route path="/homepage" element={<HomeLayout />}>
-            <Route path="/homepage" element={<Homepage />} />
-            <Route path="/homepage/payments" element={<HomePayments />} />
-            <Route
-              path="/homepage/links/affiliatelinks"
-              element={<AffiliateLinks />}
-            />
-            <Route path="/homepage/level" element={<LevelUpgrade />} />
-            <Route path="/homepage/accountsetting" element={<AccountInfo />} />
-          </Route>
+        <Route path="/homepage" element={<HomeLayout />}>
+          <Route path="/homepage" element={<Homepage />} />
+          <Route path="/homepage/payments" element={<HomePayments />} />
+          <Route
+            path="/homepage/links/affiliatelinks"
+            element={<AffiliateLinks />}
+          />
+          <Route path="/homepage/level" element={<LevelUpgrade />} />
+          <Route path="/homepage/accountsetting" element={<AccountInfo />} />
+        </Route>
 
-          <Route path="/admin" element={<AdminLayout />}>
-            <Route path="/admin" element={<Introduce />} />
-            <Route path="/admin/manage" element={<Manage />} />
-            <Route path="/admin/manage/adduser" element={<AddUser />} />
-            <Route path="/admin/manage/edit" element={<Edit />} />
-            <Route path="/admin/manage/view" element={<View />} />
-            <Route path="/admin/payment" element={<AdminPayments />} />
-            <Route path="/admin/message" element={<Message />} />
-            <Route path="/admin/rank" element={<Rank />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </>
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route path="/admin" element={<Introduce />} />
+          <Route path="/admin/manage" element={<Manage />} />
+          <Route path="/admin/manage/adduser" element={<AddUser />} />
+          <Route path="/admin/manage/edit" element={<Edit />} />
+          <Route path="/admin/manage/view" element={<View />} />
+          <Route path="/admin/payment" element={<AdminPayments />} />
+          <Route path="/admin/message" element={<Message />} />
+          <Route path="/admin/rank" element={<Rank />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 };
 export default App;

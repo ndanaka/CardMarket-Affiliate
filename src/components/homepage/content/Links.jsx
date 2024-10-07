@@ -13,7 +13,7 @@ const Links = ({ link, label, icon }) => {
   let affiliateLink;
 
   if (token) {
-    affiliateID = jwtDecode(token).aff_id;
+    affiliateID = jwtDecode(token).id;
     affiliateLink = `${link}?aff_id=${affiliateID}`;
   }
 

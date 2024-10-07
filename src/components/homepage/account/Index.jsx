@@ -35,53 +35,51 @@ const Account = ({ setShow }) => {
   }, [token]);
 
   return (
-    <>
-      <ul
-        ref={accountBtn}
-        className=" absolute top-8 -left-3 py-2  bg-white w-[200px] rounded-md shadow-lg shadow-gray-600"
-      >
-        {payload?.role === "affiliate" && (
-          <>
-            <Button
-              src={"setting.svg"}
-              label={"Account Info"}
-              handle={() => {
-                navigate("/homepage/accountsetting");
-                setShow(false);
-                setShowNav((t) => ({ ...t, color: "" }));
-              }}
-            />
-            <Button
-              src={"level.svg"}
-              label={"Account Level"}
-              handle={() => {
-                navigate("/homepage/level");
-                setShow(false);
-                setShowNav((t) => ({ ...t, color: "Homepage" }));
-              }}
-            />
-          </>
-        )}
-        <Button
-          src={"T&C.svg"}
-          label={"T&C"}
-          handle={() => {
-            window.open("/oripapartner.pdf");
-            setShow(false);
-          }}
-        />
-        <Button
-          src={"logOut.svg"}
-          label={"Log Out"}
-          handle={() => {
-            localStorage.removeItem("token");
-            setToken("");
-            setShow(false);
-            navigate("/");
-          }}
-        />
-      </ul>
-    </>
+    <ul
+      ref={accountBtn}
+      className=" absolute top-8 -left-3 py-2  bg-white w-[200px] rounded-md shadow-lg shadow-gray-600"
+    >
+      {payload?.role === "affiliate" && (
+        <>
+          <Button
+            src={"setting.svg"}
+            label={"Account Info"}
+            handle={() => {
+              navigate("/homepage/accountsetting");
+              setShow(false);
+              setShowNav((t) => ({ ...t, color: "" }));
+            }}
+          />
+          <Button
+            src={"level.svg"}
+            label={"Account Level"}
+            handle={() => {
+              navigate("/homepage/level");
+              setShow(false);
+              setShowNav((t) => ({ ...t, color: "Homepage" }));
+            }}
+          />
+        </>
+      )}
+      <Button
+        src={"T&C.svg"}
+        label={"T&C"}
+        handle={() => {
+          window.open("/oripapartner.pdf");
+          setShow(false);
+        }}
+      />
+      <Button
+        src={"logOut.svg"}
+        label={"Log Out"}
+        handle={() => {
+          localStorage.removeItem("token");
+          setToken("");
+          setShow(false);
+          navigate("/");
+        }}
+      />
+    </ul>
   );
 };
 

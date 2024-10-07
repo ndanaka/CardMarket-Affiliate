@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 
@@ -10,29 +10,27 @@ import {
 } from "../constant/api";
 
 import { useAtom } from "jotai";
-import { idAtom, timeAtom, tokenWithPersistenceAtom } from "../atoms/index";
+import { tokenWithPersistenceAtom } from "../atoms/index";
 
 const HomeApi = () => {
   const navigate = useNavigate();
 
   // operation characteristics
-  const [, setTime] = useAtom(timeAtom);
   const [token, setToken] = useAtom(tokenWithPersistenceAtom);
-  const [, setId] = useAtom(idAtom);
 
   const [op, setOp] = useState({
     appErr: null,
     serverErr: null,
   });
 
-  // configuration
+  // configuration without token
   const config = {
     headers: {
       "Content-Type": "application/json",
     },
   };
 
-  // Post Op Configuration
+  // Configuration with token
   const postConfig = {
     headers: {
       Authorization: `Bearer ${token}`,

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
-
 import { useAtom } from "jotai";
+
 import { tokenWithPersistenceAtom } from "../../../../atoms";
 
 import Account from "../../account/Index";
 
-const AccountInfoModal = ({ show, setShow }) => {
+const AccountInfoModal = ({ show, setShow, affId }) => {
   const [token, setToken] = useAtom(tokenWithPersistenceAtom);
   const [payload, setPayload] = useState(null);
 

@@ -10,13 +10,13 @@ import { tokenWithPersistenceAtom } from "../../../atoms";
 
 const Content = ({ aff_Id }) => {
   const [period, setPeriod] = useState("Today");
+  const [token, setToken] = useAtom(tokenWithPersistenceAtom);
 
   let affId;
   if (aff_Id) {
     affId = aff_Id;
   } else {
-    const [token, setToken] = useAtom(tokenWithPersistenceAtom);
-    if (token) affId = jwtDecode(token).aff_id;
+    if (token) affId = jwtDecode(token).id;
   }
 
   return (

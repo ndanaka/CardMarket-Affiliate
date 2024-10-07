@@ -1,14 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
 import HomeApi from "../../../api/homeApi";
 import AppServerErr from "../../../errors/AppServerErr";
 import FormikErr from "../../../errors/FormikErr";
+import Toast from "../../../utils/toast";
 
 const Account = () => {
-  const [accountNumber, setAccountNumber] = useState("");
-  const { op, submitBankRegister } = HomeApi();
+  const [bankInfo, setBankInfo] = useState(null);
+  const [toastVisible, setToastVisible] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastType, setToastType] = useState("");
+
+  const { op, SubmitBankAdd, GetAffBankInfo } = HomeApi();
+
+  useEffect(() => {
+    getAffBankInfo();
+  }, [toastVisible]);
+
+  const getAffBankInfo = async () => {
+    const res = await GetAffBankInfo();
+    setBankInfo(res.data.bankInfo);
+  };
 
   const formSchema = yup.object({
     nameOfFinacial: yup.string().required("Financial name is required"),
@@ -21,35 +35,37 @@ const Account = () => {
   });
 
   const formik = useFormik({
+    enableReinitialize: true, // Allow reinitialization when bankInfo changes
     initialValues: {
-      transType: "other",
-      nameOfFinacial: "",
-      accountType: "ordinary",
-      accountNumber: "",
-      accountHolder: "",
+      transType: bankInfo?.transType || "other",
+      nameOfFinacial: bankInfo?.nameOfFinacial || "",
+      accountType: bankInfo?.accountType || "ordinary",
+      accountNumber: bankInfo?.accountNumber || "",
+      accountHolder: bankInfo?.accountHolder || "",
     },
-    onSubmit: ({
-      transType,
-      nameOfFinacial,
-      accountType,
-      accountNumber,
-      accountHolder,
-    }) => {
-      submitBankRegister({
-        transType,
-        nameOfFinacial,
-        accountType,
-        accountNumber,
-        accountHolder,
-      });
+    onSubmit: async (values) => {
+      const result = await SubmitBankAdd(values);
+
+      if (result.data.status) {
+        setToastType("success");
+      } else {
+        setToastType("warning");
+      }
+
+      setToastMessage(result.data.message);
+      setToastVisible(true);
     },
     validationSchema: formSchema,
   });
 
+  const handleCloseToast = () => {
+    setToastVisible(false);
+  };
+
   return (
     <div className="bg-white py-12 px-4 md:px-8 lg:px-12 my-5 mx-auto w-full lg:w-4/5">
       <p className="text-[22px] font-semibold text-center mb-8">
-        Register a transfer account
+        {bankInfo ? "Edit transfer account" : "Register a transfer account"}
       </p>
       <form className="font-sans" onSubmit={formik.handleSubmit}>
         <div className="flex flex-wrap justify-start md:items-center my-10">
@@ -57,7 +73,7 @@ const Account = () => {
             <p className="text-md">Type</p>
           </div>
           <div className="flex flex-col w-full md:w-3/4">
-            <label>
+            <label className="cursor-pointer">
               <input
                 type="radio"
                 name="transType"
@@ -70,7 +86,7 @@ const Account = () => {
                 Banks (other than Japan Post Bank), Shinkin banks, etc.
               </span>
             </label>
-            <label>
+            <label className="cursor-pointer">
               <input
                 type="radio"
                 name="transType"
@@ -87,17 +103,13 @@ const Account = () => {
             <p className="text-md">Name of finacial institution</p>
           </div>
           <div className="flex flex-wrap justify-between w-full md:w-3/4 h-full items-center">
-            {/* <span className="mb-1 md:mb-0">Narin Stein bank account</span> */}
             <input
               type="text"
               name="nameOfFinacial"
-              className="block px-4 py-2 mt-2 text-slate-700 bg-white border rounded-md focus:border-slate-400 focus:ring-slate-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              className="w-full block px-4 py-2 mt-2 text-slate-700 bg-white border rounded-md focus:border-slate-400 focus:ring-slate-300 focus:outline-none focus:ring focus:ring-opacity-40"
               value={formik.values.nameOfFinacial}
               onChange={formik.handleChange("nameOfFinacial")}
             />
-            <button className="border border-blue-400 text-blue-400 rounded-full md:py-2 px-4 md:px-12">
-              Edit
-            </button>
           </div>
           <FormikErr
             touched={formik.touched.nameOfFinacial}
@@ -109,7 +121,7 @@ const Account = () => {
             <p className="text-md">Account Type</p>
           </div>
           <div className="flex flex-col w-full md:w-3/4">
-            <label>
+            <label className="cursor-pointer">
               <input
                 type="radio"
                 name="accountType"
@@ -119,7 +131,7 @@ const Account = () => {
               />
               <span> Ordinary</span>
             </label>
-            <label>
+            <label className="cursor-pointer">
               <input
                 type="radio"
                 name="accountType"
@@ -182,12 +194,20 @@ const Account = () => {
         <div className="flex flex-wrap justify-between">
           <button
             type="submit"
-            className="rounded-full py-2 px-20 mx-auto bg-blue-400 text-white"
+            className="rounded-md px-20 py-2 tracking-wide font-semibold text-white transition-colors mx-auto 
+                 duration-200 transform bg-emerald-700 hover:bg-emerald-600 focus:outline-none focus:bg-emerald-600"
           >
-            Register
+            {bankInfo ? "Edit" : "Register"}
           </button>
         </div>
       </form>
+
+      <Toast
+        type={toastType}
+        message={toastMessage}
+        isVisible={toastVisible}
+        onClose={handleCloseToast}
+      />
     </div>
 
     // <>

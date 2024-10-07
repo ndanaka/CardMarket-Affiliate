@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 import {
   GET_MEMBERS,
   GET_STATISTICS,
   GET_CLIENTS,
   GET_AFF_INFO,
+  GET_BANK_INFO,
+  ADD_BANK_ACCOUNT,
 } from "../constant/api";
 
 import { useAtom } from "jotai";
@@ -44,7 +47,10 @@ const HomeApi = () => {
       };
       return await axios.post(GET_MEMBERS, formData, postConfig);
     } catch (error) {
-      console.log(error);
+      setOp({
+        appErr: error?.response?.data?.message,
+        serverErr: error?.message,
+      });
     }
   };
 
@@ -56,7 +62,10 @@ const HomeApi = () => {
 
       return await axios.post(GET_STATISTICS, formData, postConfig);
     } catch (error) {
-      console.log(error);
+      setOp({
+        appErr: error?.response?.data?.message,
+        serverErr: error?.message,
+      });
     }
   };
 
@@ -80,12 +89,42 @@ const HomeApi = () => {
       };
       return await axios.post(GET_AFF_INFO, formData, postConfig);
     } catch (error) {
-      console.log(error);
+      setOp({
+        appErr: error?.response?.data?.message,
+        serverErr: error?.message,
+      });
     }
   };
 
-  const submitBankRegister = async (formData) => {
-    console.log(formData);
+  const GetAffBankInfo = async () => {
+    try {
+      const payload = jwtDecode(token);
+
+      return await axios.post(
+        GET_BANK_INFO,
+        { aff_id: payload.id },
+        postConfig
+      );
+    } catch (error) {
+      setOp({
+        appErr: error?.response?.data?.message,
+        serverErr: error?.message,
+      });
+    }
+  };
+
+  const SubmitBankAdd = async (formData) => {
+    try {
+      const payload = jwtDecode(token);
+      formData.aff_id = payload.id;
+
+      return await axios.post(ADD_BANK_ACCOUNT, formData, postConfig);
+    } catch (error) {
+      setOp({
+        appErr: error?.response?.data?.message,
+        serverErr: error?.message,
+      });
+    }
   };
 
   return {
@@ -94,7 +133,8 @@ const HomeApi = () => {
     GetStatistics,
     GetClients,
     GetAffInfo,
-    submitBankRegister,
+    SubmitBankAdd,
+    GetAffBankInfo,
   };
 };
 

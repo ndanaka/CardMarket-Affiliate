@@ -22,7 +22,7 @@ const RegisterForm = ({ title, label }) => {
   const { op, submitRegister } = AuthApi();
 
   const formSchema = yup.object({
-    fullName: yup.string().required("Nddame is required"),
+    fullName: yup.string().required("Name is required"),
     email: yup.string().email().required("Email is required"),
     password: yup
       .string()

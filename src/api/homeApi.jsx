@@ -84,7 +84,18 @@ const HomeApi = () => {
     }
   };
 
-  return { GetMembers, GetStatistics, GetClients, GetAffInfo };
+  const submitBankRegister = async (formData) => {
+    console.log(formData);
+  };
+
+  return {
+    op,
+    GetMembers,
+    GetStatistics,
+    GetClients,
+    GetAffInfo,
+    submitBankRegister,
+  };
 };
 
 export default HomeApi;

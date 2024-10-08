@@ -63,7 +63,7 @@ const Account = () => {
   };
 
   return (
-    <div className="bg-white py-12 px-4 md:px-8 lg:px-12 my-5 mx-auto w-full lg:w-4/5">
+    <div className="bg-white py-12 px-4 md:px-8 lg:px-12 my-5 mx-auto w-full md:w-4/5 lg:w-3/5">
       <p className="text-[22px] font-semibold text-center mb-8">
         {bankInfo ? "Edit transfer account" : "Register a transfer account"}
       </p>

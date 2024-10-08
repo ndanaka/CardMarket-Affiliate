@@ -1,22 +1,25 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
 import FormikErr from "../../../errors/FormikErr";
+import HomeApi from "../../../api/homeApi";
 
 import Input from "./Input";
 import PayButton from "./PayButton";
-import PayMethod from "./PayMethod";
-import PayImage from "./PayImage";
 import Modal from "./Modal";
+import Toast from "../../../utils/toast";
 
 const WithDraw = () => {
   const [confirmErr, setConfirmErr] = useState("");
-  const [method, setMethod] = useState("");
   const [modal, setModal] = useState(false);
+  const [toastVisible, setToastVisible] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastType, setToastType] = useState("");
+
+  const { op, SubmitWithdraw } = HomeApi();
 
   const formSchema = yup.object({
-    paymentMethod: yup.string().required("Payment Method is required"),
     amount: yup
       .number()
       .max(2580, "So much more than yours!")
@@ -27,7 +30,6 @@ const WithDraw = () => {
 
   const formik = useFormik({
     initialValues: {
-      paymentMethod: "",
       amount: "",
       address: "",
       confirm: "",
@@ -42,96 +44,91 @@ const WithDraw = () => {
       }
       return errors;
     },
-    onSubmit: ({ paymentMethod, amount, address, confirm }) => {
-      handlePay({ paymentMethod, amount, address, confirm });
+    onSubmit: (values) => {
+      setModal(true);
     },
     validationSchema: formSchema,
   });
 
-  //excute the pay request
-  const handlePay = (a) => {
-    if (confirmErr === "error") {
-      return;
+  // excute the pay request
+  const handlePay = async () => {
+    setModal(false);
+    const result = await SubmitWithdraw(formik.values);
+
+    console.log(result);
+    if (result.data.status) {
+      setToastType("success");
     } else {
-      setModal(true);
+      setToastType("warning");
     }
   };
 
-  //For payment method picture
-  useEffect(() => {
-    if (method === "googlePay") {
-      formik.values.paymentMethod = "googlePay";
-    }
-    if (method === "applePay") {
-      formik.values.paymentMethod = "applePay";
-    }
-  }, [method]);
+  const handleCloseToast = () => {
+    setToastVisible(false);
+  };
 
   return (
-    <>
-      <div
-        className={`pt-4 flex min-[1050]:flex-wrap max-[1050px]:flex-col justify-center items-center gap-44 max-[1050px]:gap-10 ${
-          !method && "gap-0"
-        }`}
-      >
-        <form onSubmit={formik.handleSubmit}>
-          <PayMethod setMethod={setMethod} method={method} />
-          {!method && (
-            <FormikErr
-              touched={formik.touched.paymentMethod}
-              errors={formik.errors.paymentMethod}
-            />
-          )}
-          <br />
-          <Input
-            label={"Withdrawal Amount $"}
-            type={"number"}
-            name={"amount"}
-            value={formik.values.amount}
-            onChange={formik.handleChange("amount")}
-            placeholder={"1500"}
-          />
-          <FormikErr
-            touched={formik.touched.amount}
-            errors={formik.errors.amount}
-          />
-          <Input
-            label={"Receiving address(Phone Number)"}
-            type={"tel"}
-            name={"address"}
-            value={formik.values.address}
-            onChange={formik.handleChange("address")}
-            placeholder={"811234567890"}
-          />
-          <FormikErr
-            touched={formik.touched.address}
-            errors={formik.errors.address}
-          />
-          <Input
-            label={"Confirm address(Phone Number)"}
-            type={"tel"}
-            name={"confirm"}
-            value={formik.values.confirm}
-            onChange={formik.handleChange("confirm")}
-            placeholder={"811234567890"}
-          />
-          <FormikErr
-            touched={formik.touched.confirm}
-            errors={formik.errors.confirm1}
-          />
-          <PayButton
-            label={"Request a Payment"}
-            handle={() => setModal("modal")}
-          />
-          <Modal
-            setConfirmErr={setConfirmErr}
-            modal={modal}
-            setModal={setModal}
-          />
-        </form>
-        <PayImage method={method} confirmErr={confirmErr} />
-      </div>
-    </>
+    <div className="bg-white py-12 px-4 md:px-8 lg:px-12 my-5 mx-auto w-full md:w-4/5 lg:w-3/5">
+      <p className="text-[22px] font-semibold text-center mb-8">
+        Request Withdrawal
+      </p>
+      <form onSubmit={formik.handleSubmit}>
+        <Input
+          label={"Withdrawal Amount"}
+          type={"number"}
+          name={"amount"}
+          value={formik.values.amount}
+          onChange={formik.handleChange("amount")}
+          placeholder={"1500"}
+        />
+        <FormikErr
+          touched={formik.touched.amount}
+          errors={formik.errors.amount}
+        />
+        <br />
+        <Input
+          label={"Receiving address"}
+          type={"tel"}
+          name={"address"}
+          value={formik.values.address}
+          onChange={formik.handleChange("address")}
+          placeholder={"811234567890"}
+        />
+        <FormikErr
+          touched={formik.touched.address}
+          errors={formik.errors.address}
+        />
+        <br />
+        <Input
+          label={"Confirm address"}
+          type={"tel"}
+          name={"confirm"}
+          value={formik.values.confirm}
+          onChange={formik.handleChange("confirm")}
+          placeholder={"811234567890"}
+        />
+        <FormikErr
+          touched={formik.touched.confirm}
+          errors={formik.errors.confirm1}
+        />
+        <PayButton
+          label={"Send a withdrawal request"}
+          handle={() => setModal("modal")}
+        />
+        <Modal
+          setConfirmErr={setConfirmErr}
+          modal={modal}
+          setModal={setModal}
+          handlePay={handlePay}
+        />
+      </form>
+      <Toast
+        type={toastType}
+        message={toastMessage}
+        isVisible={toastVisible}
+        onClose={handleCloseToast}
+      />
+    </div>
   );
 };
 

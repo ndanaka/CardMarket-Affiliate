@@ -32,3 +32,4 @@ export const GET_CLIENTS = `${BASE_URL}/status/clients`;
 // bank account
 export const GET_BANK_INFO = `${BASE_URL}/members/getBankInfo`;
 export const ADD_BANK_ACCOUNT = `${BASE_URL}/members/addBankAcc`;
+export const REQUEST_WITHDRAW = `${BASE_URL}/members/requestWithdraw`;

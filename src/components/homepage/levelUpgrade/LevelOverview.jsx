@@ -1,10 +1,7 @@
 import Prize from "./Prize";
 import formatPrice from "../../../utils/formatPrice";
-import { SERVER_URL } from "../../../constant/baseUrl";
 
 const LevelOverview = () => {
-  console.log(SERVER_URL);
-  
   return (
     <>
       <h3 className="py-3 font-semibold">Current Level Points</h3>

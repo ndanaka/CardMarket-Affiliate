@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import formatPrice from "../../../utils/formatPrice";
 
 const History = () => {
   const [more, setMore] = useState(true);
@@ -6,21 +7,21 @@ const History = () => {
     {
       reqDate: 14,
       resDate: 15,
-      amount: "1282$",
+      amount: "1282",
       method: "Apple Pay",
       address: 812345432633,
     },
     {
       reqDate: 14,
       resDate: 15,
-      amount: "1282$",
+      amount: "1282",
       method: "Apple Pay",
       address: 812345432633,
     },
     {
       reqDate: 14,
       resDate: 15,
-      amount: "1282$",
+      amount: "1282",
       method: "Apple Pay",
       address: 812345432633,
     },
@@ -32,11 +33,11 @@ const History = () => {
         <thead className="h-10 text-[14px] text-white bg-[#4B5563]">
           <tr>
             <th>No</th>
+            <th>Amount</th>
+            {/* <th>Method</th> */}
+            <th>Address</th>
             <th>Request Date</th>
             <th>Withdrawal Date</th>
-            <th>Amount</th>
-            <th>Method</th>
-            <th>Address</th>
           </tr>
         </thead>
         <tbody className="text-[14px]">
@@ -48,11 +49,11 @@ const History = () => {
               }`}
             >
               <td>{index + 1}</td>
+              <td>¥ {formatPrice(payment.amount)}</td>
+              {/* <td>{payment.method}</td> */}
+              <td>{payment.address}</td>
               <td>{payment.reqDate}</td>
               <td>{payment.resDate}</td>
-              <td>{payment.amount}</td>
-              <td>{payment.method}</td>
-              <td>{payment.address}</td>
             </tr>
           ))}
         </tbody>

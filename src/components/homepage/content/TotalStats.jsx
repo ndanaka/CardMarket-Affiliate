@@ -57,11 +57,11 @@ const TotalStats = ({ affId, setPeriod }) => {
                 data-tooltip-content="For more information, click here."
               >
                 <td>{item.period}</td>
-                <td>¥ {formatPrice(item.payment)}</td>
+                <td>¥{formatPrice(item.payment)}</td>
                 <td>{item.clicks}</td>
                 <td>{item.regist}</td>
                 <td>{isNaN(item.cvr) ? 0 : item.cvr}</td>
-                <td>¥ {formatPrice(item.earn)}</td>
+                <td>¥{formatPrice(item.earn)}</td>
               </tr>
             ))}
           </tbody>

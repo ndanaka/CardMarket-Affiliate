@@ -53,7 +53,7 @@ const ClientStats = ({ affId, period }) => {
                 >
                   <td>{item.name}</td>
                   <td>{item.country}</td>
-                  <td>¥ {formatPrice(item.payment)}</td>
+                  <td>¥{formatPrice(item.payment)}</td>
                 </tr>
               ))
             )}

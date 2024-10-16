@@ -34,7 +34,6 @@ const History = () => {
           <tr>
             <th>No</th>
             <th>Amount</th>
-            {/* <th>Method</th> */}
             <th>Address</th>
             <th>Request Date</th>
             <th>Withdrawal Date</th>
@@ -49,8 +48,7 @@ const History = () => {
               }`}
             >
               <td>{index + 1}</td>
-              <td>¥ {formatPrice(payment.amount)}</td>
-              {/* <td>{payment.method}</td> */}
+              <td>¥{formatPrice(payment.amount)}</td>
               <td>{payment.address}</td>
               <td>{payment.reqDate}</td>
               <td>{payment.resDate}</td>

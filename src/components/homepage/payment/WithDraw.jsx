@@ -74,7 +74,7 @@ const WithDraw = () => {
       </p>
       <form onSubmit={formik.handleSubmit}>
         <Input
-          label={"Withdrawal Amount"}
+          label={"Withdrawal Amount (¥)"}
           type={"number"}
           name={"amount"}
           value={formik.values.amount}
@@ -112,7 +112,7 @@ const WithDraw = () => {
           errors={formik.errors.confirm1}
         />
         <PayButton
-          label={"Send a withdrawal request"}
+          label={"Send request"}
           handle={() => setModal("modal")}
         />
         <Modal

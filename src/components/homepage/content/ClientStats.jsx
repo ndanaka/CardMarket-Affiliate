@@ -12,12 +12,14 @@ const ClientStats = ({ affId, period }) => {
 
   useEffect(() => {
     setMore(true);
-    getClients(); // Make sure this function is defined
+    getClients();
   }, [period]);
 
   const getClients = async () => {
     try {
       const res = await GetClients(affId, period);
+      console.log({ affId, period });
+      console.log(res.data.clientData);
       setClients(res.data.clientData);
     } catch (error) {
       console.log(error);

@@ -4,13 +4,11 @@ import Navbar from "./navbar/Index";
 
 const HomeHeader = () => {
   return (
-    <>
-      <div className="font-sans">
-        <Top />
-        <Main />
-        <Navbar />
-      </div>
-    </>
+    <div className="font-sans">
+      <Top />
+      <Main />
+      <Navbar />
+    </div>
   );
 };
 export default HomeHeader;

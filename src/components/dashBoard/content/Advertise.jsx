@@ -1,9 +1,13 @@
 import { useNavigate } from "react-router";
+import { useAtom } from "jotai";
 
 import NavButton from "../header/NavButton";
 
+import { tokenWithPersistenceAtom } from "../../../atoms";
+
 const Advertise = () => {
   const navigate = useNavigate();
+  const [token] = useAtom(tokenWithPersistenceAtom);
 
   return (
     <div
@@ -19,11 +23,13 @@ const Advertise = () => {
           More than 48,000 Affiliates and IBs from <br />
           Over 60 countries choose Oripa as their partner.
         </div>
-        <NavButton
-          handle={() => navigate("/register")}
-          label="BECOME AN ORIPA PARTNER NOW"
-          className="max-lg:hidden text-xl border-[0.5px] py-1 px-3 text-justify font-semibold"
-        />
+        {!token && (
+          <NavButton
+            handle={() => navigate("/register")}
+            label="BECOME AN ORIPA PARTNER NOW"
+            className="max-lg:hidden text-xl border-[0.5px] py-1 px-3 text-justify font-semibold"
+          />
+        )}
         <div className="max-lg:hidden lg:p-4">Read More about GAME CARD</div>
       </div>
       <div className="max-lg:hidden absolute left-0 top-0 h-[100%] w-[10%]  bg-gradient-to-l to-[#061544] from-[#0000ff00]"></div>

@@ -34,7 +34,7 @@ const HiddenBar = ({ collapse, setCollapse }) => {
       </button>
       {token && (
         <>
-          {payload?.role === "affiliate" ? (
+          {payload?.role === "Affiliate" ? (
             <NavButton
               label="HOME"
               className={"text-[14px]"}

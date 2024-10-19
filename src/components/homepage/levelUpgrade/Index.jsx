@@ -1,3 +1,7 @@
+import React, { useEffect, useState } from "react";
+
+import HomeApi from "../../../api/homeApi";
+
 import CurrentPrize from "./CurrentPrize";
 import CurrentLevel from "./CurrentLevel";
 import LevelOverview from "./LevelOverview";
@@ -5,6 +9,22 @@ import Calculator from "./Calculator";
 import Example from "./Example";
 
 const LevelUpgrade = () => {
+  const [ranks, setRanks] = useState(null);
+  const { GetAllRanks } = HomeApi();
+
+  useEffect(() => {
+    getAllRanks();
+  }, []);
+
+  const getAllRanks = async () => {
+    try {
+      const res = await GetAllRanks();
+      setRanks(res.data.allRanks);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <div className="py-10 font-sans bg-gray-100 flex flex-wrap justify-center gap-5 max-[900px]:px-20 max-[800px]:px-2">
@@ -16,7 +36,7 @@ const LevelUpgrade = () => {
           <CurrentLevel />
         </div>
         <div className="bg-white px-10 py-5 max-[900px]:px-3 max-[900px]:w-full w-[55%]  shadow-lg shadow-gray-400 pb-10">
-          <LevelOverview />
+          <LevelOverview ranks={ranks} />
           <h3 className="py-3 font-semibold">How Does It Work?</h3>
           <p className=" text-justify text-gray-500">
             Affiliate Level Points are earned from new active depositing

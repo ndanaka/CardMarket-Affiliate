@@ -5,6 +5,8 @@ import { jwtDecode } from "jwt-decode";
 
 import { tokenWithPersistenceAtom } from "../../../atoms";
 
+import QuickLinks from "./QuickLInks";
+
 const Links = ({ link, label, icon }) => {
   const [token, setToken] = useAtom(tokenWithPersistenceAtom);
   const [copy, setCopy] = useState("");

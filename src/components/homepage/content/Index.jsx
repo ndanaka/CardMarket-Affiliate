@@ -4,7 +4,6 @@ import { jwtDecode } from "jwt-decode";
 
 import ClientStats from "./ClientStats";
 import TotalStats from "./TotalStats";
-import QuickLinks from "./QuickLInks";
 
 import { tokenWithPersistenceAtom } from "../../../atoms";
 
@@ -25,7 +24,6 @@ const Content = ({ aff_Id }) => {
         <TotalStats affId={affId} setPeriod={setPeriod} />
         <ClientStats affId={affId} period={period} />
       </div>
-      <QuickLinks />
     </div>
   );
 };

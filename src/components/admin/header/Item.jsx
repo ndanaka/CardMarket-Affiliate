@@ -17,7 +17,7 @@ const Item = ({ item, icon }) => {
           path === item.toLowerCase()
             ? "border-b-purple-600 hover:border-b-purple-600 text-black"
             : "border-b-transparent text-gray-600"
-        } text-[14px]  hover:text-black py-6 max-[900px]:py-3`}
+        } text-[14px]  hover:text-black py-1 max-[900px]:py-3`}
       >
         <Link to={`/admin/${item.toLowerCase()}`}>{item}</Link>
       </li>

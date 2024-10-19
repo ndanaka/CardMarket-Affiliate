@@ -24,7 +24,7 @@ const Layout = () => {
         navigate("/");
       }
 
-      if (payload?.role === "admin" || payload?.role === "manager") {
+      if (payload?.role === "Admin" || payload?.role === "Manager") {
         navigate("/admin");
       } else {
         navigate("/homepage");

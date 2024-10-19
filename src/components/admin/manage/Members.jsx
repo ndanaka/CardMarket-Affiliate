@@ -37,7 +37,7 @@ const Members = ({ members }) => {
               <td>{item.email}</td>
               <td
                 className={`${
-                  item.role === "manager" && "text-red-600"
+                  item.role === "Manager" && "text-red-600"
                 } w-[10%] `}
               >
                 {item.role}

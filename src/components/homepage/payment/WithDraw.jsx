@@ -55,7 +55,6 @@ const WithDraw = () => {
     setModal(false);
     const result = await SubmitWithdraw(formik.values);
 
-    console.log(result);
     if (result.data.status) {
       setToastType("success");
     } else {

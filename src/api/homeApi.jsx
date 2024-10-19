@@ -11,6 +11,9 @@ import {
   GET_BANK_INFO,
   ADD_BANK_ACCOUNT,
   REQUEST_WITHDRAW,
+  ADD_RANK,
+  GET_ALL_RANK,
+  DELETE_RANK,
 } from "../constant/api";
 
 import { useAtom } from "jotai";
@@ -27,16 +30,18 @@ const HomeApi = () => {
     serverErr: null,
   });
 
-  // configuration without token
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-
   // Configuration with token
   const postConfig = {
     headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  // Configuration with token and multipart
+  const multiPartConfig = {
+    headers: {
+      "Content-Type": "multipart/form-data",
       Authorization: `Bearer ${token}`,
     },
   };
@@ -142,8 +147,42 @@ const HomeApi = () => {
     }
   };
 
+  const SubmitAddRank = async (formData) => {
+    try {
+      return await axios.post(ADD_RANK, formData, multiPartConfig);
+    } catch (error) {
+      setOp({
+        appErr: error?.response?.data?.message,
+        serverErr: error?.message,
+      });
+    }
+  };
+
+  const GetAllRanks = async () => {
+    try {
+      return await axios.get(GET_ALL_RANK, postConfig);
+    } catch (error) {
+      setOp({
+        appErr: error?.response?.data?.message,
+        serverErr: error?.message,
+      });
+    }
+  };
+
+  const DeleteRank = async (formData) => {
+    try {
+      return await axios.post(DELETE_RANK, formData, postConfig);
+    } catch (error) {
+      setOp({
+        appErr: error?.response?.data?.message,
+        serverErr: error?.message,
+      });
+    }
+  };
+
   return {
     op,
+    setOp,
     GetMembers,
     GetStatistics,
     GetClients,
@@ -151,6 +190,9 @@ const HomeApi = () => {
     SubmitBankAdd,
     GetAffBankInfo,
     SubmitWithdraw,
+    SubmitAddRank,
+    GetAllRanks,
+    DeleteRank,
   };
 };
 

@@ -18,8 +18,6 @@ const ClientStats = ({ affId, period }) => {
   const getClients = async () => {
     try {
       const res = await GetClients(affId, period);
-      console.log({ affId, period });
-      console.log(res.data.clientData);
       setClients(res.data.clientData);
     } catch (error) {
       console.log(error);

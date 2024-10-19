@@ -148,20 +148,9 @@ const RegisterForm = ({ title, label }) => {
                 className="mr-1"
                 type="radio"
                 name="role"
-                value="manager"
+                value="Admin"
                 onChange={formik.handleChange}
-                checked={formik.values.role === "manager"}
-              />
-              <span>Manager</span>
-            </label>
-            <label>
-              <input
-                className="mr-1"
-                type="radio"
-                name="role"
-                value="admin"
-                onChange={formik.handleChange}
-                checked={formik.values.role === "admin"}
+                checked={formik.values.role === "Admin"}
               />
               <span>Admin(Only-Read)</span>
             </label>
@@ -170,9 +159,20 @@ const RegisterForm = ({ title, label }) => {
                 className="mr-1"
                 type="radio"
                 name="role"
-                value="affiliate"
+                value="Manager"
                 onChange={formik.handleChange}
-                checked={formik.values.role === "affiliate"}
+                checked={formik.values.role === "Manager"}
+              />
+              <span>Manager</span>
+            </label>
+            <label>
+              <input
+                className="mr-1"
+                type="radio"
+                name="role"
+                value="Affiliate"
+                onChange={formik.handleChange}
+                checked={formik.values.role === "Affiliate"}
               />
               <span>Affiliate</span>
             </label>

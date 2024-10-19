@@ -142,9 +142,9 @@ const Edit = ({ label }) => {
             <input
               type="radio"
               name="role"
-              value="manager"
+              value="Manager"
               onChange={formik.handleChange}
-              checked={formik.values.role === "manager"}
+              checked={formik.values.role === "Manager"}
             />
             <span>Manager</span>
           </label>
@@ -152,7 +152,7 @@ const Edit = ({ label }) => {
             <input
               type="radio"
               name="role"
-              value="readManager"
+              value="Read Manager"
               onChange={formik.handleChange}
               checked={formik.values.role === "readManager"}
             />
@@ -162,9 +162,9 @@ const Edit = ({ label }) => {
             <input
               type="radio"
               name="role"
-              value="affiliate"
+              value="Affiliate"
               onChange={formik.handleChange}
-              checked={formik.values.role === "affiliate"}
+              checked={formik.values.role === "Affiliate"}
             />
             <span>Affiliate</span>
           </label>

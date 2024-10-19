@@ -5,14 +5,13 @@ const CircleChart = ({ now, end }) => {
   const radius = 100; // Changed to twice the previous size (50 * 2)
   const circumference = 2 * Math.PI * radius;
 
-  const handleSliderChange = (event) => {
-    setProgress(event.target.value);
-  };
-
   useEffect(() => {
-    const temp = (now / end) * 100;
-    setProgress(Math.round(temp));
-  });
+    // Ensure now and end are valid numbers and end is not zero
+    if (typeof now === "number" && typeof end === "number" && end !== 0) {
+      const temp = (now / end) * 100;
+      setProgress(Math.round(temp));
+    }
+  }, [now, end]); // Added dependencies to avoid infinite loops
 
   return (
     <div className="flex flex-col items-center">
@@ -53,14 +52,6 @@ const CircleChart = ({ now, end }) => {
           className="cursor-pointer text-[gray]"
         ></circle>
       </svg>
-      {/* <input
-        type="range"
-        min="0"
-        max="100"
-        value={progress}
-        onChange={handleSliderChange}
-        className="mt-4 "
-      /> */}
     </div>
   );
 };

@@ -71,7 +71,6 @@ const AuthApi = () => {
         localStorage.setItem("token", data.token);
         setToken(data.token);
         const payload = jwtDecode(data.token);
-        console.log(payload);
 
         switch (payload.role) {
           case "Manager":
@@ -79,7 +78,6 @@ const AuthApi = () => {
             break;
 
           case "Admin":
-            console.log("SDF");
             navigate("/admin");
             break;
 

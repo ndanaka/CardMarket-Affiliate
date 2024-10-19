@@ -18,6 +18,7 @@ export const MYPOSTS = `${API_BASE_URL}/auth/myPosts`;
 // get members
 export const GET_MEMBERS = `${API_BASE_URL}/members`;
 export const GET_AFF_INFO = `${API_BASE_URL}/members/getAffInfo`;
+export const GET_AFF_RANK = `${API_BASE_URL}/members/getAffRank`;
 
 // get statistics for affiliate
 export const GET_STATISTICS = `${API_BASE_URL}/status/statistics`;

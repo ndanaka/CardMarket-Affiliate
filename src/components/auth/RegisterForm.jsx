@@ -47,7 +47,7 @@ const RegisterForm = ({ title, label }) => {
       password: "",
       phoneNumber: "",
       country: "",
-      role: "affiliate",
+      role: "Affiliate",
     },
     onSubmit: ({ fullName, email, password, phoneNumber, country, role }) => {
       submitRegister({

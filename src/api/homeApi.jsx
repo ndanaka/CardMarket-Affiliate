@@ -14,6 +14,7 @@ import {
   ADD_RANK,
   GET_ALL_RANK,
   DELETE_RANK,
+  GET_AFF_RANK,
 } from "../constant/api";
 
 import { useAtom } from "jotai";
@@ -180,6 +181,20 @@ const HomeApi = () => {
     }
   };
 
+  const GetAffRank = async (rankId) => {
+    try {
+      const formData = {
+        _id: rankId,
+      };
+      return await axios.post(GET_AFF_RANK, formData, postConfig);
+    } catch (error) {
+      setOp({
+        appErr: error?.response?.data?.message,
+        serverErr: error?.message,
+      });
+    }
+  };
+
   return {
     op,
     setOp,
@@ -193,6 +208,7 @@ const HomeApi = () => {
     SubmitAddRank,
     GetAllRanks,
     DeleteRank,
+    GetAffRank,
   };
 };
 

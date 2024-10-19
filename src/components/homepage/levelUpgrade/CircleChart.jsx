@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const CircleChart = () => {
+const CircleChart = ({ now, end }) => {
   const [progress, setProgress] = useState(76);
   const radius = 100; // Changed to twice the previous size (50 * 2)
   const circumference = 2 * Math.PI * radius;
@@ -9,8 +9,13 @@ const CircleChart = () => {
     setProgress(event.target.value);
   };
 
+  useEffect(() => {
+    const temp = (now / end) * 100;
+    setProgress(Math.round(temp));
+  });
+
   return (
-    <div className="flex flex-col items-center p-4">
+    <div className="flex flex-col items-center">
       <svg
         viewBox="0 0 240 240" // Adjusted viewBox to fit the larger circles
         className="w-56 h-56" // Size of the SVG container

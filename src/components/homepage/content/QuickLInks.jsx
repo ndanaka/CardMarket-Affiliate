@@ -5,10 +5,7 @@ import { ORIPA_BASE_URL } from "../../../constant/baseUrl";
 const QuickLinks = () => {
   return (
     <>
-      <div className="flex flex-col justify-center md:w-4/5 lg:w-3/5 max-[900px]:px-[5px] px-12 mx-auto mt-4">
-        <div className="font-sans font-semibold text-gray-500 text-[13px] pb-1">
-          Quick Link
-        </div>
+      <div className="flex flex-col justify-center md:w-4/5 lg:w-3/5 max-[900px]:px-[5px] mx-auto mb-4">
         <div className="border-[1px] border-gray-400 ">
           <Links
             label={"Homepage"}

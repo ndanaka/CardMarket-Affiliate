@@ -41,7 +41,7 @@ const Links = ({ link, label, icon }) => {
         >
           {link}
         </a>
-        {/* <div
+        <div
           className="w-[10%] flex flex-wrap justify-center w-6 cursor-pointer items-center"
           data-tooltip-id="copy"
           data-tooltip-content={`${copy === "" ? "Copy the link" : "Copied"}`}
@@ -54,7 +54,7 @@ const Links = ({ link, label, icon }) => {
               className="far fa-copy text-[20px] cursor-pointer"
             />
           )}
-        </div> */}
+        </div>
       </div>
       <Tooltip id="copy" />
     </>

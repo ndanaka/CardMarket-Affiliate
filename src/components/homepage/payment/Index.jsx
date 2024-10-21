@@ -9,8 +9,8 @@ const PaymentRequest = () => {
   const [navItem, setNavItem] = useState("account");
 
   return (
-    <div className="m-10 max-[500px]:m-3 mt-5 shadow-md">
-      <p className="text-2xl pb-5">
+    <div className="m-10 max-[500px]:m-3 mt-4 shadow-md">
+      <p className="font-sans font-semibold text-2xl pb-5">
         Withdraw balance to your preferred transfer bank account
       </p>
       <NavBar setNavItem={setNavItem} navItem={navItem} />

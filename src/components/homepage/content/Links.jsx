@@ -5,8 +5,6 @@ import { jwtDecode } from "jwt-decode";
 
 import { tokenWithPersistenceAtom } from "../../../atoms";
 
-import QuickLinks from "./QuickLInks";
-
 const Links = ({ link, label, icon }) => {
   const [token, setToken] = useAtom(tokenWithPersistenceAtom);
   const [copy, setCopy] = useState("");
@@ -16,7 +14,7 @@ const Links = ({ link, label, icon }) => {
 
   if (token) {
     affiliateID = jwtDecode(token).id;
-    affiliateLink = `${link}?aff_id=${affiliateID}`;
+    affiliateLink = `${link}?aff_id=${affiliateID}&first=${true}`;
   }
 
   const handleLinkCopy = (t) => {

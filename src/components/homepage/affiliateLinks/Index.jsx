@@ -9,7 +9,7 @@ const AffiLinks = () => {
   return (
     <div className="flex flex-col">
       <div className="flex flex-wrap justify-between px-10 mt-4 mb-4 pb-1">
-        <p className="font-sans font-semibold text-[26px]">Affiliate Links</p>
+        <p className="font-sans font-semibold text-2xl">Affiliate Links</p>
 
         <button
           className="bg-blue-500 hover:bg-blue-400 hover:text-gray-300 rounded-md px-3 py-1 font-semibold text-white"

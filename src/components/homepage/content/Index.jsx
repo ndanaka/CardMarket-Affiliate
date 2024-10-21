@@ -20,6 +20,7 @@ const Content = ({ aff_Id }) => {
 
   return (
     <div className="py-5">
+      <p className="font-sans font-semibold text-2xl pb-5 px-10">Statistics</p>
       <div className="flex flex-wrap justify-center gap-10 max-[900px]:px-[5px] px-2">
         <TotalStats affId={affId} setPeriod={setPeriod} />
         <ClientStats affId={affId} period={period} />

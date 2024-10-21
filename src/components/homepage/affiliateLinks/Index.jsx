@@ -19,11 +19,11 @@ const AffiLinks = () => {
         </button>
       </div>
       <QuickLinks />
-      <div className="flex flex-wrap w-full justify-center mx-auto">
+      {/* <div className="flex flex-wrap w-full justify-center mx-auto">
         <Link pageName={"Homepage"} link={`${ORIPA_BASE_URL}/user/index`} />
         <Link pageName={"Regester"} link={`${ORIPA_BASE_URL}/auth/register`} />
         <Link pageName={"LogIn"} link={`${ORIPA_BASE_URL}/auth/login`} />
-      </div>
+      </div> */}
     </div>
   );
 };

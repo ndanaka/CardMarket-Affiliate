@@ -30,12 +30,9 @@ const Timer = () => {
         <p className="text-[13px] text-gray-500 font-medium ">
           Withdrawable Balance
         </p>
-        <p className="text-[13px] text-gray-500">E-Wallet ID (700546324)</p>
         <i className="fas fa-university" />
         <span>&nbsp;BAL:&nbsp;</span>
         <span className="text-red-600 ">$2580</span>
-        {/* <span> / CR:&nbsp;</span>
-                <span className="text-red-600 ">$0.00</span> */}
       </div>
       <div className="lg:px-5 px-2">
         <p className="text-[13px] text-gray-500 font-medium ">

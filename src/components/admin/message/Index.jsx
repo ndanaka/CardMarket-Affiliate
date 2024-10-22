@@ -5,7 +5,7 @@ const Message = () => {
   const [count, setCount] = useState(1);
   return (
     <>
-      <Pagination max={18} count={count} setCount={setCount} results={176} />
+      {/* <Pagination max={18} count={count} setCount={setCount} results={176} /> */}
     </>
   );
 };

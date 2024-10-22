@@ -37,7 +37,7 @@ const Account = ({ setShow }) => {
   return (
     <ul
       ref={accountBtn}
-      className=" absolute top-8 -left-3 py-2  bg-white w-[200px] rounded-md shadow-lg shadow-gray-600"
+      className="absolute top-8 -left-3 py-2 bg-white w-[200px] rounded-md shadow-lg shadow-gray-600 z-100"
     >
       {payload?.role === "Affiliate" && (
         <>

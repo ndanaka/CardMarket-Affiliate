@@ -13,7 +13,7 @@ const Account = () => {
   const [toastMessage, setToastMessage] = useState("");
   const [toastType, setToastType] = useState("");
 
-  const { op, SubmitBankAdd, GetAffBankInfo } = HomeApi();
+  const { op, SubmitAddBank, GetAffBankInfo } = HomeApi();
 
   useEffect(() => {
     getAffBankInfo();
@@ -25,13 +25,13 @@ const Account = () => {
   };
 
   const formSchema = yup.object({
-    nameOfFinacial: yup.string().required("Financial name is required"),
+    nameOfFinacial: yup.string().required("Financial name is required."),
     accountNumber: yup
       .string()
       .matches(/^\d+$/, "Must be only digits") // Ensures only digits
       // .min(7, "The number should be at least 7 digits") // Minimum length validation
-      .required("Account Number is required"),
-    accountHolder: yup.string().required("Account holder is required"),
+      .required("Account Number is required."),
+    accountHolder: yup.string().required("Account holder is required."),
   });
 
   const formik = useFormik({
@@ -44,7 +44,7 @@ const Account = () => {
       accountHolder: bankInfo?.accountHolder || "",
     },
     onSubmit: async (values) => {
-      const result = await SubmitBankAdd(values);
+      const result = await SubmitAddBank(values);
 
       if (result.data.status) {
         setToastType("success");
@@ -63,7 +63,7 @@ const Account = () => {
   };
 
   return (
-    <div className="bg-white py-12 px-4 md:px-8 lg:px-12 my-5 mx-auto w-full md:w-4/5 lg:w-3/5">
+    <div className="bg-white py-8 px-4 md:px-8 lg:px-12 mx-auto w-full md:w-4/5 lg:w-3/5">
       <p className="text-[22px] font-semibold text-center mb-8">
         {bankInfo ? "Edit transfer account" : "Register a transfer account"}
       </p>

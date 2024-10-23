@@ -48,8 +48,6 @@ const Rank = () => {
         setToastMessage("Failed to delete rank.");
       }
     } catch (error) {}
-
-    console.log(res.data);
   };
 
   const handleCloseToast = () => {
@@ -57,8 +55,8 @@ const Rank = () => {
   };
 
   return (
-    <div className="flex flex-wrap w-full my-4 border-[1px] border-gray-200">
-      <div className="px-2 w-full sm:w-1/3 py-4 border-[1px] border-gray-200">
+    <div className="flex flex-wrap w-full my-4">
+      <div className="px-2 w-full sm:w-1/3 py-4 border-[1px] border-gray-200 h-fit">
         <AddRank
           selectedRank={selectedRank}
           setSelectedRank={setSelectedRank}
@@ -98,7 +96,7 @@ const Rank = () => {
                 </td>
                 <td>
                   <img
-                    className="m-auto w-auto h-[100px]"
+                    className="m-auto w-[80px] h-[100px]"
                     src={SERVER_URL + rank.img_url}
                     alt={`${rank._id} ranks`} // Meaningful alt text
                   />

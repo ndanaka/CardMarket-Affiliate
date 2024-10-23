@@ -29,8 +29,8 @@ const TotalStats = ({ affId, setPeriod }) => {
 
   return (
     <>
-      <div className="w-[60%] max-[900px]:w-full">
-        <div className="font-sans font-semibold text-gray-500 text-[13px]">
+      <div className="w-[64%] max-[900px]:w-full">
+        <div className="font-sans font-semibold text-gray-500 text-lg">
           Statistics (For more information, click each item.)
         </div>
         <table className=" w-full text-[13px] mt-1  border-gray-400 border-[1px] text-center">

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
@@ -15,6 +15,9 @@ import {
   GET_ALL_RANK,
   DELETE_RANK,
   GET_AFF_RANK,
+  ADD_LINK,
+  GET_ALL_LINK,
+  DELETE_LINK,
 } from "../constant/api";
 
 import { useAtom } from "jotai";
@@ -120,7 +123,7 @@ const HomeApi = () => {
     }
   };
 
-  const SubmitBankAdd = async (formData) => {
+  const SubmitAddBank = async (formData) => {
     try {
       const payload = jwtDecode(token);
       formData.aff_id = payload.id;
@@ -195,6 +198,39 @@ const HomeApi = () => {
     }
   };
 
+  const SubmitAddLink = async (formData) => {
+    try {
+      return await axios.post(ADD_LINK, formData, postConfig);
+    } catch (error) {
+      setOp({
+        appErr: error?.response?.data?.message,
+        serverErr: error?.message,
+      });
+    }
+  };
+
+  const SubmitDeleteLink = async (formData) => {
+    try {
+      return await axios.post(DELETE_LINK, formData, postConfig);
+    } catch (error) {
+      setOp({
+        appErr: error?.response?.data?.message,
+        serverErr: error?.message,
+      });
+    }
+  };
+
+  const GetAllLinks = async () => {
+    try {
+      return await axios.get(GET_ALL_LINK, postConfig);
+    } catch (error) {
+      setOp({
+        appErr: error?.response?.data?.message,
+        serverErr: error?.message,
+      });
+    }
+  };
+
   return {
     op,
     setOp,
@@ -202,13 +238,16 @@ const HomeApi = () => {
     GetStatistics,
     GetClients,
     GetAffInfo,
-    SubmitBankAdd,
+    SubmitAddBank,
     GetAffBankInfo,
     SubmitWithdraw,
     SubmitAddRank,
     GetAllRanks,
     DeleteRank,
     GetAffRank,
+    SubmitAddLink,
+    SubmitDeleteLink,
+    GetAllLinks,
   };
 };
 

@@ -19,7 +19,7 @@ const ChangePsd = ({ setShow }) => {
   const { op, Register } = AuthApi();
 
   const formSchema = yup.object({
-    currentPsd: yup.string().required("Name is required"),
+    currentPsd: yup.string().required("Name is required."),
     newPsd: yup
       .string()
       .min(8, "Password must be at least 8 characters long")
@@ -27,11 +27,11 @@ const ChangePsd = ({ setShow }) => {
         /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
         "Password must contain at least one letter, one number, and one special character"
       )
-      .required("Password is required"),
+      .required("Password is required."),
     confirmPsd: yup
       .string()
       .oneOf([yup.ref("newPsd"), null], "Passwords must match")
-      .required("Confirm Password is required"),
+      .required("Confirm Password is required."),
   });
 
   const formik = useFormik({

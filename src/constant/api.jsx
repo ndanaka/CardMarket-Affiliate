@@ -31,7 +31,11 @@ export const GET_BANK_INFO = `${API_BASE_URL}/members/getBankInfo`;
 export const ADD_BANK_ACCOUNT = `${API_BASE_URL}/members/addBankAcc`;
 export const REQUEST_WITHDRAW = `${API_BASE_URL}/members/requestWithdraw`;
 
-// admin
+// rank
 export const ADD_RANK = `${API_BASE_URL}/admin/addRank`;
 export const GET_ALL_RANK = `${API_BASE_URL}/admin/getRanks`;
 export const DELETE_RANK = `${API_BASE_URL}/admin/deleteRank`;
+// link
+export const ADD_LINK = `${API_BASE_URL}/link/addLink`;
+export const GET_ALL_LINK = `${API_BASE_URL}/link/getLinks`;
+export const DELETE_LINK = `${API_BASE_URL}/link/deleteLink`;

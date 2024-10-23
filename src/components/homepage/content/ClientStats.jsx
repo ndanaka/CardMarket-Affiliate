@@ -26,8 +26,8 @@ const ClientStats = ({ affId, period }) => {
 
   return (
     <>
-      <div className="max-[900px]:w-full w-[30%] relative">
-        <div className="font-sans font-semibold text-gray-500 text-[13px]">
+      <div className="max-[900px]:w-full w-[35%]">
+        <div className="font-sans font-semibold text-gray-500 text-lg">
           {period}'s Clients
         </div>
         <table className=" w-[100%] text-[13px] mt-1 border-gray-400 border-[1px] text-center rounded-3xl ">

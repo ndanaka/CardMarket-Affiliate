@@ -28,8 +28,8 @@ const History = () => {
   ]);
 
   return (
-    <div className="relative flex justify-center pt-4 pb-6">
-      <table className="w-[900px] text-[13px] mt-1 border-gray-400 border-[1px] text-center">
+    <div className="relative flex justify-center pb-6">
+      <table className="w-[900px] text-[13px] border-gray-400 border-[1px] text-center">
         <thead className="h-10 text-[14px] text-white bg-[#4B5563]">
           <tr>
             <th>No</th>

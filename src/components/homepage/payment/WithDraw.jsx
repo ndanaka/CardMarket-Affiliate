@@ -23,9 +23,9 @@ const WithDraw = () => {
     amount: yup
       .number()
       .max(2580, "So much more than yours!")
-      .required("Withdrawal amount is required"),
-    address: yup.number().required("Receiving Adress is required"),
-    confirm: yup.string().required("Confirm Address is required"),
+      .required("Withdrawal amount is required."),
+    address: yup.number().required("Receiving Adress is required."),
+    confirm: yup.string().required("Confirm Address is required."),
   });
 
   const formik = useFormik({
@@ -67,7 +67,7 @@ const WithDraw = () => {
   };
 
   return (
-    <div className="bg-white py-12 px-4 md:px-8 lg:px-12 my-5 mx-auto w-full md:w-4/5 lg:w-3/5">
+    <div className="bg-white py-8 px-4 md:px-8 lg:px-12 mx-auto w-full md:w-4/5 lg:w-3/5">
       <p className="text-[22px] font-semibold text-center mb-8">
         Request Withdrawal
       </p>

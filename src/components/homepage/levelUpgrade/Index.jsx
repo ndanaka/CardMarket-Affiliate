@@ -46,7 +46,7 @@ const LevelUpgrade = () => {
 
   return (
     <>
-      <div className="py-10 font-sans bg-gray-100 flex flex-wrap justify-center gap-5 max-[900px]:px-20 max-[800px]:px-2">
+      <div className="py-5 font-sans bg-gray-100 flex flex-wrap justify-center gap-5 max-[900px]:px-20 max-[800px]:px-2">
         <div
           className="flex flex-wrap justify-center bg-white shadow-lg shadow-gray-400 px-5 py-5
          gap-5 max-[900px]:w-full lg:px-10 w-[40%] pb-10 max-[600px]:px-10"
@@ -54,6 +54,11 @@ const LevelUpgrade = () => {
           <div className="w-[45%] max-[500px]:w-full">
             <h3 className="py-3 font-semibold text-center">Current Benefit</h3>
             <img src={SERVER_URL + affRank?.img_url} />
+            <p className=" font-semibold border-b-[1px] border-b-gray-400 py-2 text-center">
+              <span className="te`xt-[red] text-[red] text-4xl font-bold ">
+                {affRank?.name}
+              </span>
+            </p>
             <p className=" font-semibold border-b-[1px] border-b-gray-400 py-2 text-center">
               <span className="te`xt-[red] text-[red] text-3xl font-bold ">
                 {affRank?.deposite_commission}%

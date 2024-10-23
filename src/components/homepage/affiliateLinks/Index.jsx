@@ -1,29 +1,192 @@
-import Link from "./Link";
+import { useState, useEffect } from "react";
+import * as yup from "yup";
+import { useFormik } from "formik";
+import { useAtom } from "jotai";
+import { jwtDecode } from "jwt-decode";
 
+import AppServerErr from "../../../errors/AppServerErr";
+import FormikErr from "../../../errors/FormikErr";
+import Toast from "../../../utils/toast";
+
+import Links from "./Links";
+import Input from "../../sign/Input";
+
+import { tokenWithPersistenceAtom } from "../../../atoms";
 import { ORIPA_BASE_URL } from "../../../constant/baseUrl";
-
-import Button from "../../admin/manage/Button";
-import QuickLinks from "../content/QuickLInks";
+import HomeApi from "../../../api/homeApi";
 
 const AffiLinks = () => {
-  return (
-    <div className="flex flex-col">
-      <div className="flex flex-wrap justify-between px-10 mt-4 mb-4 pb-1">
-        <p className="font-sans font-semibold text-2xl">Affiliate Links</p>
+  const { op, setOp, SubmitAddLink, GetAllLinks } = HomeApi();
+  const [token, setToken] = useAtom(tokenWithPersistenceAtom);
+  const [links, setLinks] = useState([]);
+  const [toastVisible, setToastVisible] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastType, setToastType] = useState("");
 
-        <button
-          className="bg-blue-500 hover:bg-blue-400 hover:text-gray-300 rounded-md px-3 py-1 font-semibold text-white"
-          onClick={() => console.log("SDF")}
-        >
-          Add Link
-        </button>
+  const affId = token ? jwtDecode(token).id : "";
+
+  useEffect(() => {
+    getAllLinks();
+  }, []);
+
+  const getAllLinks = async () => {
+    try {
+      const res = await GetAllLinks();
+      setLinks(res.data.allLinks);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const formSchema = yup.object({
+    title: yup.string().required("Link title is required."),
+    url: yup.string().required("Url title is required."),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      aff_id: affId,
+      title: "",
+      url: "",
+    },
+    onSubmit: (values) => {
+      handleSubmitAddRank(values);
+    },
+    validationSchema: formSchema,
+  });
+
+  const handleSubmitAddRank = async () => {
+    const res = await SubmitAddLink(formik.values);
+
+    if (res.data.status) {
+      setToastVisible(true);
+      setLinks(res.data.links);
+      setToastType("success");
+      setToastMessage("Successfully add new link.");
+      formik.resetForm();
+      setOp({
+        appErr: null,
+        serverErr: null,
+      });
+    } else {
+      setOp({
+        appErr: "Failed request data.",
+        serverErr: res.data.error,
+      });
+    }
+  };
+
+  const handleCloseToast = () => {
+    setToastVisible(false);
+  };
+
+  return (
+    <div className="mx-8 my-4">
+      <p className="font-sans font-semibold text-2xl pb-3">Affiliate Links</p>
+      <div className="flex flex-wrap justify-center gap-2">
+        <div className="flex flex-col justify-between w-[35%] max-[900px]:w-full h-fit">
+          <div className="font-sans font-semibold text-gray-500 text-lg">
+            Add new link
+          </div>
+          <AppServerErr>
+            {op.serverErr === "Network Error" ? op.serverErr : op.appErr}
+          </AppServerErr>
+          <form
+            className="border-[1px] border-gray-400 font-sans p-2"
+            onSubmit={formik.handleSubmit}
+          >
+            <div className="py-2">
+              <Input
+                label={"Title"}
+                type={"text"}
+                name={"title"}
+                value={formik.values.title}
+                onChange={formik.handleChange("title")}
+              />
+              <div className="px-1">
+                <FormikErr
+                  touched={formik.touched.title}
+                  errors={formik.errors.title}
+                />
+              </div>
+            </div>
+            <div className="py-2">
+              <Input
+                label={"Url"}
+                type={"text"}
+                name={"url"}
+                value={formik.values.url}
+                onChange={formik.handleChange("url")}
+              />
+              <div className="px-1">
+                <FormikErr
+                  touched={formik.touched.url}
+                  errors={formik.errors.url}
+                />
+              </div>
+            </div>
+            <div className="flex flex-wrap w-full justify-end mt-2">
+              <button
+                type="submit"
+                className="px-6 py-2 mx-1 font-semibold text-white bg-emerald-700 hover:bg-emerald-600 rounded-md"
+              >
+                Add
+              </button>
+            </div>
+            <div className="flex justify-end pt-2">
+              <AppServerErr>
+                {op.serverErr === "Network Error" ? op.serverErr : op.appErr}
+              </AppServerErr>
+            </div>
+          </form>
+        </div>
+        <div className="flex flex-col justify-between w-[64%] max-[900px]:w-full h-fit">
+          <div className="font-sans font-semibold text-gray-500 text-lg">
+            Main links
+          </div>
+          <div className="border-[1px] border-gray-400 font-sans px-4 py-2">
+            <Links
+              title={"Homepage"}
+              icon={"fas fa-home"}
+              link={`${ORIPA_BASE_URL}/user/index`}
+            />
+            <Links
+              title={"Register"}
+              icon={"fas fa-user-plus"}
+              link={`${ORIPA_BASE_URL}/auth/register`}
+            />
+          </div>
+          <div className="font-sans font-semibold text-gray-500 text-lg mt-2">
+            My links
+          </div>
+          <div className="border-[1px] border-gray-400 font-sans px-4 py-2">
+            {links.length === 0 ? (
+              <p className="text-center">No your link yet.</p>
+            ) : (
+              links?.map((link, i) => (
+                <Links
+                  key={i}
+                  type="mine"
+                  title={link.title}
+                  icon={"fa fa-exchange"}
+                  link={link.url}
+                  linkId={link._id}
+                  setLinks={setLinks}
+                  setToastType={setToastType}
+                  setToastMessage={setToastMessage}
+                  setToastVisible={setToastVisible}
+                />
+              ))
+            )}
+          </div>
+        </div>
       </div>
-      <QuickLinks />
-      {/* <div className="flex flex-wrap w-full justify-center mx-auto">
-        <Link pageName={"Homepage"} link={`${ORIPA_BASE_URL}/user/index`} />
-        <Link pageName={"Regester"} link={`${ORIPA_BASE_URL}/auth/register`} />
-        <Link pageName={"LogIn"} link={`${ORIPA_BASE_URL}/auth/login`} />
-      </div> */}
+      <Toast
+        type={toastType}
+        message={toastMessage}
+        isVisible={toastVisible}
+        onClose={handleCloseToast}
+      />
     </div>
   );
 };

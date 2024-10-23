@@ -18,8 +18,8 @@ const ForgotPsdForm = ({ setShow }) => {
   const { op, handleForgotPsd } = AuthApi();
 
   const formSchema = yup.object({
-    affiliateId: yup.string().required("Affiliate Id is required"),
-    email: yup.string().email().required("email is required"),
+    affiliateId: yup.string().required("Affiliate Id is required."),
+    email: yup.string().email().required("email is required."),
   });
 
   const formik = useFormik({

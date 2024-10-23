@@ -21,8 +21,8 @@ const Edit = ({ label }) => {
   const navigate = useNavigate();
 
   const formSchema = yup.object({
-    fullName: yup.string().required("Name is required"),
-    email: yup.string().email().required("Email is required"),
+    fullName: yup.string().required("Name is required."),
+    email: yup.string().email().required("Email is required."),
     password: yup
       .string()
       .min(8, "Password must be at least 8 characters long")
@@ -30,9 +30,9 @@ const Edit = ({ label }) => {
         /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
         "Password must contain at least one letter, one number, and one special character"
       )
-      .required("Password is required"),
-    phoneNumber: yup.string().required("Phonnumber is required"),
-    country: yup.string().required("Country is required"),
+      .required("Password is required."),
+    phoneNumber: yup.string().required("Phonnumber is required."),
+    country: yup.string().required("Country is required."),
     role: yup.string().required("You must choose a role"),
   });
 

@@ -8,7 +8,7 @@ import { tokenWithPersistenceAtom } from "../../../../atoms/index";
 import { showNavAtom } from "../../../../atoms/index";
 import HomeApi from "../../../../api/homeApi";
 
-import NavItem from "./Item";
+import NavItem from "./NavItem";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ const Navbar = () => {
   useEffect(() => {
     const pathName = location.pathname.split("/", 3);
     if (pathName[2] === "links") {
-      setShowNav((t) => ({ ...t, color: "My Links" }));
+      setShowNav((t) => ({ ...t, color: "Links" }));
     }
     if (pathName[2] === "payments") {
       setShowNav((t) => ({ ...t, color: "Payments" }));
@@ -66,7 +66,7 @@ const Navbar = () => {
   return (
     <nav
       ref={navItem}
-      className="flex flex-wrap justify-center sm:justify-between w-full bg-[#202938] h-16 sm:h-12 min-[410px]:px-10 px-2"
+      className="flex flex-wrap justify-center sm:justify-between w-full bg-[#202938] h-16 sm:h-12 px-2"
     >
       <div className="flex flex-wrap">
         <NavItem
@@ -78,11 +78,11 @@ const Navbar = () => {
           }}
         />
         <NavItem
-          label={"My Links"}
+          label={"Links"}
           child={false}
           handle={() => {
             navigate("/homepage/links/affiliatelinks");
-            setShowNav((t) => ({ ...t, color: "My Links" }));
+            setShowNav((t) => ({ ...t, color: "Links" }));
           }}
         />
         <NavItem

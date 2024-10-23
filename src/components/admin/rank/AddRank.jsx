@@ -5,13 +5,10 @@ import { useFormik } from "formik";
 import AppServerErr from "../../../errors/AppServerErr";
 import FormikErr from "../../../errors/FormikErr";
 import Toast from "../../../utils/toast";
-
-import Input from "../../sign/Input";
-import SignButton from "../../sign/SignButton";
-import CancelBtn from "../../sign/CancelBtn";
-
 import HomeApi from "../../../api/homeApi";
 import { SERVER_URL } from "../../../constant/baseUrl";
+
+import Input from "../../sign/Input";
 
 const AddRank = ({
   selectedRank,
@@ -45,16 +42,16 @@ const AddRank = ({
   });
 
   const formSchema = yup.object({
-    name: yup.string().required("Name is required"),
+    name: yup.string().required("Name is required."),
     register_commission: yup
       .string()
-      .required("Register commission is required"),
+      .required("Register commission is required."),
     deposite_commission: yup
       .string()
-      .required("Deposite commission is required"),
-    start_amount: yup.string().required("Deposite commission is required"),
-    end_amount: yup.string().required("Deposite commission is required"),
-    file: yup.string().required("Rank image is required"),
+      .required("Deposite commission is required."),
+    start_amount: yup.string().required("Deposite commission is required."),
+    end_amount: yup.string().required("Deposite commission is required."),
+    file: yup.string().required("Rank image is required."),
   });
 
   const formik = useFormik({
@@ -80,8 +77,8 @@ const AddRank = ({
     }
   };
 
-  const handleSubmitAddRank = async (formData) => {
-    const res = await SubmitAddRank(formData);
+  const handleSubmitAddRank = async () => {
+    const res = await SubmitAddRank(formik.values);
 
     if (res.data.status) {
       setToastVisible(true);
@@ -92,7 +89,7 @@ const AddRank = ({
         setToastType("success");
         setToastMessage("Successfully edited new rank.");
       }
-      handleCancelSubmit();
+      handleSubmitCancel();
       setEditFlag(false);
       getAllRanks();
     } else {
@@ -103,11 +100,12 @@ const AddRank = ({
     }
   };
 
-  const handleEdit = () => {
-    handleSubmitAddRank(formik.values);
+  const handleSubmitEdit = () => {
+    formik.id = selectedRank._id;
+    handleSubmitAddRank();
   };
 
-  const handleCancelSubmit = () => {
+  const handleSubmitCancel = () => {
     formik.resetForm();
     setImgUrl("");
     setSelectedRank(null);
@@ -130,7 +128,7 @@ const AddRank = ({
         <div>
           <label
             htmlFor="fileInput"
-            className="block text-sm font-semibold text-gray-800 px-1"
+            className="block text-sm font-semibold text-gray-800 px-2"
           >
             {"Image"}
           </label>
@@ -159,12 +157,14 @@ const AddRank = ({
               document.getElementById("fileInput").click();
             }}
           />
-          <FormikErr
-            touched={formik.touched.file}
-            errors={formik.errors.file}
-          />
+          <div className="px-2">
+            <FormikErr
+              touched={formik.touched.file}
+              errors={formik.errors.file}
+            />
+          </div>
         </div>
-        <div>
+        <div className="m-2">
           <Input
             label={"Name"}
             type={"text"}
@@ -177,7 +177,7 @@ const AddRank = ({
             errors={formik.errors.name}
           />
         </div>
-        <div>
+        <div className="m-2">
           <Input
             label={"Register Commission (¥)"}
             type={"number"}
@@ -190,7 +190,7 @@ const AddRank = ({
             errors={formik.errors.register_commission}
           />
         </div>
-        <div>
+        <div className="m-2">
           <Input
             label={"Deposite Commission (%)"}
             type={"number"}
@@ -203,7 +203,7 @@ const AddRank = ({
             errors={formik.errors.deposite_commission}
           />
         </div>
-        <div>
+        <div className="m-2">
           <Input
             label={"Start Deposite (¥)"}
             type={"number"}
@@ -216,8 +216,8 @@ const AddRank = ({
             errors={formik.errors.start_amount}
           />
         </div>
-        <div className="flex flex-wrap justify-between">
-          <div className="w-1/2 pr-1">
+        <div className="flex flex-wrap justify-between m-2">
+          <div className="w-1/2">
             <Input
               label={"End Deposite (¥)"}
               type={"number"}
@@ -230,37 +230,46 @@ const AddRank = ({
               errors={formik.errors.end_amount}
             />
           </div>
-          <div className="w-1/2 pl-1">
-            <div className="mt-2">
-              <span className="block text-sm font-semibold text-gray-800">
-                {"Last Rank"}
-              </span>
-              <select
-                name="last"
-                className="px-2 py-2 mt-2 w-full form-control cursor-pointer border rounded"
-                onChange={formik.handleChange("last")}
-                value={formik.values.last}
-                id="last"
-                autoComplete="last"
-              >
-                <option value={false}>No</option>
-                <option value={true}>Yes</option>
-              </select>
-            </div>
+          <div className="w-1/2">
+            <span className="block text-sm font-semibold text-gray-800">
+              {"Last Rank"}
+            </span>
+            <select
+              name="last"
+              className="px-2 py-2 mt-1 w-full form-control cursor-pointer border rounded"
+              onChange={formik.handleChange("last")}
+              value={formik.values.last}
+              id="last"
+              autoComplete="last"
+            >
+              <option value={false}>No</option>
+              <option value={true}>Yes</option>
+            </select>
           </div>
         </div>
-        <div className="flex justify-end gap-2">
-          <CancelBtn handle={handleCancelSubmit} />
+        <div className="flex wrap justify-end mt-4 mx-2">
+          <button
+            type="submit"
+            className="px-6 py-2 mx-1 font-semibold text-white bg-gray-700 hover:bg-gray-600 rounded-md"
+            onClick={() => handleSubmitCancel()}
+          >
+            Cancel
+          </button>
           {editFlag ? (
             <button
               type="submit"
-              className="mt-6 px-6 py-2 font-semibold text-white bg-emerald-700 hover:bg-emerald-600 rounded-md"
-              onClick={() => handleEdit()}
+              className="px-6 py-2 mx-1 font-semibold text-white bg-emerald-700 hover:bg-emerald-600 rounded-md"
+              onClick={handleSubmitEdit}
             >
               Edit
             </button>
           ) : (
-            <SignButton label={"Add"} />
+            <button
+              type="submit"
+              className="px-6 py-2 mx-1 font-semibold text-white bg-emerald-700 hover:bg-emerald-600 rounded-md"
+            >
+              Add
+            </button>
           )}
         </div>
         <div className="flex justify-end pt-2">

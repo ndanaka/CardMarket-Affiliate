@@ -25,8 +25,8 @@ const LoginForm = () => {
   const { op, submitLogin } = AuthApi();
 
   const formSchema = yup.object({
-    affiliateId: yup.string().required("Affiliate Id is required"),
-    password: yup.string().required("Password is required"),
+    affiliateId: yup.string().required("Affiliate Id is required."),
+    password: yup.string().required("Password is required."),
   });
 
   const formik = useFormik({

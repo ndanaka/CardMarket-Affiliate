@@ -23,7 +23,7 @@ const NavBar1 = ({ setCollapse }) => {
         </button>
         <LanguageBar
           className={
-            "bg-transparent text-gray-300 border-white text-[12px] py-[6px]"
+            "bg-transparent text-gray-300 border-white text-[13px] py-[6px]"
           }
         />
       </div>
@@ -51,8 +51,8 @@ const NavBar1 = ({ setCollapse }) => {
               />
             </>
           )}
-          <div className="flex flex-wrap p-2 items-center">
-            <LanguageBar className="bg-transparent text-gray-300 border-white text-[10px] py-[5px]" />
+          <div className="flex flex-wrap items-center">
+            <LanguageBar className="bg-transparent text-gray-300 text-[12px] py-[3px]" />
           </div>
         </div>
       </nav>

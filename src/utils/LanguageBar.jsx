@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 const LanguageBar = ({ className }) => {
   const { i18n } = useTranslation();
 
   const options = [
-    { value: "jp", label: "日本語" },
-    { value: "en", label: "ENGLISH" },
+    { code: "jp", name: "日本語" },
+    { code: "en", name: "ENGLISH" },
   ];
 
   const changeLanguage = (lang) => {
@@ -19,8 +18,8 @@ const LanguageBar = ({ className }) => {
       onChange={(e) => changeLanguage(e.target.value)}
     >
       {options.map((option, i) => (
-        <option key={i} value={option.value}>
-          {option.label}
+        <option key={i} value={option.code}>
+          {option.name}
         </option>
       ))}
     </select>

@@ -1,28 +1,28 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+
 import formatPrice from "../../../utils/formatPrice";
 
 const History = () => {
+  const { t } = useTranslation();
   const [more, setMore] = useState(true);
   const [payments, setPayments] = useState([
     {
       reqDate: 14,
       resDate: 15,
       amount: "1282",
-      method: "Apple Pay",
       address: 812345432633,
     },
     {
       reqDate: 14,
       resDate: 15,
       amount: "1282",
-      method: "Apple Pay",
       address: 812345432633,
     },
     {
       reqDate: 14,
       resDate: 15,
       amount: "1282",
-      method: "Apple Pay",
       address: 812345432633,
     },
   ]);
@@ -33,10 +33,10 @@ const History = () => {
         <thead className="h-10 text-[14px] text-white bg-[#4B5563]">
           <tr>
             <th>No</th>
-            <th>Amount</th>
-            <th>Address</th>
-            <th>Request Date</th>
-            <th>Withdrawal Date</th>
+            <th>{t("amount")}</th>
+            <th>{t("address")}</th>
+            <th>{t("request") + " " + t("date")}</th>
+            <th>{t("withdrawal ") + " " + t("date")}</th>
           </tr>
         </thead>
         <tbody className="text-[14px]">
@@ -61,7 +61,7 @@ const History = () => {
           onClick={() => setMore(!more)}
           className="absolute bottom-0 text-[green] underline absolute left-[50%] -translate-x-[50%] text-[15px]"
         >
-          {more ? "more" : "less"}
+          {more ? t("viewMore") : t("viewLess")}
         </button>
       )}
     </div>

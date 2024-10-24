@@ -1,38 +1,46 @@
+import { useTranslation } from "react-i18next";
+
 import Item from "./Item";
 import formatDate from "../../../utils/formatDate";
 
 const AccountInfo = ({ affInfo }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="flex flex-col justify-center items-center mt-8 gap-3 py-4 px-4 lg:px-10 mx-auto w-full lg:w-3/5">
       <Item
         icon={"far fa-clock"}
-        label={"Register Date"}
+        label={t("register") + " " + t("date")}
         content={formatDate(affInfo?.createdAt)}
       />
       <Item
         icon={"fas fa-medal"}
-        label={"Current Level/Points"}
+        label={t("current") + " " + t("level")}
         content={affInfo?.rank}
       />
-      <Item icon={"fas fa-envelope"} label={"Email"} content={affInfo?.email} />
+      <Item
+        icon={"fas fa-envelope"}
+        label={t("email")}
+        content={affInfo?.email}
+      />
       <Item
         icon={"fas fa-phone"}
-        label={"Phone"}
+        label={t("phNumber")}
         content={affInfo?.phoneNumber}
       />
       <Item
         icon={"fas fa-globe-americas"}
-        label={"Country"}
+        label={t("country")}
         content={affInfo?.country}
       />
       <Item
         icon={"fas fa-sign-in-alt"}
-        label={"Login Id"}
+        label={t("login") + " Id"}
         content={affInfo?.affiliateId}
       />
       <Item
         icon={"far fa-credit-card"}
-        label={"Bank Account"}
+        label={t("bank") + " " + t("account")}
         content={"700546324"}
       />
       {/* <Item icon={"fa fa-key"} label={"Password"} content={"*********"} />

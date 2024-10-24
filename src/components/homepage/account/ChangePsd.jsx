@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { useTranslation } from "react-i18next";
 
 import AuthApi from "../../../api/authApi";
 
@@ -12,6 +13,7 @@ import PsdShowBtn from "./PsdShowBtn";
 import SignButton from "../../sign/SignButton";
 
 const ChangePsd = ({ setShow }) => {
+  const { t } = useTranslation();
   const [showCurrent, setShowCurrent] = useState(false);
   const [showNew, SetShowNew] = useState(false);
   const [showConfirm, SetShowConfirm] = useState(false);
@@ -22,16 +24,16 @@ const ChangePsd = ({ setShow }) => {
     currentPsd: yup.string().required("Name is required."),
     newPsd: yup
       .string()
-      .min(8, "Password must be at least 8 characters long")
+      .min(8, t("invalidPwd1"))
       .matches(
         /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-        "Password must contain at least one letter, one number, and one special character"
+        t("invalidPwd2")
       )
-      .required("Password is required."),
+      .required(t("password") + " " + t("isRequired")),
     confirmPsd: yup
       .string()
       .oneOf([yup.ref("newPsd"), null], "Passwords must match")
-      .required("Confirm Password is required."),
+      .required(t("confirm") + " " + t("password") + " " + t("isRequired")),
   });
 
   const formik = useFormik({
@@ -59,7 +61,7 @@ const ChangePsd = ({ setShow }) => {
         <form className="mt-6 font-sans" onSubmit={formik.handleSubmit}>
           <div className=" relative">
             <Input
-              label={"Current Password"}
+              label={t("current") + " " + t("password")}
               type={!showCurrent ? "password" : "text"}
               name={"currentPsd"}
               value={formik.values.currentPsd}
@@ -72,13 +74,11 @@ const ChangePsd = ({ setShow }) => {
             errors={formik.errors.currentPsd}
           />
           <AppServerErr>
-            {op.appErr ===
-              "Current Password is not correct, try with a different one" &&
-              op.appErr}
+            {op.appErr === t("invalidCurrentPwd") && op.appErr}
           </AppServerErr>
-          <div className=" relative">
+          <div className="relative">
             <Input
-              label={"New Password"}
+              label={t("new") + " " + t("password")}
               type={!showNew ? "password" : "text"}
               name={"newPsd"}
               value={formik.values.newPsd}
@@ -90,9 +90,9 @@ const ChangePsd = ({ setShow }) => {
             touched={formik.touched.newPsd}
             errors={formik.errors.newPsd}
           />
-          <div className=" relative">
+          <div className="relative">
             <Input
-              label={"Confirm Password"}
+              label={t("confirm") + " " + t("password")}
               type={!showConfirm ? "password" : "text"}
               name={"confirmPsd"}
               value={formik.values.confirmPsd}
@@ -107,12 +107,12 @@ const ChangePsd = ({ setShow }) => {
           <SignButton label={"Submit"} />
         </form>
         <p className="mt-8 text-md font-semibold text-center text-gray-700">
-          Already have an account?
+          {t("haveAccount")}
           <button
             onClick={() => navigate("/LogIn")}
             className="text-lg text-blue-600 hover:underline font-sans"
           >
-            Log in
+            {t("login")}
           </button>
         </p>
       </div>

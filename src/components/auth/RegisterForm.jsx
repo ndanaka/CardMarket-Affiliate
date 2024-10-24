@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { useTranslation } from "react-i18next";
 
 import AuthApi from "../../api/authApi";
 
@@ -15,6 +16,7 @@ import Input from "../sign/Input";
 import CancelBtn from "../sign/CancelBtn";
 
 const RegisterForm = ({ title, label }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const [showPassword, SetShowPassword] = useState(false);
@@ -22,16 +24,19 @@ const RegisterForm = ({ title, label }) => {
   const { op, submitRegister } = AuthApi();
 
   const formSchema = yup.object({
-    fullName: yup.string().required("Name is required."),
-    email: yup.string().email().required("Email is required."),
+    fullName: yup.string().required(t("fullName") + t("isRequired")),
+    email: yup
+      .string()
+      .email()
+      .required(t("email") + t("isRequired")),
     password: yup
       .string()
-      .min(8, "Password must be at least 8 characters long")
+      .min(8, t("invalidPwd1"))
       .matches(
         /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-        "Password must contain at least one letter, one number, and one special character"
+        t("invalidPwd2")
       )
-      .required("Password is required."),
+      .required(t("password") + t("isRequired")),
     phoneNumber: yup.string().required("Phonnumber is required."),
     country: yup.string().required("Country is required."),
     role:
@@ -70,7 +75,7 @@ const RegisterForm = ({ title, label }) => {
       </AppServerErr>
       <form className="mt-6 font-sans" onSubmit={formik.handleSubmit}>
         <Input
-          label={"Fullname *"}
+          label={"* " + t("fullName")}
           type={"text"}
           name={"fullName"}
           value={formik.values.fullName}
@@ -80,8 +85,9 @@ const RegisterForm = ({ title, label }) => {
           touched={formik.touched.fullName}
           errors={formik.errors.fullName}
         />
+        <br />
         <Input
-          label={"Email *"}
+          label={"* " + t("email")}
           type={"email"}
           name={"email"}
           value={formik.values.email}
@@ -91,13 +97,14 @@ const RegisterForm = ({ title, label }) => {
           touched={formik.touched.email}
           errors={formik.errors.email}
         />
+        <br />
         <AppServerErr>
           {op.appErr === "Email already exists, try with a different one" &&
             op.appErr}
         </AppServerErr>
         <div className=" relative">
           <Input
-            label={"Password *"}
+            label={"* " + t("password")}
             type={!showPassword ? "password" : "text"}
             name={"password"}
             value={formik.values.password}
@@ -119,8 +126,9 @@ const RegisterForm = ({ title, label }) => {
           touched={formik.touched.password}
           errors={formik.errors.password}
         />
+        <br />
         <Input
-          label={"Phonenumber *"}
+          label={"* " + t("phNumber")}
           type={"tel"}
           name={"phoneNumber"}
           value={formik.values.phoneNumber}
@@ -130,8 +138,9 @@ const RegisterForm = ({ title, label }) => {
           touched={formik.touched.phoneNumber}
           errors={formik.errors.phoneNumber}
         />
+        <br />
         <Input
-          label={"Country *"}
+          label={"* " + t("country")}
           type={"text"}
           name={"country"}
           value={formik.values.country}

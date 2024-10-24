@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { jwtDecode } from "jwt-decode";
 import { useAtom } from "jotai";
+import { useTranslation } from "react-i18next";
 
 import { tokenWithPersistenceAtom } from "../../../atoms";
 
@@ -11,6 +12,7 @@ const NavBar2 = () => {
   const navigate = useNavigate();
   const [token] = useAtom(tokenWithPersistenceAtom);
   const [payload, setPayload] = useState(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (token) {
@@ -32,13 +34,13 @@ const NavBar2 = () => {
           <>
             {payload?.role === "Affiliate" ? (
               <NavButton
-                label="HOME"
+                label={t("home")}
                 className={"text-[13px] font-semibold"}
                 handle={() => navigate("/homepage")}
               />
             ) : (
               <NavButton
-                label="ADMIN"
+                label={t("admin")}
                 className={"text-[13px] font-semibold"}
                 handle={() => navigate("/admin")}
               />
@@ -46,7 +48,7 @@ const NavBar2 = () => {
           </>
         )}
         <NavButton
-          label="CONTACT US"
+          label={t("contactUs").toUpperCase()}
           className={"text-[13px] font-semibold"}
           handle={() => navigate("/contact")}
         />

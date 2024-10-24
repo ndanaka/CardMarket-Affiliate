@@ -91,8 +91,8 @@ const Rank = () => {
                 <td>¥{rank.register_commission}</td>
                 <td>{rank.deposite_commission}%</td>
                 <td>
-                  {"¥ " + formatPrice(rank.start_amount)} ~{" "}
-                  {rank.last ? "" : "¥ " + formatPrice(rank.end_amount)}
+                  {"¥" + formatPrice(rank.start_amount)} ~{" "}
+                  {rank.last ? "" : "¥" + formatPrice(rank.end_amount)}
                 </td>
                 <td>
                   <img

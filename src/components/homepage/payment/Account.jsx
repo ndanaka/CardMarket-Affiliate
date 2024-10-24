@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { useTranslation } from "react-i18next";
 
 import HomeApi from "../../../api/homeApi";
 import AppServerErr from "../../../errors/AppServerErr";
@@ -8,6 +9,7 @@ import FormikErr from "../../../errors/FormikErr";
 import Toast from "../../../utils/toast";
 
 const Account = () => {
+  const { t } = useTranslation();
   const [bankInfo, setBankInfo] = useState(null);
   const [toastVisible, setToastVisible] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
@@ -25,13 +27,17 @@ const Account = () => {
   };
 
   const formSchema = yup.object({
-    nameOfFinacial: yup.string().required("Financial name is required."),
+    nameOfFinacial: yup
+      .string()
+      .required(t("financial") + " " + t("name") + " " + t("isRequired")),
     accountNumber: yup
       .string()
-      .matches(/^\d+$/, "Must be only digits") // Ensures only digits
+      .matches(/^\d+$/, t("onlyDigit")) // Ensures only digits
       // .min(7, "The number should be at least 7 digits") // Minimum length validation
-      .required("Account Number is required."),
-    accountHolder: yup.string().required("Account holder is required."),
+      .required(t("account") + " " + t("number") + " " + t("isRequired")),
+    accountHolder: yup
+      .string()
+      .required(t("nameAccountHolder") + " " + t("isRequired")),
   });
 
   const formik = useFormik({
@@ -65,12 +71,12 @@ const Account = () => {
   return (
     <div className="bg-white py-8 px-4 md:px-8 lg:px-12 mx-auto w-full md:w-4/5 lg:w-3/5">
       <p className="text-[22px] font-semibold text-center mb-8">
-        {bankInfo ? "Edit transfer account" : "Register a transfer account"}
+        {bankInfo ? t("edit") : t("register") + " " + t("transferAccount")}
       </p>
       <form className="font-sans" onSubmit={formik.handleSubmit}>
         <div className="flex flex-wrap justify-start md:items-center my-10">
           <div className="w-full md:w-1/4 mb-2 md:mb-0">
-            <p className="text-md">Type</p>
+            <p className="text-md">{t("type")}</p>
           </div>
           <div className="flex flex-col w-full md:w-3/4">
             <label className="cursor-pointer">
@@ -81,10 +87,7 @@ const Account = () => {
                 onChange={formik.handleChange}
                 checked={formik.values.transType === "other"}
               />
-              <span>
-                {" "}
-                Banks (other than Japan Post Bank), Shinkin banks, etc.
-              </span>
+              <span>{" " + t("transferType1")}</span>
             </label>
             <label className="cursor-pointer">
               <input
@@ -94,13 +97,13 @@ const Account = () => {
                 onChange={formik.handleChange}
                 checked={formik.values.transType === "post"}
               />
-              <span> Japan Post Bank</span>
+              <span>{" " + t("transferType2")}</span>
             </label>
           </div>
         </div>
         <div className="flex flex-wrap justify-start md:items-center my-10">
           <div className="w-full md:w-1/4 mb-2 md:mb-0">
-            <p className="text-md">Name of finacial institution</p>
+            <p className="text-md">{t("financialName")}</p>
           </div>
           <div className="flex flex-wrap justify-between w-full md:w-3/4 h-full items-center">
             <input
@@ -118,7 +121,7 @@ const Account = () => {
         </div>
         <div className="flex flex-wrap justify-start md:items-center my-10">
           <div className="w-full md:w-1/4 mb-2 md:mb-0">
-            <p className="text-md">Account Type</p>
+            <p className="text-md">{t("account") + " " + t("type")}</p>
           </div>
           <div className="flex flex-col w-full md:w-3/4">
             <label className="cursor-pointer">
@@ -129,7 +132,7 @@ const Account = () => {
                 onChange={formik.handleChange}
                 checked={formik.values.accountType === "ordinary"}
               />
-              <span> Ordinary</span>
+              <span> {t("ordinary")}</span>
             </label>
             <label className="cursor-pointer">
               <input
@@ -139,13 +142,13 @@ const Account = () => {
                 onChange={formik.handleChange}
                 checked={formik.values.accountType === "current"}
               />
-              <span> Current account</span>
+              <span> {t("current") + " " + t("account")}</span>
             </label>
           </div>
         </div>
         <div className="flex flex-wrap justify-start md:items-center my-10">
           <div className="w-full md:w-1/4 mb-2 md:mb-0">
-            <p className="text-md">Account Number</p>
+            <p className="text-md">{t("account") + " " + t("number")}</p>
           </div>
           <div className="flex flex-col w-full md:w-3/4">
             <input
@@ -156,8 +159,7 @@ const Account = () => {
               onChange={formik.handleChange}
             />
             <span className="block text-sm font-semibold text-gray-800 mt-1">
-              Note: If the number is less than 7 digits, please add a leading
-              zero.
+              {t("noteAccountNumber")}
             </span>
           </div>
           <FormikErr
@@ -167,7 +169,7 @@ const Account = () => {
         </div>
         <div className="flex flex-wrap justify-start md:items-center my-10">
           <div className="w-full md:w-1/4 mb-2 md:mb-0">
-            <p className="text-md">Name of Account Holder</p>
+            <p className="text-md">{t("nameAccountHolder")}</p>
           </div>
           <div className="flex flex-col w-full md:w-3/4">
             <input
@@ -178,9 +180,7 @@ const Account = () => {
               onChange={formik.handleChange("accountHolder")}
             />
             <span className="block text-sm font-semibold text-gray-800 mt-1">
-              Note: Please make sure to enter the name as it appears in the
-              “Nominee” column of the account to which the money is to be
-              transferred.
+              {t("noteAccountHolder")}
             </span>
           </div>
           <FormikErr

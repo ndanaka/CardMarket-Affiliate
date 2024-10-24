@@ -3,6 +3,7 @@ import * as yup from "yup";
 import { useFormik } from "formik";
 import { useAtom } from "jotai";
 import { jwtDecode } from "jwt-decode";
+import { useTranslation } from "react-i18next";
 
 import AppServerErr from "../../../errors/AppServerErr";
 import FormikErr from "../../../errors/FormikErr";
@@ -12,10 +13,10 @@ import Links from "./Links";
 import Input from "../../sign/Input";
 
 import { tokenWithPersistenceAtom } from "../../../atoms";
-import { ORIPA_BASE_URL } from "../../../constant/baseUrl";
 import HomeApi from "../../../api/homeApi";
 
 const AffiLinks = () => {
+  const { t } = useTranslation();
   const { op, setOp, SubmitAddLink, GetAllLinks } = HomeApi();
   const [token, setToken] = useAtom(tokenWithPersistenceAtom);
   const [links, setLinks] = useState([]);
@@ -39,8 +40,10 @@ const AffiLinks = () => {
   };
 
   const formSchema = yup.object({
-    title: yup.string().required("Link title is required."),
-    url: yup.string().required("Url title is required."),
+    title: yup
+      .string()
+      .required(t("link") + " " + t("title") + " " + t("isRequired")),
+    url: yup.string().required("Url " + t("isRequired")),
   });
 
   const formik = useFormik({
@@ -62,7 +65,7 @@ const AffiLinks = () => {
       setToastVisible(true);
       setLinks(res.data.links);
       setToastType("success");
-      setToastMessage("Successfully add new link.");
+      setToastMessage(t("successAdded"));
       formik.resetForm();
       setOp({
         appErr: null,
@@ -70,7 +73,7 @@ const AffiLinks = () => {
       });
     } else {
       setOp({
-        appErr: "Failed request data.",
+        appErr: t("failedAdded"),
         serverErr: res.data.error,
       });
     }
@@ -82,11 +85,11 @@ const AffiLinks = () => {
 
   return (
     <div className="mx-8 my-4">
-      <p className="font-sans font-semibold text-2xl pb-3">Affiliate Links</p>
+      <p className="font-sans font-semibold text-2xl pb-3">{t("affLinks")}</p>
       <div className="flex flex-wrap justify-center gap-2">
         <div className="flex flex-col justify-between w-[35%] max-[900px]:w-full h-fit">
           <div className="font-sans font-semibold text-gray-500 text-lg">
-            Add new link
+            {t("add") + " " + t("new") + " " + t("link")}
           </div>
           <AppServerErr>
             {op.serverErr === "Network Error" ? op.serverErr : op.appErr}
@@ -97,7 +100,7 @@ const AffiLinks = () => {
           >
             <div className="py-2">
               <Input
-                label={"Title"}
+                label={t("title")}
                 type={"text"}
                 name={"title"}
                 value={formik.values.title}
@@ -130,7 +133,7 @@ const AffiLinks = () => {
                 type="submit"
                 className="px-6 py-2 mx-1 font-semibold text-white bg-emerald-700 hover:bg-emerald-600 rounded-md"
               >
-                Add
+                {t("add")}
               </button>
             </div>
             <div className="flex justify-end pt-2">
@@ -141,7 +144,7 @@ const AffiLinks = () => {
           </form>
         </div>
         <div className="flex flex-col justify-between w-[64%] max-[900px]:w-full h-fit">
-          <div className="font-sans font-semibold text-gray-500 text-lg">
+          {/* <div className="font-sans font-semibold text-gray-500 text-lg">
             Main links
           </div>
           <div className="border-[1px] border-gray-400 font-sans px-4 py-2">
@@ -155,13 +158,13 @@ const AffiLinks = () => {
               icon={"fas fa-user-plus"}
               link={`${ORIPA_BASE_URL}/auth/register`}
             />
-          </div>
-          <div className="font-sans font-semibold text-gray-500 text-lg mt-2">
-            My links
+          </div> */}
+          <div className="font-sans font-semibold text-gray-500 text-lg">
+            {t("my") + " " + t("links")}
           </div>
           <div className="border-[1px] border-gray-400 font-sans px-4 py-2">
             {links.length === 0 ? (
-              <p className="text-center">No your link yet.</p>
+              <p className="text-center">{t("noLink")}</p>
             ) : (
               links?.map((link, i) => (
                 <Links

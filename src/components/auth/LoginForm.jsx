@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useAtom } from "jotai";
 import { useNavigate } from "react-router";
 import * as yup from "yup";
+import { useTranslation } from "react-i18next";
 
 import { idAtom } from "../../atoms";
 import AuthApi from "../../api/authApi";
@@ -17,6 +18,7 @@ import Hint from "../../components/sign/Hint";
 import ForgotPassForm from "./ForgotPsdForm";
 
 const LoginForm = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const [show, setShow] = useState(false);
@@ -25,8 +27,8 @@ const LoginForm = () => {
   const { op, submitLogin } = AuthApi();
 
   const formSchema = yup.object({
-    affiliateId: yup.string().required("Affiliate Id is required."),
-    password: yup.string().required("Password is required."),
+    affiliateId: yup.string().required(t("affId") + t("isRequired")),
+    password: yup.string().required(t("password") + t("isRequired")),
   });
 
   const formik = useFormik({
@@ -44,7 +46,7 @@ const LoginForm = () => {
     <>
       {!show ? (
         <>
-          <Heading label={"Log In"} />
+          <Heading label={t("login")} />
           <AppServerErr>
             {op.serverErr === "Network Error" ? op.serverErr : op.appErr}
           </AppServerErr>
@@ -56,7 +58,7 @@ const LoginForm = () => {
               </div>
             )}
             <Input
-              label={"Affiliate ID"}
+              label={t("affId")}
               type={"text"}
               name={"affiliateId"}
               value={formik.values.affiliateId}
@@ -66,8 +68,9 @@ const LoginForm = () => {
               touched={formik.touched.affiliateId}
               errors={formik.errors.affiliateId}
             />
+            <br></br>
             <Input
-              label={"Password"}
+              label={t("password")}
               type={"password"}
               name={"password"}
               value={formik.values.password}
@@ -80,14 +83,14 @@ const LoginForm = () => {
             <AppServerErr>
               {op.appErr === "Affiliate or Password not correct." && op.appErr}
             </AppServerErr>
-            <SignButton label={"Login"} />
+            <SignButton label={t("login")} />
             <Hint
-              label={"Register"}
-              question={"Do you wnat to register? "}
+              label={t("register")}
+              question={t("wantRegister")}
               handle={() => navigate("/register")}
             />
             <Hint
-              label={"Forgot Password?"}
+              label={t("forgotPwd")}
               className="text-red-600  "
               handle={() => setShow(true)}
             />

@@ -1,5 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+import "./utils/i18n";
+
 import DashLayout from "./pages/dashBoard/Layout";
 import Dashboard from "./pages/dashBoard/Index";
 import Register from "./pages/dashBoard/Register";
@@ -34,17 +36,17 @@ const App = () => {
 
         <Route path="/homepage" element={<HomeLayout />}>
           <Route path="/homepage" element={<Homepage />} />
-          <Route path="/homepage/payments" element={<HomePayments />} />
           <Route
             path="/homepage/links/affiliatelinks"
             element={<AffiliateLinks />}
           />
-          <Route path="/homepage/level" element={<LevelUpgrade />} />
+          <Route path="/homepage/payments" element={<HomePayments />} />
           <Route path="/homepage/accountsetting" element={<AccountInfo />} />
+          <Route path="/homepage/level" element={<LevelUpgrade />} />
         </Route>
 
         <Route path="/admin" element={<AdminLayout />}>
-          <Route path="/admin" element={<Introduce />} />
+          <Route path="/admin" element={<Manage />} />
           <Route path="/admin/manage" element={<Manage />} />
           <Route path="/admin/manage/adduser" element={<AddUser />} />
           <Route path="/admin/manage/edit" element={<Edit />} />

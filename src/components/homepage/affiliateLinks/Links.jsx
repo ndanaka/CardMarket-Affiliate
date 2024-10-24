@@ -30,7 +30,7 @@ const Links = ({
 
     if (token) {
       affiliateID = jwtDecode(token).id;
-      affiliateLink = `${link}?aff_id=${affiliateID}&first=${true}`;
+      affiliateLink = `${link}?link_id=${linkId}&aff_id=${affiliateID}&first=${true}`;
 
       setTextToCopy(affiliateLink);
     }

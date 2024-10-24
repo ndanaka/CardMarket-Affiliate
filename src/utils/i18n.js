@@ -185,6 +185,7 @@ const resources = {
       last: "最後",
       yes: "はい",
       no: "いいえ",
+      moreInfoStatistic: "詳細については、こちらをクリックしてください",
     },
   },
   en: {
@@ -370,7 +371,8 @@ const resources = {
       last: "Last",
       yes: "Yes",
       no: "No",
-      payments: "Payments"
+      payments: "Payments",
+      moreInfoStatistic: "For more information, click here",
     },
   },
 };

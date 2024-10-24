@@ -53,13 +53,13 @@ const Members = ({ members }) => {
                       },
                     })
                   }
-                  className="text-indigo-600 hover:bg-indigo-600 hover:text-white pr-2 py-1 rounded-md duration-150"
+                  className="text-indigo-600 hover:bg-indigo-600 hover:text-white p-2 py-1 rounded-md duration-150"
                 >
                   {t("view")}
                 </button>
                 <button
                   onClick={() => navigate("/admin/manage/edit")}
-                  className="text-indigo-600 hover:bg-indigo-600 hover:text-white pl-2 py-1 rounded-md duration-75"
+                  className="text-indigo-600 hover:bg-indigo-600 hover:text-white p-2 py-1 rounded-md duration-75"
                 >
                   {t("edit")}
                 </button>

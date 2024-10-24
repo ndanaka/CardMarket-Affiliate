@@ -48,7 +48,7 @@ const ContactUs = () => {
         </div>
         <div className="bg-gradient-to-r from-white to-gray-300 w-[40%] h-full max-[1000px]:hidden">
           <img
-            className="opacity-50 hover:opacity-100 duration-300 "
+            className="w-full opacity-50 hover:opacity-100 duration-300 "
             src="/image/bg/building1.jpg"
             alt="img"
           />

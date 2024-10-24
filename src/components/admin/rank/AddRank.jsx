@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import * as yup from "yup";
 import { useFormik } from "formik";
+import { useTranslation } from "react-i18next";
 
 import AppServerErr from "../../../errors/AppServerErr";
 import FormikErr from "../../../errors/FormikErr";
@@ -17,6 +18,7 @@ const AddRank = ({
   setSelectedImgUrl,
   getAllRanks = { getAllRanks },
 }) => {
+  const { t } = useTranslation();
   const { op, setOp, SubmitAddRank } = HomeApi();
   const fileInputRef = useRef(null);
 
@@ -42,16 +44,16 @@ const AddRank = ({
   });
 
   const formSchema = yup.object({
-    name: yup.string().required("Name is required."),
+    name: yup.string().required(t("name") + " " + t("isRequired")),
     register_commission: yup
       .string()
-      .required("Register commission is required."),
+      .required(t("register") + " " + t("commission") + " " + t("isRequired")),
     deposite_commission: yup
       .string()
-      .required("Deposite commission is required."),
-    start_amount: yup.string().required("Deposite commission is required."),
-    end_amount: yup.string().required("Deposite commission is required."),
-    file: yup.string().required("Rank image is required."),
+      .required(t("deposite") + " " + t("commission") + " " + t("isRequired")),
+    file: yup
+      .string()
+      .required(t("rank") + " " + t("image") + " " + t("isRequired")),
   });
 
   const formik = useFormik({
@@ -84,17 +86,17 @@ const AddRank = ({
       setToastVisible(true);
       if (res.data.type === 1) {
         setToastType("success");
-        setToastMessage("Successfully add new rank.");
+        setToastMessage(t("successAdded"));
       } else {
         setToastType("success");
-        setToastMessage("Successfully edited new rank.");
+        setToastMessage(t("successEdited"));
       }
       handleSubmitCancel();
       setEditFlag(false);
       getAllRanks();
     } else {
       setOp({
-        appErr: "Failed request data.",
+        appErr: t("failedReq"),
         serverErr: res.data.error,
       });
     }
@@ -123,14 +125,16 @@ const AddRank = ({
 
   return (
     <>
-      <h3 className="py-3 font-semibold text-center">Add New Rank</h3>
+      <h3 className="py-3 font-semibold text-center">
+        {t("add") + " " + t("new") + " " + t("rank")}
+      </h3>
       <form className="font-sans" onSubmit={formik.handleSubmit}>
         <div>
           <label
             htmlFor="fileInput"
             className="block text-sm font-semibold text-gray-800 px-2"
           >
-            {"Image"}
+            {t("image")}
           </label>
           <input
             name="fileInput"
@@ -166,7 +170,7 @@ const AddRank = ({
         </div>
         <div className="m-2">
           <Input
-            label={"Name"}
+            label={t("name")}
             type={"text"}
             name={"name"}
             value={formik.values.name}
@@ -179,7 +183,7 @@ const AddRank = ({
         </div>
         <div className="m-2">
           <Input
-            label={"Register Commission (¥)"}
+            label={t("register") + " " + t("commission") + " (¥)"}
             type={"number"}
             name={"register_commission"}
             value={formik.values.register_commission}
@@ -192,7 +196,7 @@ const AddRank = ({
         </div>
         <div className="m-2">
           <Input
-            label={"Deposite Commission (%)"}
+            label={t("deposit") + " " + t("commission") + " (%)"}
             type={"number"}
             name={"deposite_commission"}
             value={formik.values.deposite_commission}
@@ -205,7 +209,7 @@ const AddRank = ({
         </div>
         <div className="m-2">
           <Input
-            label={"Start Deposite (¥)"}
+            label={t("start") + " " + t("deposit") + " (¥)"}
             type={"number"}
             name={"start_amount"}
             value={formik.values.start_amount}
@@ -219,7 +223,7 @@ const AddRank = ({
         <div className="flex flex-wrap justify-between m-2">
           <div className="w-1/2">
             <Input
-              label={"End Deposite (¥)"}
+              label={t("end") + " " + t("deposit") + " (¥)"}
               type={"number"}
               name={"end_amount"}
               value={formik.values.end_amount}
@@ -232,7 +236,7 @@ const AddRank = ({
           </div>
           <div className="w-1/2">
             <span className="block text-sm font-semibold text-gray-800">
-              {"Last Rank"}
+              {t("last") + " " + t("rank")}
             </span>
             <select
               name="last"
@@ -242,8 +246,8 @@ const AddRank = ({
               id="last"
               autoComplete="last"
             >
-              <option value={false}>No</option>
-              <option value={true}>Yes</option>
+              <option value={false}>{t("no")}</option>
+              <option value={true}>{t("yes")}</option>
             </select>
           </div>
         </div>
@@ -253,7 +257,7 @@ const AddRank = ({
             className="px-6 py-2 mx-1 font-semibold text-white bg-gray-700 hover:bg-gray-600 rounded-md"
             onClick={() => handleSubmitCancel()}
           >
-            Cancel
+            {t("cancel")}
           </button>
           {editFlag ? (
             <button
@@ -261,14 +265,14 @@ const AddRank = ({
               className="px-6 py-2 mx-1 font-semibold text-white bg-emerald-700 hover:bg-emerald-600 rounded-md"
               onClick={handleSubmitEdit}
             >
-              Edit
+              {t("edit")}
             </button>
           ) : (
             <button
               type="submit"
               className="px-6 py-2 mx-1 font-semibold text-white bg-emerald-700 hover:bg-emerald-600 rounded-md"
             >
-              Add
+              {t("add")}
             </button>
           )}
         </div>

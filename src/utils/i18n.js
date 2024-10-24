@@ -71,6 +71,7 @@ const resources = {
       homepage: "ホームページ",
       links: "リンク",
       payment: "支払い",
+      payments: "支払い",
       current: "現在",
       Normal: "ノーマル",
       Bronze: "ブロンズ",
@@ -369,6 +370,7 @@ const resources = {
       last: "Last",
       yes: "Yes",
       no: "No",
+      payments: "Payments"
     },
   },
 };

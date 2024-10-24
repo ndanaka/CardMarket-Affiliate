@@ -2,11 +2,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
-
-import { CHANGEPSD, GETTIME, LOGIN, REGISTER } from "../constant/api";
-
 import { useAtom } from "jotai";
+
 import { idAtom, timeAtom, tokenWithPersistenceAtom } from "../atoms/index";
+import { CHANGEPSD, GETTIME, LOGIN, REGISTER } from "../constant/api";
 
 const AuthApi = () => {
   // operation characteristics
@@ -69,6 +68,7 @@ const AuthApi = () => {
 
       if (data.status) {
         localStorage.setItem("token", data.token);
+        localStorage.setItem("firstLogin", true);
         setToken(data.token);
         const payload = jwtDecode(data.token);
 

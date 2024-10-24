@@ -81,8 +81,11 @@ const LevelUpgrade = () => {
               {t("current") + " " + t("level") + " " + t("status")}
             </h3>
             <p className="text-[red] text-3xl font-semibold text-center">
-              {formatPrice(jwtDecode(token).totalPointsAmount)}/
-              {formatPrice(affRank?.end_amount)}
+              {affRank?.end_amount
+                ? formatPrice(jwtDecode(token).totalPointsAmount)
+                : ""}{" "}
+              {" / "}
+              {affRank?.end_amount ? formatPrice(affRank?.end_amount) : ""}
             </p>
             <div className=" relative">
               <CircleChart

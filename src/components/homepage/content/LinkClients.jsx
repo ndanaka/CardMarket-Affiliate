@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import formatPrice from "../../../utils/formatPrice";
 import HomeApi from "../../../api/homeApi";
 
-const ClientStats = ({ affId, period }) => {
+const LinkClients = ({ affId, period }) => {
   const { t } = useTranslation();
   const [clients, setClients] = useState();
   const [more, setMore] = useState(true);
@@ -28,8 +28,7 @@ const ClientStats = ({ affId, period }) => {
   return (
     <div className="max-[900px]:w-full w-[30%]">
       <div className="font-sans font-semibold text-gray-500 text-lg">
-        {t(period)}
-        {t("sClients")}
+        {t("link") + " " + t("client")}
       </div>
       <table className=" w-[100%] text-[13px] mt-1 border-gray-400 border-[1px] text-center rounded-3xl ">
         <thead className="h-10 text-[14px] text-white bg-[#4B5563]">
@@ -72,4 +71,4 @@ const ClientStats = ({ affId, period }) => {
   );
 };
 
-export default ClientStats;
+export default LinkClients;

@@ -69,7 +69,7 @@ const RegisterForm = ({ label }) => {
     <>
       <Heading label={t("add") + " " + t("user")} />
       <AppServerErr>
-        {op.serverErr === "Network Error" ? op.serverErr : op.appErr}
+        {op.serverErr === "Network Error" ? t("netError") : t(op.appErr)}
       </AppServerErr>
       <form className="mt-6 font-sans" onSubmit={formik.handleSubmit}>
         <Input
@@ -96,10 +96,6 @@ const RegisterForm = ({ label }) => {
           errors={formik.errors.email}
         />
         <br />
-        <AppServerErr>
-          {op.appErr === "Email already exists, try with a different one" &&
-            op.appErr}
-        </AppServerErr>
         <div className=" relative">
           <Input
             label={"* " + t("password")}

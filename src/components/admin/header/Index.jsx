@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 
 import AccountInfo from "../../homepage/homeHeader/top/AccountInfoModal";
+import LanguageBar from "../../../utils/LanguageBar";
 import Item from "./Item";
 
 const Index = () => {
@@ -20,8 +21,8 @@ const Index = () => {
         </h1>
         <ul className="flex gap-10 max-[1200px]:gap-5 font-medium ml-4">
           <Item item={"manage"} />
-          <Item item={"payment"} />
-          <Item item={"message"} />
+          {/* <Item item={"payment"} />
+          <Item item={"message"} /> */}
           <Item item={"rank"} />
         </ul>
       </div>
@@ -81,7 +82,13 @@ const Index = () => {
           Rank
         </button>
       </div>
-      <AccountInfo show={show} setShow={setShow} />
+
+      <div className="flex flex-wrap justify-between">
+        <p className="h-8 mb-3 font-medium mx-2">
+          <LanguageBar className="h-full text-[15px] !bg-white !text-black" />
+        </p>
+        <AccountInfo show={show} setShow={setShow} />
+      </div>
     </div>
   );
 };

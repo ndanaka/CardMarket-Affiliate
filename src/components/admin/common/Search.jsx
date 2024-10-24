@@ -1,6 +1,6 @@
 import HomeApi from "../../../api/homeApi";
 
-const Search = ({ setMembers, setFltSignal, setRole }) => {
+const Search = ({ setMembers, setFltSignal, setRole, searchHolder }) => {
   const { GetMembers } = HomeApi();
 
   const handleSearch = async (e) => {
@@ -31,7 +31,7 @@ const Search = ({ setMembers, setFltSignal, setRole }) => {
         <input
           onChange={(e) => handleSearch(e.target.value.toUpperCase())}
           className="border-gray-600 border-[1px] rounded-full outline-none focus:ring-1 focus:ring-gray-400 pl-8 pr-3  py-1 "
-          placeholder="Search anything"
+          placeholder={searchHolder}
           type="search"
         />
         <img

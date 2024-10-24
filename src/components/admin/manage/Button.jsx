@@ -1,4 +1,8 @@
+import { useTranslation } from "react-i18next";
+
 const Button = ({ label, handle, select }) => {
+  const { t } = useTranslation();
+
   return (
     <>
       <button
@@ -9,7 +13,7 @@ const Button = ({ label, handle, select }) => {
         } hover:bg-slate-200 hover:text-black rounded-md px-3 py-1 font-semibold`}
         onClick={() => handle()}
       >
-        {label}
+        {t(label)}
       </button>
     </>
   );

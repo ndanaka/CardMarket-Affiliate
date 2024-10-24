@@ -48,12 +48,13 @@ const LoginForm = () => {
         <>
           <Heading label={t("login")} />
           <AppServerErr>
-            {op.serverErr === "Network Error" ? op.serverErr : op.appErr}
+            {op.serverErr === "Network Error" ? t("netError") : t(op.appErr)}
           </AppServerErr>
           <form className="mt-6 font-sans" onSubmit={formik.handleSubmit}>
             {id !== "" && (
-              <div>
-                Remember! Your affiliate ID is&nbsp;{" "}
+              <div className="pb-4">
+                <p>{t("successRegister")}</p>
+                {t("rememberAffId")}&nbsp;{" "}
                 <span className="text-red-600">{id}</span>
               </div>
             )}
@@ -80,9 +81,6 @@ const LoginForm = () => {
               touched={formik.touched.password}
               errors={formik.errors.password}
             />
-            <AppServerErr>
-              {op.appErr === "Affiliate or Password not correct." && op.appErr}
-            </AppServerErr>
             <SignButton label={t("login")} />
             <Hint
               label={t("register")}

@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import formatPrice from "../../../utils/formatPrice";
 import HomeApi from "../../../api/homeApi";
 
-const TotalStats = ({ affId, setPeriod }) => {
+const LinkStats = ({ affId, setPeriod }) => {
   const { t } = useTranslation();
   const [statistics, setStatistics] = useState([]);
 
@@ -31,7 +31,7 @@ const TotalStats = ({ affId, setPeriod }) => {
   return (
     <div className="w-[69%] max-[900px]:w-full">
       <div className="font-sans font-semibold text-gray-500 text-lg">
-        {t("total") + " " + t("statistics")} ({t("statisticsDesc")})
+        {t("links") + " " + t("statistics")}
       </div>
       <table className=" w-full text-[13px] mt-1  border-gray-400 border-[1px] text-center">
         <thead className="h-10 text-[14px] text-white bg-[#4B5563]">
@@ -56,7 +56,7 @@ const TotalStats = ({ affId, setPeriod }) => {
               data-tooltip-place="top"
               data-tooltip-content={t("moreInfoStatistic")}
             >
-              <td>{t(item.period)}</td>
+              <td>{item.period}</td>
               <td>¥{formatPrice(item.payment)}</td>
               <td>{item.clicks}</td>
               <td>{item.regist}</td>
@@ -73,4 +73,4 @@ const TotalStats = ({ affId, setPeriod }) => {
   );
 };
 
-export default TotalStats;
+export default LinkStats;

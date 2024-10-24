@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import AddRank from "./AddRank";
 import LevelOverview from "../../homepage/levelUpgrade/LevelOverview";
@@ -9,6 +10,7 @@ import { SERVER_URL } from "../../../constant/baseUrl";
 import Toast from "../../../utils/toast";
 
 const Rank = () => {
+  const { t } = useTranslation();
   const { GetAllRanks, DeleteRank } = HomeApi();
   const [selectedImgUrl, setSelectedImgUrl] = useState("");
   const [selectedRank, setSelectedRank] = useState(null);
@@ -41,11 +43,11 @@ const Rank = () => {
       setToastVisible(true);
       if (res.status) {
         setToastType("success");
-        setToastMessage("Successfully deleted rank.");
+        setToastMessage(t("successDeleted"));
         getAllRanks();
       } else {
         setToastType("error");
-        setToastMessage("Failed to delete rank.");
+        setToastMessage(t("failedDeleted"));
       }
     } catch (error) {}
   };
@@ -70,15 +72,15 @@ const Rank = () => {
         <table className="mt-4 w-full border-t-[1px] text-center">
           <thead className="h-8">
             <tr>
-              <th rowSpan={2}>Name</th>
-              <th colSpan="2">Commission</th>
-              <th rowSpan={2}>Range</th>
-              <th rowSpan={2}>Image</th>
-              <th rowSpan={2}>Action</th>
+              <th rowSpan={2}>{t("name")}</th>
+              <th colSpan="2">{t("commission")}</th>
+              <th rowSpan={2}>{t("range")}</th>
+              <th rowSpan={2}>{t("image")}</th>
+              <th rowSpan={2}>{t("action")}</th>
             </tr>
             <tr>
-              <th>Register</th>
-              <th>Deposite</th>
+              <th>{t("register")}</th>
+              <th>{t("deposit")}</th>
             </tr>
           </thead>
           <tbody className="">
@@ -87,7 +89,7 @@ const Rank = () => {
                 key={index}
                 className={` border-t-gray-300 border-t-[1px] text-gray-600  h-9`}
               >
-                <td>{rank.name}</td>
+                <td>{t(rank.name)}</td>
                 <td>¥{rank.register_commission}</td>
                 <td>{rank.deposite_commission}%</td>
                 <td>

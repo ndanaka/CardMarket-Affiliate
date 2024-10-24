@@ -72,7 +72,7 @@ const Index = () => {
         </div>
         <button
           onClick={() => navigate("/admin/manage/adduser")}
-          className="bg-indigo-600 rounded-md px-2 py-1 text-white hover:opacity-85 duration-50"
+          className="bg-indigo-600 rounded-md px-3 py-1 text-white hover:opacity-85 duration-50"
         >
           {t("add") + " " + t("user")}
         </button>

@@ -34,7 +34,7 @@ const LinkClients = ({ affId, period }) => {
         <thead className="h-10 text-[14px] text-white bg-[#4B5563]">
           <tr>
             <th>{t("name")}</th>
-            {/* <th>{t("country")}</th> */}
+            <th>{t("country")}</th>
             <th>{t("deposit")}</th>
           </tr>
         </thead>
@@ -52,7 +52,7 @@ const LinkClients = ({ affId, period }) => {
                 }`}
               >
                 <td>{item.name}</td>
-                {/* <td>{item.country}</td> */}
+                <td>{item.country}</td>
                 <td>¥{formatPrice(item.payment)}</td>
               </tr>
             ))

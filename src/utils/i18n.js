@@ -1,6 +1,5 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import LanguageDetector from "i18next-browser-languagedetector";
 
 // Translation files (sample JSON for two languages)
 const resources = {
@@ -374,15 +373,13 @@ const resources = {
   },
 };
 
-i18n
-  .use(LanguageDetector) // Detect user language
-  .use(initReactI18next) // Passes i18n instance to react-i18next
-  .init({
-    resources,
-    fallbackLng: "jp", // Default language
-    interpolation: {
-      escapeValue: false, // React already escapes strings to avoid XSS
-    },
-  });
+i18n.use(initReactI18next).init({
+  resources,
+  lng: "jp",
+  fallbackLng: "jp", // Default language
+  interpolation: {
+    escapeValue: false, // React already escapes strings to avoid XSS
+  },
+});
 
 export default i18n;

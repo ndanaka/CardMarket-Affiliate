@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import { jwtDecode } from "jwt-decode";
+import { useTranslation } from "react-i18next";
 
 import { useAtom } from "jotai";
 import { showNavAtom } from "../../../atoms/index";
@@ -9,6 +10,7 @@ import { tokenWithPersistenceAtom } from "../../../atoms/index";
 import Button from "./Button";
 
 const Account = ({ setShow }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const accountBtn = useRef();
@@ -43,7 +45,7 @@ const Account = ({ setShow }) => {
         <>
           <Button
             src={"setting.svg"}
-            label={"Account Info"}
+            label={t("account")}
             handle={() => {
               navigate("/homepage/accountsetting");
               setShow(false);
@@ -52,7 +54,7 @@ const Account = ({ setShow }) => {
           />
           <Button
             src={"level.svg"}
-            label={"Account Level"}
+            label={t("my") + " " + t("level")}
             handle={() => {
               navigate("/homepage/level");
               setShow(false);
@@ -62,16 +64,8 @@ const Account = ({ setShow }) => {
         </>
       )}
       <Button
-        src={"T&C.svg"}
-        label={"T&C"}
-        handle={() => {
-          window.open("/oripapartner.pdf");
-          setShow(false);
-        }}
-      />
-      <Button
         src={"logOut.svg"}
-        label={"Log Out"}
+        label={t("logOut")}
         handle={() => {
           localStorage.removeItem("token");
           setToken("");

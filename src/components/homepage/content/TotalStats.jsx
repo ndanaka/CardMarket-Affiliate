@@ -1,11 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Tooltip } from "react-tooltip";
+import { useTranslation } from "react-i18next";
 
 import formatPrice from "../../../utils/formatPrice";
 
 import HomeApi from "../../../api/homeApi";
 
 const TotalStats = ({ affId, setPeriod }) => {
+  const { t } = useTranslation();
   const [statistics, setStatistics] = useState([]);
 
   const { op, GetStatistics } = HomeApi();
@@ -31,17 +33,17 @@ const TotalStats = ({ affId, setPeriod }) => {
     <>
       <div className="w-[64%] max-[900px]:w-full">
         <div className="font-sans font-semibold text-gray-500 text-lg">
-          Statistics (For more information, click each item.)
+          {t("statistics")} ({t("statisticsDesc")})
         </div>
         <table className=" w-full text-[13px] mt-1  border-gray-400 border-[1px] text-center">
           <thead className="h-10 text-[14px] text-white bg-[#4B5563]">
             <tr>
-              <th>Period</th>
-              <th>Deposit</th>
-              <th>Clicks</th>
-              <th>Registeration</th>
+              <th>{t("period")}</th>
+              <th>{t("deposit")}</th>
+              <th>{t("clicks")}</th>
+              <th>{t("registeration")}</th>
               <th>CVR</th>
-              <th>Earn</th>
+              <th>{t("earn")}</th>
             </tr>
           </thead>
           <tbody className="text-[14px]">
@@ -51,7 +53,7 @@ const TotalStats = ({ affId, setPeriod }) => {
                 className={`even:bg-gray-100 h-10 ${
                   index > 4 && "hidden"
                 } cursor-pointer`}
-                onClick={() => setPeriod(item.period)}
+                onClick={() => setPeriod(t(item.period))}
                 data-tooltip-id="totalTable"
                 data-tooltip-place="top"
                 data-tooltip-content="For more information, click here."

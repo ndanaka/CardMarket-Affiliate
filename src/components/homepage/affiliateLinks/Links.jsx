@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Tooltip } from "react-tooltip";
 import { useAtom } from "jotai";
 import { jwtDecode } from "jwt-decode";
+import { useTranslation } from "react-i18next";
 
 import { tokenWithPersistenceAtom } from "../../../atoms";
 import HomeApi from "../../../api/homeApi";
@@ -17,6 +18,7 @@ const Links = ({
   setToastMessage,
   setToastType,
 }) => {
+  const { t } = useTranslation();
   const [token, setToken] = useAtom(tokenWithPersistenceAtom);
   const [copy, setCopy] = useState("");
   const [textToCopy, setTextToCopy] = useState("");
@@ -56,11 +58,11 @@ const Links = ({
     if (res.data.status) {
       setToastVisible(true);
       setToastType("success");
-      setToastMessage("Successfully deleted link.");
+      setToastMessage(t("successDeleted"));
       setLinks(res.data.links);
     } else {
       setToastType("error");
-      setToastMessage("Failed to delete link.");
+      setToastMessage(t("failedDeleted"));
     }
   };
 
@@ -77,7 +79,7 @@ const Links = ({
       <div
         className="w-[10%] flex flex-wrap justify-center w-6 cursor-pointer items-center"
         data-tooltip-id="copy"
-        data-tooltip-content={`${copy === "" ? "Copy the link" : "Copied"}`}
+        data-tooltip-content={`${copy === "" ? t("copyLink") : t("copied")}`}
       >
         {copy === title ? (
           <i className="fa fa-check" />
@@ -94,7 +96,7 @@ const Links = ({
         <div
           className="w-[10%] flex flex-wrap justify-center w-6 cursor-pointer items-center"
           data-tooltip-id="delete"
-          data-tooltip-content="Delete the link"
+          data-tooltip-content={t("delLink")}
         >
           <i
             className="fa fa-trash text-center cursor-pointer"

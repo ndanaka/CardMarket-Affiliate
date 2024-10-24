@@ -1,10 +1,12 @@
 import { useEffect, useState, useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 import formatPrice from "../../../utils/formatPrice";
 
 import HomeApi from "../../../api/homeApi";
 
 const ClientStats = ({ affId, period }) => {
+  const { t } = useTranslation();
   const [clients, setClients] = useState();
   const [more, setMore] = useState(true);
 
@@ -28,20 +30,21 @@ const ClientStats = ({ affId, period }) => {
     <>
       <div className="max-[900px]:w-full w-[35%]">
         <div className="font-sans font-semibold text-gray-500 text-lg">
-          {period}'s Clients
+          {t(period)}
+          {t("sClients")}
         </div>
         <table className=" w-[100%] text-[13px] mt-1 border-gray-400 border-[1px] text-center rounded-3xl ">
           <thead className="h-10 text-[14px] text-white bg-[#4B5563]">
             <tr>
-              <th>Name</th>
-              <th>Country</th>
-              <th>Deposit</th>
+              <th>{t("name")}</th>
+              <th>{t("country")}</th>
+              <th>{t("deposit")}</th>
             </tr>
           </thead>
           <tbody className="text-[14px]">
             {clients?.length === 0 ? (
               <tr>
-                <td colSpan={3}>No client data</td>
+                <td colSpan={3}>{t("noClient")}</td>
               </tr>
             ) : (
               clients?.map((item, index) => (

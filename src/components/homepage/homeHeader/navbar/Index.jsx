@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router";
 import { Tooltip } from "react-tooltip";
 import { jwtDecode } from "jwt-decode";
 import { useAtom } from "jotai";
+import { useTranslation } from "react-i18next";
 
 import { tokenWithPersistenceAtom } from "../../../../atoms/index";
 import { showNavAtom } from "../../../../atoms/index";
@@ -13,6 +14,7 @@ import NavItem from "./NavItem";
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation();
 
   const [showNav, setShowNav] = useAtom(showNavAtom);
   const [token, setToken] = useAtom(tokenWithPersistenceAtom);
@@ -26,13 +28,13 @@ const Navbar = () => {
   useEffect(() => {
     const pathName = location.pathname.split("/", 3);
     if (pathName[2] === "links") {
-      setShowNav((t) => ({ ...t, color: "Links" }));
+      setShowNav((nav) => ({ ...nav, color: t("links") }));
     }
     if (pathName[2] === "payments") {
-      setShowNav((t) => ({ ...t, color: "Payments" }));
+      setShowNav((nav) => ({ ...nav, color: t("payments") }));
     }
     if (pathName[2] === undefined) {
-      setShowNav((t) => ({ ...t, color: "Homepage" }));
+      setShowNav((nav) => ({ ...nav, color: t("homepage") }));
     }
     getAffRank();
   }, [navigate]);
@@ -41,7 +43,7 @@ const Navbar = () => {
   const handleClickOutside = (event) => {
     // Check if the clicked element is outside the list
     if (navItem.current && !navItem.current.contains(event.target)) {
-      setShowNav((t) => ({ ...t, list: "" }));
+      setShowNav((nav) => ({ ...nav, list: "" }));
     }
   };
 
@@ -70,34 +72,34 @@ const Navbar = () => {
     >
       <div className="flex flex-wrap">
         <NavItem
-          label={"Homepage"}
+          label={t("homepage")}
           child={false}
           handle={() => {
             navigate("/homepage");
-            setShowNav((t) => ({ ...t, color: "Homepage" }));
+            setShowNav((nav) => ({ ...nav, color: t("homepage") }));
           }}
         />
         <NavItem
-          label={"Links"}
+          label={t("links")}
           child={false}
           handle={() => {
             navigate("/homepage/links/affiliatelinks");
-            setShowNav((t) => ({ ...t, color: "Links" }));
+            setShowNav((nav) => ({ ...nav, color: t("links") }));
           }}
         />
         <NavItem
-          label={"Payments"}
+          label={t("payments")}
           child={false}
           handle={() => {
             navigate("/homepage/payments");
-            setShowNav((t) => ({ ...t, color: "Payments" }));
+            setShowNav((nav) => ({ ...nav, color: t("payments") }));
           }}
         />
       </div>
       <div className="text-gray-400 font-semibold flex items-center justify-center px-5">
-        Current Level :&nbsp;
+        {t("current") + " " + t("level")} :&nbsp;
         <span className="text-[#759ce4] font-semibold">
-          {affRank?.name}&nbsp;
+          {t(affRank?.name)}&nbsp;
         </span>
         <i
           className="cursor-pointer	far fa-question-circle text-[green]"

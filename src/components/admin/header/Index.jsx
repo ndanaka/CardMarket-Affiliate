@@ -19,10 +19,10 @@ const Index = () => {
           Pro Affiliate
         </h1>
         <ul className="flex gap-10 max-[1200px]:gap-5 font-medium ml-4">
-          <Item item={"Manage"} />
-          <Item item={"Payment"} />
-          <Item item={"Message"} />
-          <Item item={"Rank"} />
+          <Item item={"manage"} />
+          <Item item={"payment"} />
+          <Item item={"message"} />
+          <Item item={"rank"} />
         </ul>
       </div>
 

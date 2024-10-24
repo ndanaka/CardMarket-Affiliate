@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { useTranslation } from "react-i18next";
 
 import FormikErr from "../../../errors/FormikErr";
 import HomeApi from "../../../api/homeApi";
@@ -11,6 +12,7 @@ import Modal from "./Modal";
 import Toast from "../../../utils/toast";
 
 const WithDraw = () => {
+  const { t } = useTranslation();
   const [confirmErr, setConfirmErr] = useState("");
   const [modal, setModal] = useState(false);
   const [toastVisible, setToastVisible] = useState(false);
@@ -22,8 +24,8 @@ const WithDraw = () => {
   const formSchema = yup.object({
     amount: yup
       .number()
-      .max(2580, "So much more than yours!")
-      .required("Withdrawal amount is required."),
+      .max(2580, t("invalidBalance"))
+      .required(t("withdrawal") + " " + t("amount") + " " + t("isRequired")),
     address: yup.number().required("Receiving Adress is required."),
     confirm: yup.string().required("Confirm Address is required."),
   });
@@ -69,11 +71,11 @@ const WithDraw = () => {
   return (
     <div className="bg-white py-8 px-4 md:px-8 lg:px-12 mx-auto w-full md:w-4/5 lg:w-3/5">
       <p className="text-[22px] font-semibold text-center mb-8">
-        Request Withdrawal
+        {t("request") + " " + t("withdrawal")}
       </p>
       <form onSubmit={formik.handleSubmit}>
         <Input
-          label={"Withdrawal Amount (¥)"}
+          label={t("withdrawal") + " " + t("amount") + " (¥)"}
           type={"number"}
           name={"amount"}
           value={formik.values.amount}
@@ -84,7 +86,7 @@ const WithDraw = () => {
           touched={formik.touched.amount}
           errors={formik.errors.amount}
         />
-        <br />
+        {/* <br />
         <Input
           label={"Receiving address"}
           type={"tel"}
@@ -109,9 +111,9 @@ const WithDraw = () => {
         <FormikErr
           touched={formik.touched.confirm}
           errors={formik.errors.confirm1}
-        />
+        /> */}
         <PayButton
-          label={"Send request"}
+          label={t("send") + " " + t("request")}
           handle={() => setModal("modal")}
         />
         <Modal

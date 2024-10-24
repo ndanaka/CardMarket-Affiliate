@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 
 import HomeApi from "../../../api/homeApi";
 
@@ -8,6 +9,7 @@ import Members from "./Members";
 import Button from "./Button";
 
 const Index = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const [role, setRole] = useState("All");
@@ -37,23 +39,23 @@ const Index = () => {
             {!fltSignal ? (
               <>
                 <Button
-                  label={"All"}
-                  handle={() => setRole("All")}
+                  label={t("all")}
+                  handle={() => setRole(t("all"))}
                   select={role}
                 />
                 <Button
-                  label={"Admin"}
-                  handle={() => setRole("Admin")}
+                  label={t("admin")}
+                  handle={() => setRole(t("admin"))}
                   select={role}
                 />
                 <Button
-                  label={"Manager"}
-                  handle={() => setRole("Manager")}
+                  label={t("manager")}
+                  handle={() => setRole(t("manager"))}
                   select={role}
                 />
                 <Button
-                  label={"Affiliate"}
-                  handle={() => setRole("Affiliate")}
+                  label={t("ffiliate")}
+                  handle={() => setRole(t("ffiliate"))}
                   select={role}
                 />
               </>

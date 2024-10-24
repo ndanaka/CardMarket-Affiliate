@@ -2,16 +2,20 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { jwtDecode } from "jwt-decode";
-
+import { useTranslation } from "react-i18next";
 import { useAtom } from "jotai";
+
 import { tokenWithPersistenceAtom } from "../../../atoms";
 
 import NavButton from "./NavButton";
+
+import { ORIPA_BASE_URL } from "../../../constant/baseUrl";
 
 const HiddenBar = ({ collapse, setCollapse }) => {
   const navigate = useNavigate();
   const [token] = useAtom(tokenWithPersistenceAtom);
   const [payload, setPayload] = useState(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (token) {
@@ -36,40 +40,53 @@ const HiddenBar = ({ collapse, setCollapse }) => {
         <>
           {payload?.role === "Affiliate" ? (
             <NavButton
-              label="HOME"
+              label={t("home").toUpperCase()}
               className={"text-[14px]"}
-              handle={() => navigate("/homepage")}
+              handle={() => {
+                setCollapse(false);
+                navigate("/homepage");
+              }}
             />
           ) : (
             <NavButton
-              label="ADMIN"
+              label={t("admin").toUpperCase()}
               className={"text-[14px]"}
-              handle={() => navigate("/admin")}
+              handle={() => {
+                setCollapse(false);
+                navigate("/admin");
+              }}
             />
           )}
         </>
       )}
+      <Link to={ORIPA_BASE_URL} target="blank">
+        <NavButton
+          label={t("oripaHomepage").toUpperCase()}
+          className={"text-md"}
+        />
+      </Link>
+      <Link to={ORIPA_BASE_URL} target="blank">
+        <NavButton
+          label={t("helperCenter").toUpperCase()}
+          className={"text-md"}
+        />
+      </Link>
       <NavButton
-        label="PATNER LOGIN"
-        className={"text-[14px]"}
-        handle={() => navigate("/login")}
-      />
-      {/* <NavButton label='ADVANTAGES' className={'text-[14px]'} handle={() => navigate('/')} />
-            <NavButton label='PATNER TYPES' className={'text-[14px]'} handle={() => navigate('/')} />
-            <NavButton label='PROMOTIONAL TOOLS' className={'text-[14px]'} handle={() => navigate('/')} />
-            <NavButton label='STASTICS' className={'text-[14px]'} handle={() => navigate('/')} />
-            <NavButton label='PROMOTIONS' className={'text-[14px]'} handle={() => navigate('/')} /> */}
-      <NavButton
-        label="CONTACT"
-        className={"text-[14px]"}
+        label={t("login").toUpperCase()}
+        className={"text-md"}
         handle={() => {
-          navigate("/contact");
           setCollapse(false);
+          navigate("/login");
         }}
       />
-      <Link to={"https://oripa.clove.jp/en/oripa/All"} target="blank">
-        <NavButton label="HELP CENTER" className={"text-[14px]"} />
-      </Link>
+      <NavButton
+        label={t("register").toUpperCase()}
+        className={"text-md"}
+        handle={() => {
+          setCollapse(false);
+          navigate("/register");
+        }}
+      />
     </div>
   );
 };

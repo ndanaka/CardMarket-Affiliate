@@ -32,56 +32,55 @@ const Index = () => {
   };
 
   return (
-    <>
-      <div className="mt-4 border-[1px] border-gray-200 rounded-lg p-10 pb-5 max-[700px]:p-2">
-        <div className="flex flex-wrap justify-between gap-3 pb-3">
-          <div className="flex flex-wrap gap-2 justify-center items-center">
-            {!fltSignal ? (
-              <>
-                <Button
-                  label={t("all")}
-                  handle={() => setRole(t("all"))}
-                  select={role}
-                />
-                <Button
-                  label={t("admin")}
-                  handle={() => setRole(t("admin"))}
-                  select={role}
-                />
-                <Button
-                  label={t("manager")}
-                  handle={() => setRole(t("manager"))}
-                  select={role}
-                />
-                <Button
-                  label={t("ffiliate")}
-                  handle={() => setRole(t("ffiliate"))}
-                  select={role}
-                />
-              </>
-            ) : (
-              <div className="w-[229px] font-semibold px-3">
-                Search results...
-              </div>
-            )}
-            <Search
-              setMembers={setMembers}
-              setFltSignal={setFltSignal}
-              setRole={setRole}
-            />
-          </div>
-          <button
-            onClick={() => navigate("/admin/manage/adduser")}
-            className="bg-indigo-600 rounded-md px-2 py-1 text-white hover:opacity-85 duration-50"
-          >
-            Add User
-          </button>
+    <div className="mt-4 border-[1px] border-gray-200 rounded-lg p-10 pb-5 max-[700px]:p-2">
+      <div className="flex flex-wrap justify-between gap-3 pb-3">
+        <div className="flex flex-wrap gap-2 justify-center items-center">
+          {!fltSignal ? (
+            <>
+              <Button
+                label={"All"}
+                handle={() => setRole("All")}
+                select={role}
+              />
+              <Button
+                label={"Admin"}
+                handle={() => setRole("Admin")}
+                select={role}
+              />
+              <Button
+                label={"Manager"}
+                handle={() => setRole("Manager")}
+                select={role}
+              />
+              <Button
+                label={"Affiliate"}
+                handle={() => setRole("Affiliate")}
+                select={role}
+              />
+            </>
+          ) : (
+            <div className="w-[229px] font-semibold px-3">
+              {t("searchResults")}
+            </div>
+          )}
+          <Search
+            setMembers={setMembers}
+            setFltSignal={setFltSignal}
+            setRole={setRole}
+            searchHolder={t("searchHolder")}
+          />
         </div>
-        <div className=" overflow-auto">
-          <Members members={members} />
-        </div>
+        <button
+          onClick={() => navigate("/admin/manage/adduser")}
+          className="bg-indigo-600 rounded-md px-2 py-1 text-white hover:opacity-85 duration-50"
+        >
+          {t("add") + " " + t("user")}
+        </button>
       </div>
-    </>
+      <div className=" overflow-auto">
+        <Members members={members} />
+      </div>
+    </div>
   );
 };
 

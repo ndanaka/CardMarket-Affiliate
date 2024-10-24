@@ -15,7 +15,7 @@ import Heading from "../sign/Heading";
 import Input from "../sign/Input";
 import CancelBtn from "../sign/CancelBtn";
 
-const RegisterForm = ({ title, label }) => {
+const RegisterForm = ({ label }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -37,12 +37,10 @@ const RegisterForm = ({ title, label }) => {
         t("invalidPwd2")
       )
       .required(t("password") + t("isRequired")),
-    phoneNumber: yup.string().required("Phonnumber is required."),
-    country: yup.string().required("Country is required."),
+    phoneNumber: yup.string().required(t("phNumber") + " " + t("isRequired")),
+    country: yup.string().required(t("country") + " " + t("isRequired")),
     role:
-      label === "Add"
-        ? yup.string().required("You must choose a role")
-        : yup.string(),
+      label === "add" ? yup.string().required(t("requiredRole")) : yup.string(),
   });
 
   const formik = useFormik({
@@ -69,7 +67,7 @@ const RegisterForm = ({ title, label }) => {
 
   return (
     <>
-      <Heading label={title} />
+      <Heading label={t("add") + " " + t("user")} />
       <AppServerErr>
         {op.serverErr === "Network Error" ? op.serverErr : op.appErr}
       </AppServerErr>
@@ -150,7 +148,7 @@ const RegisterForm = ({ title, label }) => {
           touched={formik.touched.country}
           errors={formik.errors.country}
         />
-        {label === "Add" && (
+        {label === "add" && (
           <div className="flex flex-wrap justify-between gap-5 my-2">
             <label>
               <input
@@ -161,7 +159,7 @@ const RegisterForm = ({ title, label }) => {
                 onChange={formik.handleChange}
                 checked={formik.values.role === "Admin"}
               />
-              <span>Admin(Only-Read)</span>
+              <span>{t("admin")}</span>
             </label>
             <label>
               <input
@@ -172,7 +170,7 @@ const RegisterForm = ({ title, label }) => {
                 onChange={formik.handleChange}
                 checked={formik.values.role === "Manager"}
               />
-              <span>Manager</span>
+              <span>{t("manager")}</span>
             </label>
             <label>
               <input
@@ -183,16 +181,22 @@ const RegisterForm = ({ title, label }) => {
                 onChange={formik.handleChange}
                 checked={formik.values.role === "Affiliate"}
               />
-              <span>Affiliate</span>
+              <span>{t("affiliate")}</span>
             </label>
           </div>
         )}
         <FormikErr touched={formik.touched.role} errors={formik.errors.role} />
         <div className="flex justify-end gap-5">
-          <SignButton label={label} />
-          {label === "Add" && (
-            <CancelBtn handle={() => navigate("/admin/manage")} />
+          {label === "add" && (
+            <button
+              type="button"
+              onClick={() => navigate("/admin/manage")}
+              className="px-6 mt-2 py-2 tracking-wide font-semibold text-white bg-gray-600 rounded-md hover:opacity-85 duration-300 "
+            >
+              {t("back")}
+            </button>
           )}
+          <SignButton label={t(label)} />
         </div>
       </form>
       {label === "Register" && (

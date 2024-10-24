@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Pagination = ({ pages, results, setCount, count }) => {
+  const { t } = useTranslation();
   const [page, setPage] = useState([]);
 
   useEffect(() => {
@@ -16,13 +18,13 @@ const Pagination = ({ pages, results, setCount, count }) => {
             className=" inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
             onClick={() => count >= 2 && setCount((t) => t - 1)}
           >
-            Previous
+            {t("Previous")}
           </button>
           <button
             className=" ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
             onClick={() => count <= pages - 1 && setCount((t) => t + 1)}
           >
-            Next
+            {t("Next")}
           </button>
         </div>
         <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">

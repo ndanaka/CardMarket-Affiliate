@@ -1,15 +1,21 @@
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 const LanguageBar = ({ className }) => {
   const { i18n } = useTranslation();
+  const [currentLang, setCurrentLang] = useState("jp");
 
   const options = [
     { value: "jp", label: "日本語" },
     { value: "en", label: "ENGLISH" },
   ];
 
+  useEffect(() => {
+    i18n.changeLanguage(currentLang);
+  }, [currentLang]);
+
   const changeLanguage = (lang) => {
-    i18n.changeLanguage(lang);
+    setCurrentLang(lang);
   };
 
   return (

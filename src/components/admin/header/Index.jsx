@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 
 import AccountInfo from "../../homepage/header/top/AccountMenu";
 import LanguageBar from "../../../utils/LanguageBar";
 import Item from "./Item";
 
 const Index = () => {
+  const { t } = useTranslation();
   const [show, setShow] = useState(false);
   const [collapse, setCollapse] = useState(false);
   const navigate = useNavigate();
@@ -23,8 +25,6 @@ const Index = () => {
           <Item item={"admin"} />
           <Item item={"affiliate"} />
           <Item item={"rank"} />
-          {/* <Item item={"payment"} />
-          <Item item={"message"} /> */}
         </ul>
       </div>
 
@@ -44,34 +44,25 @@ const Index = () => {
           className="absolute right-3 top-3 text-white"
           onClick={() => setCollapse(false)}
         >
-          Close
+          {t("colse")}
         </button>
         <button
           onClick={() => {
-            navigate("/admin/manage");
+            navigate("/admin");
             setCollapse(false);
           }}
           className={`text-gray-300 m-3 border-white font-semibold`}
         >
-          Manage
+          {t("admin")}
         </button>
         <button
           onClick={() => {
-            navigate("/admin/payment");
+            navigate("/admin/affiliate");
             setCollapse(false);
           }}
           className={`text-gray-300 m-3 border-white font-semibold`}
         >
-          Payment
-        </button>
-        <button
-          onClick={() => {
-            navigate("/admin/message");
-            setCollapse(false);
-          }}
-          className={`text-gray-300 m-3 border-white font-semibold`}
-        >
-          Message
+          {t("affiliate")}
         </button>
         <button
           onClick={() => {
@@ -80,7 +71,7 @@ const Index = () => {
           }}
           className={`text-gray-300 m-3 border-white font-semibold`}
         >
-          Rank
+          {t("rank")}
         </button>
       </div>
 

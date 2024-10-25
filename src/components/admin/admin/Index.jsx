@@ -21,11 +21,9 @@ const Index = () => {
   }, []);
 
   const getMembers = async () => {
-    const res = await GetMembers("Affiliate");
-    const affiliates = res.data.members.filter(
-      (affiliate) => affiliate.role === "Affiliate"
-    );
-    setMembers(affiliates);
+    const res = await GetMembers("Admin");
+    const admins = res.data.members.filter((admin) => admin.role === "Admin");
+    setMembers(admins);
   };
 
   return (
@@ -36,7 +34,7 @@ const Index = () => {
             setMembers={setMembers}
             setFltSignal={setFltSignal}
             searchHolder={t("searchHolder")}
-            role="Affiliate"
+            role="Admin"
           />
           {!fltSignal ? (
             ""
@@ -47,14 +45,14 @@ const Index = () => {
           )}
         </div>
         <button
-          onClick={() => navigate("/admin/affiliate/add")}
+          onClick={() => navigate("/admin/add")}
           className="bg-indigo-600 rounded-md px-3 py-1 text-white hover:opacity-85 duration-50"
         >
-          {t("add") + " " + t("affiliate")}
+          {t("add") + " " + t("admin")}
         </button>
       </div>
       <div className=" overflow-auto">
-        <Table members={members} setMembers={setMembers} role={"Affiliate"} />
+        <Table members={members} setMembers={setMembers} role={"Admin"} />
       </div>
     </div>
   );

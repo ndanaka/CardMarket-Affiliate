@@ -1,24 +1,39 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router";
 import * as yup from "yup";
+import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
 
 import AppServerErr from "../../../errors/AppServerErr";
 import FormikErr from "../../../errors/FormikErr";
+import AuthApi from "../../../api/authApi";
+import HomeApi from "../../../api/homeApi";
 
 import Heading from "../../sign/Heading";
 import Input from "../../sign/Input";
 import SignButton from "../../sign/SignButton";
-import CancelBtn from "../../sign/CancelBtn";
 
-import AuthApi from "../../../api/authApi";
-
-const Edit = ({ label }) => {
-  const [showPassword, SetShowPassword] = useState(false);
+const Edit = () => {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const { op, Register } = AuthApi();
+  const { affId } = location.state || {};
+  const { GetAffInfo } = HomeApi();
 
-  const navigate = useNavigate();
+  const [affInfo, setAffInfo] = useState();
+  const [showPassword, SetShowPassword] = useState(false);
+
+  useEffect(() => {
+    getAffInfo();
+  }, [affId]);
+
+  const getAffInfo = async () => {
+    const affInfo = await GetAffInfo(affId);
+    setAffInfo(affInfo.data.affInfo);
+  };
 
   const formSchema = yup.object({
     fullName: yup.string().required("Name is required."),
@@ -38,12 +53,12 @@ const Edit = ({ label }) => {
 
   const formik = useFormik({
     initialValues: {
-      fullName: "",
-      email: "",
-      password: "",
-      phoneNumber: "",
-      country: "",
-      role: "",
+      fullName: affInfo?.fullName,
+      email: affInfo?.email,
+      password: affInfo?.password,
+      phoneNumber: affInfo?.phoneNumber,
+      country: affInfo?.country,
+      role: "Affiliate",
     },
     onSubmit: ({ fullName, email, password, phoneNumber, country, role }) => {
       Register({
@@ -56,126 +71,106 @@ const Edit = ({ label }) => {
       });
     },
     validationSchema: formSchema,
+    enableReinitialize: true,
   });
 
   return (
-    <>
-      <Heading label={"Edit the User's Profile"} />
-      <AppServerErr>
-        {op.serverErr === "Network Error" ? op.serverErr : null}
-      </AppServerErr>
-      <form className="mt-6 font-sans" onSubmit={formik.handleSubmit}>
-        <Input
-          label={"Fullname (フリガナ)"}
-          type={"text"}
-          name={"fullName"}
-          value={formik.values.fullName}
-          onChange={formik.handleChange("fullName")}
-        />
-        <FormikErr
-          touched={formik.touched.fullName}
-          errors={formik.errors.fullName}
-        />
-        <Input
-          label={"Email"}
-          type={"email"}
-          name={"email"}
-          value={formik.values.email}
-          onChange={formik.handleChange("email")}
-        />
-        <FormikErr
-          touched={formik.touched.email}
-          errors={formik.errors.email}
-        />
+    <div className="flex justify-center py-4">
+      <div className="w-[500px]">
+        <Heading label={t("edit") + " " + t("affiliate")} />
         <AppServerErr>
-          {op.appErr === "Email already exists, try with a different one" &&
-            op.appErr}
+          {op.serverErr === "Network Error" ? t("netError") : t(op.appErr)}
         </AppServerErr>
-        <div className=" relative">
+        <form className="mt-6 font-sans" onSubmit={formik.handleSubmit}>
           <Input
-            label={"Password"}
-            type={!showPassword ? "password" : "text"}
-            name={"password"}
-            value={formik.values.password}
-            onChange={formik.handleChange("password")}
+            label={"* " + t("fullName")}
+            type={"text"}
+            name={"fullName"}
+            value={formik.values.fullName}
+            onChange={formik.handleChange("fullName")}
           />
-          <button
-            type="button"
-            onClick={() => SetShowPassword(!showPassword)}
-            className=" absolute bottom-2 right-2"
-          >
-            {showPassword ? (
-              <i className="far fa-eye-slash" />
-            ) : (
-              <i className="far fa-eye" />
-            )}
-          </button>
-        </div>
-        <FormikErr
-          touched={formik.touched.password}
-          errors={formik.errors.password}
-        />
-        <Input
-          label={"Phonenumber"}
-          type={"tel"}
-          name={"phoneNumber"}
-          value={formik.values.phoneNumber}
-          onChange={formik.handleChange("phoneNumber")}
-        />
-        <FormikErr
-          touched={formik.touched.phoneNumber}
-          errors={formik.errors.phoneNumber}
-        />
-        <Input
-          label={"Country"}
-          type={"text"}
-          name={"country"}
-          value={formik.values.country}
-          onChange={formik.handleChange("country")}
-        />
-        <FormikErr
-          touched={formik.touched.country}
-          errors={formik.errors.country}
-        />
-        <div className="flex gap-5">
-          <label>
-            <input
-              type="radio"
-              name="role"
-              value="Manager"
-              onChange={formik.handleChange}
-              checked={formik.values.role === "Manager"}
+          <FormikErr
+            touched={formik.touched.fullName}
+            errors={formik.errors.fullName}
+          />
+          <br />
+          <Input
+            label={"* " + t("email")}
+            type={"email"}
+            name={"email"}
+            value={formik.values.email}
+            onChange={formik.handleChange("email")}
+          />
+          <FormikErr
+            touched={formik.touched.email}
+            errors={formik.errors.email}
+          />
+          <br />
+          <div className=" relative">
+            <Input
+              label={"* " + t("password")}
+              type={!showPassword ? "password" : "text"}
+              name={"password"}
+              value={formik.values.password}
+              onChange={formik.handleChange("password")}
             />
-            <span>Manager</span>
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="role"
-              value="Read Manager"
-              onChange={formik.handleChange}
-              checked={formik.values.role === "readManager"}
-            />
-            <span>Manager(Only-Read)</span>
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="role"
-              value="Affiliate"
-              onChange={formik.handleChange}
-              checked={formik.values.role === "Affiliate"}
-            />
-            <span>Affiliate</span>
-          </label>
-        </div>
-        <FormikErr touched={formik.touched.role} errors={formik.errors.role} />
-        <div className="flex justify-end gap-5">
-          <SignButton label={"Confirm"} />
-          <CancelBtn handle={() => navigate("/admin/manage")} />
-        </div>
-      </form>
-    </>
+            <button
+              type="button"
+              onClick={() => SetShowPassword(!showPassword)}
+              className=" absolute bottom-2 right-2"
+            >
+              {showPassword ? (
+                <i className="far fa-eye-slash" />
+              ) : (
+                <i className="far fa-eye" />
+              )}
+            </button>
+          </div>
+          <FormikErr
+            touched={formik.touched.password}
+            errors={formik.errors.password}
+          />
+          <br />
+          <Input
+            label={"* " + t("phNumber")}
+            type={"tel"}
+            name={"phoneNumber"}
+            value={formik.values.phoneNumber}
+            onChange={formik.handleChange("phoneNumber")}
+          />
+          <FormikErr
+            touched={formik.touched.phoneNumber}
+            errors={formik.errors.phoneNumber}
+          />
+          <br />
+          <Input
+            label={"* " + t("country")}
+            type={"text"}
+            name={"country"}
+            value={formik.values.country}
+            onChange={formik.handleChange("country")}
+          />
+          <FormikErr
+            touched={formik.touched.country}
+            errors={formik.errors.country}
+          />
+          <FormikErr
+            touched={formik.touched.role}
+            errors={formik.errors.role}
+          />
+          <div className="flex justify-end gap-5 py-2">
+            <button
+              type="button"
+              onClick={() => navigate(-1)}
+              className="px-6 mt-2 py-2 w-[20%] tracking-wide font-semibold text-white bg-gray-600 rounded-md hover:opacity-85 duration-300 "
+            >
+              {t("back")}
+            </button>
+            <SignButton label={t("edit")} />
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 

@@ -13,9 +13,8 @@ import Hint from "../../components/sign/Hint";
 import SignButton from "../sign/SignButton";
 import Heading from "../sign/Heading";
 import Input from "../sign/Input";
-import CancelBtn from "../sign/CancelBtn";
 
-const RegisterForm = ({ label }) => {
+const RegisterForm = ({ type, role }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -39,8 +38,6 @@ const RegisterForm = ({ label }) => {
       .required(t("password") + t("isRequired")),
     phoneNumber: yup.string().required(t("phNumber") + " " + t("isRequired")),
     country: yup.string().required(t("country") + " " + t("isRequired")),
-    role:
-      label === "add" ? yup.string().required(t("requiredRole")) : yup.string(),
   });
 
   const formik = useFormik({
@@ -50,7 +47,8 @@ const RegisterForm = ({ label }) => {
       password: "",
       phoneNumber: "",
       country: "",
-      role: "Affiliate",
+      type: type,
+      role: role,
     },
     onSubmit: ({ fullName, email, password, phoneNumber, country, role }) => {
       submitRegister({
@@ -59,6 +57,7 @@ const RegisterForm = ({ label }) => {
         password,
         phoneNumber,
         country,
+        type,
         role,
       });
     },
@@ -67,7 +66,11 @@ const RegisterForm = ({ label }) => {
 
   return (
     <>
-      <Heading label={t("add") + " " + t("user")} />
+      <Heading
+        label={
+          type === "register" ? t("partnerRegister") : t("add") + " " + t(role)
+        }
+      />
       <AppServerErr>
         {op.serverErr === "Network Error" ? t("netError") : t(op.appErr)}
       </AppServerErr>
@@ -144,61 +147,27 @@ const RegisterForm = ({ label }) => {
           touched={formik.touched.country}
           errors={formik.errors.country}
         />
-        {label === "add" && (
-          <div className="flex flex-wrap justify-between gap-5 my-2">
-            <label>
-              <input
-                className="mr-1"
-                type="radio"
-                name="role"
-                value="Admin"
-                onChange={formik.handleChange}
-                checked={formik.values.role === "Admin"}
-              />
-              <span>{t("admin")}</span>
-            </label>
-            <label>
-              <input
-                className="mr-1"
-                type="radio"
-                name="role"
-                value="Manager"
-                onChange={formik.handleChange}
-                checked={formik.values.role === "Manager"}
-              />
-              <span>{t("manager")}</span>
-            </label>
-            <label>
-              <input
-                className="mr-1"
-                type="radio"
-                name="role"
-                value="Affiliate"
-                onChange={formik.handleChange}
-                checked={formik.values.role === "Affiliate"}
-              />
-              <span>{t("affiliate")}</span>
-            </label>
-          </div>
-        )}
-        <FormikErr touched={formik.touched.role} errors={formik.errors.role} />
-        <div className="flex justify-end gap-5">
-          {label === "add" && (
-            <button
-              type="button"
-              onClick={() => navigate("/admin/manage")}
-              className="px-6 mt-2 py-2 tracking-wide font-semibold text-white bg-gray-600 rounded-md hover:opacity-85 duration-300 "
-            >
-              {t("back")}
-            </button>
+        <div className="flex justify-end gap-5 pt-2">
+          {type !== "register" ? (
+            <>
+              <button
+                type="button"
+                onClick={() => navigate(-1)}
+                className="px-6 mt-2 py-2 w-[20%] tracking-wide font-semibold text-white bg-gray-600 rounded-md hover:opacity-85 duration-300 "
+              >
+                {t("back")}
+              </button>
+              <SignButton label={t("add")} />
+            </>
+          ) : (
+            <SignButton label={t("register")} />
           )}
-          <SignButton label={t(label)} />
         </div>
       </form>
-      {label === "Register" && (
+      {type === "register" && (
         <Hint
-          label={"Log in"}
-          question={"Already have an account? "}
+          label={t("login")}
+          question={t("haveAccount") + " "}
           handle={() => navigate("/LogIn")}
         />
       )}

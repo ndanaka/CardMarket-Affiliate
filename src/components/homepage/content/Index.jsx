@@ -5,16 +5,15 @@ import { useTranslation } from "react-i18next";
 
 import { tokenWithPersistenceAtom } from "../../../atoms";
 
-import ClientStats from "./ClientStats";
-import TotalStats from "./TotalStats";
-import LinkStats from "./LinkStats";
-import LinkClients from "./LinkClients";
+import Statistics from "./Statistics";
+import ClientStatus from "./DepositStatus";
+import LinkStatus from "./LinkStatus";
 import Toast from "../../../utils/toast";
 
 const Content = ({ aff_Id }) => {
   const { t } = useTranslation();
 
-  const [period, setPeriod] = useState(t("today"));
+  const [period, setPeriod] = useState("today");
   const [token, setToken] = useAtom(tokenWithPersistenceAtom);
   const [toastVisible, setToastVisible] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
@@ -43,13 +42,15 @@ const Content = ({ aff_Id }) => {
   });
 
   return (
-    <div className="mx-8 my-4">
-      {/* <p className="font-sans font-semibold text-2xl pb-3">{t("statistics")}</p> */}
+    <div className="mx-8 my-2">
       <div className="flex flex-wrap justify-center gap-2">
-        <TotalStats affId={affId} setPeriod={setPeriod} />
-        <ClientStats affId={affId} period={period} />
-        {/* <LinkStats affId={affId} setPeriod={setPeriod} />
-        <LinkClients affId={affId} period={period} /> */}
+        <div className="w-[60%] max-[900px]:w-full my-2">
+          <Statistics affId={affId} setPeriod={setPeriod} />
+        </div>
+        <div className="max-[900px]:w-full w-[39%]">
+          <ClientStatus affId={affId} period={period} />
+          <LinkStatus affId={affId} period={period} />
+        </div>
       </div>
       <Toast
         type={toastType}

@@ -23,13 +23,15 @@ export const GET_AFF_RANK = `${API_BASE_URL}/members/getAffRank`;
 // get statistics for affiliate
 export const GET_STATISTICS = `${API_BASE_URL}/status/statistics`;
 
-// get clients of affiliate by period
-export const GET_CLIENTS = `${API_BASE_URL}/status/clients`;
+// get status of affiliate by period
+export const GET_DEPOSIT_STATUS = `${API_BASE_URL}/status/deposit`;
+export const GET_LINK_STATUS = `${API_BASE_URL}/status/link`;
 
 // bank account
 export const GET_BANK_INFO = `${API_BASE_URL}/members/getBankInfo`;
 export const ADD_BANK_ACCOUNT = `${API_BASE_URL}/members/addBankAcc`;
 export const REQUEST_WITHDRAW = `${API_BASE_URL}/members/requestWithdraw`;
+export const DELETE_MEMBER = `${API_BASE_URL}/members/deleteMember`;
 
 // rank
 export const ADD_RANK = `${API_BASE_URL}/admin/addRank`;

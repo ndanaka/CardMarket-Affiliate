@@ -46,7 +46,8 @@ const AuthApi = () => {
           setId(data.id);
           navigate("/login");
         } else {
-          navigate("/admin/manage");
+          if (data.type === "affiliate") navigate("/admin/affiliate");
+          if (data.type === "admin") navigate("/admin");
         }
       } else {
         setOp({

@@ -4,34 +4,34 @@ import { useTranslation } from "react-i18next";
 import formatPrice from "../../../utils/formatPrice";
 import HomeApi from "../../../api/homeApi";
 
-const ClientStats = ({ affId, period }) => {
+const DepositStatus = ({ affId, period }) => {
   const { t } = useTranslation();
-  const [clients, setClients] = useState();
+  const [deposits, setDeposits] = useState();
   const [more, setMore] = useState(true);
 
-  const { GetClients } = HomeApi();
+  const { GetDepositStatus } = HomeApi();
 
   useEffect(() => {
     setMore(true);
-    getClients();
+    getDepositStatus();
   }, [period]);
 
-  const getClients = async () => {
+  const getDepositStatus = async () => {
     try {
-      const res = await GetClients(affId, period);
-      setClients(res.data.clientData);
+      const res = await GetDepositStatus(affId, period);
+      setDeposits(res.data.deposits);
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <div className="max-[900px]:w-full w-[30%]">
+    <div className="my-2 relative">
       <div className="font-sans font-semibold text-gray-500 text-lg">
         {t(period)}
-        {t("sClients")}
+        {t("sDeposit")}
       </div>
-      <table className=" w-[100%] text-[13px] mt-1 border-gray-400 border-[1px] text-center rounded-3xl ">
+      <table className="w-[100%] text-[13px] mt-1 border-gray-400 border-[1px] text-center rounded-3xl ">
         <thead className="h-10 text-[14px] text-white bg-[#4B5563]">
           <tr>
             <th>{t("name")}</th>
@@ -40,16 +40,16 @@ const ClientStats = ({ affId, period }) => {
           </tr>
         </thead>
         <tbody className="text-[14px]">
-          {clients?.length === 0 ? (
+          {deposits?.length === 0 ? (
             <tr>
-              <td colSpan={3}>{t("noClient")}</td>
+              <td colSpan={3}>{t("noData")}</td>
             </tr>
           ) : (
-            clients?.map((item, index) => (
+            deposits?.map((item, index) => (
               <tr
                 key={index}
                 className={`even:bg-gray-100 h-10 ${
-                  index > 2 && more && "hidden"
+                  index >= 5 && more && "hidden"
                 }`}
               >
                 <td>{item.name}</td>
@@ -60,16 +60,16 @@ const ClientStats = ({ affId, period }) => {
           )}
         </tbody>
       </table>
-      {clients?.length > 3 && (
+      {deposits?.length > 5 && (
         <button
           onClick={() => setMore(!more)}
           className="text-[green] underline absolute left-[50%] -translate-x-[50%] text-[15px]"
         >
-          {more ? "more" : "less"}
+          {more ? t("viewMore") : t("viewLess")}
         </button>
       )}
     </div>
   );
 };
 
-export default ClientStats;
+export default DepositStatus;

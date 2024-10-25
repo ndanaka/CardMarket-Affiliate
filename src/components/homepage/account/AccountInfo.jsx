@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import Item from "./Item";
 import formatDate from "../../../utils/formatDate";
 
-const AccountInfo = ({ affInfo }) => {
+const AccountInfo = ({ affInfo, affRank }) => {
   const { t } = useTranslation();
 
   return (
@@ -16,7 +16,7 @@ const AccountInfo = ({ affInfo }) => {
       <Item
         icon={"fas fa-medal"}
         label={t("current") + " " + t("level")}
-        content={affInfo?.rank}
+        content={t(affRank?.name)}
       />
       <Item
         icon={"fas fa-envelope"}

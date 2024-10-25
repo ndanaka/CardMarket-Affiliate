@@ -12,16 +12,16 @@ import Links from "./pages/homepage/Links";
 import AffPayment from "./pages/homepage/Payment";
 import Level from "./pages/homepage/Level";
 import Profile from "./pages/homepage/Profile";
-import ContactUs from "./pages/contactUs/Index";
 import AdminLayout from "./pages/admin/Layout";
-import Payment from "./pages/admin/Payment";
 import Admin from "./pages/admin/Admin";
 import Affiliate from "./pages/admin/Affiliate";
+import AddAdmin from "./components/admin/admin/Add";
+import AddAffiliate from "./components/admin/affiliate/Add";
+import ViewAffiliate from "./components/admin/affiliate/View";
+import Edit from "./components/admin/affiliate/Edit";
 import Rank from "./pages/admin/Rank";
 import Message from "./pages/admin/Message";
-import AddUser from "./pages/admin/affiliate/AddUser";
-import Edit from "./pages/admin/affiliate/Edit";
-import View from "./pages/admin/affiliate/View";
+import ContactUs from "./pages/contactUs/Index";
 
 const App = () => {
   return (
@@ -44,13 +44,13 @@ const App = () => {
 
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/add" element={<AddAdmin />} />
           <Route path="/admin/affiliate" element={<Affiliate />} />
+          <Route path="/admin/affiliate/add" element={<AddAffiliate />} />
+          <Route path="/admin/affiliate/view" element={<ViewAffiliate />} />
+          <Route path="/admin/affiliate/edit" element={<Edit />} />
           <Route path="/admin/rank" element={<Rank />} />
           <Route path="/admin/message" element={<Message />} />
-          <Route path="/admin/payment" element={<Payment />} />
-          <Route path="/admin/affiliate/adduser" element={<AddUser />} />
-          <Route path="/admin/affiliate/edit" element={<Edit />} />
-          <Route path="/admin/affiliate/view" element={<View />} />
         </Route>
       </Routes>
     </BrowserRouter>

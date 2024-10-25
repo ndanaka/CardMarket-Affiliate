@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import Button from "./Button";
+import Button from "../common/Button";
 import AccountInfo from "../../homepage/account/AccountInfo";
 import HomeContent from "../../homepage/content/Index";
 import PaymentHistroy from "../../homepage/payments/History";
@@ -18,19 +18,38 @@ const View = () => {
 
   const [select, setSelect] = useState(t("profile"));
   const [affInfo, setAffInfo] = useState();
+  const [affRank, setAffRank] = useState();
 
   const { affId } = location.state || {};
 
   useEffect(() => {
     getAffInfo();
-  });
+  }, [affId]);
 
   const getAffInfo = async () => {
-    try {
-      const affInfo = await GetAffInfo(affId);
-      setAffInfo(affInfo.data.affInfo);
-    } catch (error) {
-      console.log(error);
+    const res = await GetAffInfo(affId);
+    setAffInfo(res.data.affInfo);
+    setAffRank(res.data.affRank);
+  };
+
+  const renderContent = () => {
+    switch (select) {
+      case t("profile"):
+        return <AccountInfo affInfo={affInfo} affRank={affRank} />;
+      case t("statistics"):
+        return (
+          <div className="py-4">
+            <HomeContent aff_Id={affId} />
+          </div>
+        );
+      case t("payment") + " " + t("history"):
+        return (
+          <div className="py-8">
+            <PaymentHistroy aff_Id={affId} />
+          </div>
+        );
+      default:
+        return <AccountInfo affInfo={affInfo} affRank={affRank} />;
     }
   };
 
@@ -62,15 +81,7 @@ const View = () => {
           />
         </div>
       </div>
-      {select === t("profile") ? (
-        <AccountInfo affInfo={affInfo} />
-      ) : select === t("statistics") ? (
-        <HomeContent aff_Id={affId} />
-      ) : (
-        <div className="py-4">
-          <PaymentHistroy aff_Id={affId} />
-        </div>
-      )}
+      {renderContent()}
     </div>
   );
 };

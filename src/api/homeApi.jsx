@@ -6,7 +6,8 @@ import { jwtDecode } from "jwt-decode";
 import {
   GET_MEMBERS,
   GET_STATISTICS,
-  GET_CLIENTS,
+  GET_DEPOSIT_STATUS,
+  GET_LINK_STATUS,
   GET_AFF_INFO,
   GET_BANK_INFO,
   ADD_BANK_ACCOUNT,
@@ -18,6 +19,7 @@ import {
   ADD_LINK,
   GET_ALL_LINK,
   DELETE_LINK,
+  DELETE_MEMBER,
 } from "../constant/api";
 
 import { useAtom } from "jotai";
@@ -64,6 +66,17 @@ const HomeApi = () => {
     }
   };
 
+  const DeleteMember = async (formData) => {
+    try {
+      return await axios.post(DELETE_MEMBER, formData, postConfig);
+    } catch (error) {
+      setOp({
+        appErr: error?.response?.data?.message,
+        serverErr: error?.message,
+      });
+    }
+  };
+
   const GetStatistics = async (affId) => {
     try {
       const formData = {
@@ -79,14 +92,27 @@ const HomeApi = () => {
     }
   };
 
-  const GetClients = async (affId, period) => {
+  const GetDepositStatus = async (affId, period) => {
     try {
       const formData = {
         affId: affId,
         period: period,
       };
 
-      return await axios.post(GET_CLIENTS, formData, postConfig);
+      return await axios.post(GET_DEPOSIT_STATUS, formData, postConfig);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const GetLinkStatus = async (affId, period) => {
+    try {
+      const formData = {
+        affId: affId,
+        period: period,
+      };
+
+      return await axios.post(GET_LINK_STATUS, formData, postConfig);
     } catch (error) {
       console.log(error);
     }
@@ -236,7 +262,8 @@ const HomeApi = () => {
     setOp,
     GetMembers,
     GetStatistics,
-    GetClients,
+    GetDepositStatus,
+    GetLinkStatus,
     GetAffInfo,
     SubmitAddBank,
     GetAffBankInfo,
@@ -248,6 +275,7 @@ const HomeApi = () => {
     SubmitAddLink,
     SubmitDeleteLink,
     GetAllLinks,
+    DeleteMember,
   };
 };
 

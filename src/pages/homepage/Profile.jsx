@@ -4,7 +4,7 @@ import { useAtom } from "jotai";
 
 import { tokenWithPersistenceAtom } from "../../atoms";
 
-import Setting from "../../components/homepage/account/AccountInfo";
+import AccountInfo from "../../components/homepage/account/AccountInfo";
 import ChangePsd from "../../components/homepage/account/ChangePsd";
 
 import HomeApi from "../../api/homeApi";
@@ -12,31 +12,25 @@ import HomeApi from "../../api/homeApi";
 const Profile = () => {
   const [show, setShow] = useState(true);
   const [affInfo, setAffInfo] = useState();
+  const [affRank, setAffRank] = useState();
 
   const [token, setToken] = useAtom(tokenWithPersistenceAtom);
 
   const { GetAffInfo } = HomeApi();
 
   useEffect(() => {
-    getAffInfo(jwtDecode(token).id);
-  });
+    getAffInfo();
+  }, []);
 
-  const getAffInfo = async (affId) => {
-    try {
-      const affInfo = await GetAffInfo(affId);
-      setAffInfo(affInfo.data.affInfo);
-    } catch (error) {
-      console.log(error);
-    }
+  const getAffInfo = async () => {
+    const res = await GetAffInfo(jwtDecode(token).id);
+    setAffInfo(res.data.affInfo);
+    setAffRank(res.data.affRank);
   };
 
   return (
     <div className="px-10">
-      {show ? (
-        <Setting setShow={setShow} affInfo={affInfo} />
-      ) : (
-        <ChangePsd setShow={setShow} />
-      )}
+      <AccountInfo setShow={setShow} affInfo={affInfo} affRank={affRank} />
     </div>
   );
 };

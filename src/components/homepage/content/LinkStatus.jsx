@@ -4,51 +4,51 @@ import { useTranslation } from "react-i18next";
 import formatPrice from "../../../utils/formatPrice";
 import HomeApi from "../../../api/homeApi";
 
-const LinkClients = ({ affId, period }) => {
+const LinkStatus = ({ affId, period }) => {
   const { t } = useTranslation();
-  const [clients, setClients] = useState();
+  const [links, setLinks] = useState();
   const [more, setMore] = useState(true);
 
-  const { GetClients } = HomeApi();
+  const { GetLinkStatus } = HomeApi();
 
   useEffect(() => {
     setMore(true);
-    getClients();
+    getLinkStatus();
   }, [period]);
 
-  const getClients = async () => {
-    try {
-      const res = await GetClients(affId, period);
-      setClients(res.data.clientData);
-    } catch (error) {
-      console.log(error);
-    }
+  const getLinkStatus = async () => {
+    const res = await GetLinkStatus(affId, period);
+    console.log(res.data);
+    setLinks(res.data.links);
   };
 
   return (
-    <div className="max-[900px]:w-full w-[30%]">
+    <div className="my-2 mt-6 relative">
       <div className="font-sans font-semibold text-gray-500 text-lg">
-        {t("link") + " " + t("client")}
+        {t(period)}
+        {t("sLink")}
       </div>
       <table className=" w-[100%] text-[13px] mt-1 border-gray-400 border-[1px] text-center rounded-3xl ">
         <thead className="h-10 text-[14px] text-white bg-[#4B5563]">
           <tr>
-            <th>{t("name")}</th>
-            <th>{t("country")}</th>
-            <th>{t("deposit")}</th>
+            <th>{t("link")}</th>
+            <th>{t("clicks")}</th>
+            <th>{t("registeration")}</th>
+            <th>{"CVR"}</th>
+            <th>{t("earn")}</th>
           </tr>
         </thead>
         <tbody className="text-[14px]">
-          {clients?.length === 0 ? (
+          {links?.length === 0 ? (
             <tr>
-              <td colSpan={3}>{t("noClient")}</td>
+              <td colSpan={5}>{t("noData")}</td>
             </tr>
           ) : (
-            clients?.map((item, index) => (
+            links?.map((item, index) => (
               <tr
                 key={index}
                 className={`even:bg-gray-100 h-10 ${
-                  index > 2 && more && "hidden"
+                  index >= 5 && more && "hidden"
                 }`}
               >
                 <td>{item.name}</td>
@@ -59,16 +59,16 @@ const LinkClients = ({ affId, period }) => {
           )}
         </tbody>
       </table>
-      {clients?.length > 3 && (
+      {links?.length > 5 && (
         <button
           onClick={() => setMore(!more)}
           className="text-[green] underline absolute left-[50%] -translate-x-[50%] text-[15px]"
         >
-          {more ? "more" : "less"}
+          {more ? t("viewMore") : t("viewLess")}
         </button>
       )}
     </div>
   );
 };
 
-export default LinkClients;
+export default LinkStatus;

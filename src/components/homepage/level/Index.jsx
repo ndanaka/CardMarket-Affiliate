@@ -8,7 +8,7 @@ import { SERVER_URL } from "../../../constant/baseUrl";
 
 import HomeApi from "../../../api/homeApi";
 
-import LevelOverview from "./LevelOverview";
+import AllLevel from "./AllLevel";
 import Calculator from "./Calculator";
 import Example from "./Example";
 import CircleChart from "./CircleChart";
@@ -51,7 +51,7 @@ const LevelUpgrade = () => {
       <div className="py-5 font-sans flex flex-wrap justify-center gap-5 max-[900px]:px-20 max-[800px]:px-2">
         <div
           className="flex flex-wrap justify-center bg-white shadow-lg shadow-gray-400 px-5 py-5
-         gap-5 max-[900px]:w-full lg:px-10 w-[40%] pb-10 max-[600px]:px-10"
+         gap-5 max-[900px]:w-full lg:px-10 w-[40%] pb-10 max-[600px]:px-10 h-fit"
         >
           <div className="w-[45%] max-[500px]:w-full">
             <h3 className="py-3 font-semibold text-center">
@@ -114,7 +114,7 @@ const LevelUpgrade = () => {
           </div>
         </div>
         <div className="bg-white px-10 py-5 max-[900px]:px-3 max-[900px]:w-full w-[55%]  shadow-lg shadow-gray-400 pb-10">
-          <LevelOverview ranks={ranks} />
+          <AllLevel ranks={ranks} />
           <h3 className="py-3 font-semibold">{t("howGetLevel")}</h3>
           <p className=" text-justify text-gray-500">{t("howGetLevelDesc")}</p>
         </div>

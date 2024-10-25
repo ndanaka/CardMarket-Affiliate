@@ -5,7 +5,7 @@ import { jwtDecode } from "jwt-decode";
 import { useAtom } from "jotai";
 import { tokenWithPersistenceAtom } from "../../atoms";
 
-import AdminHeader from "../../components/admin/header/Index";
+import Header from "../../components/admin/header/Index";
 
 const Layout = () => {
   const [token, setToken] = useAtom(tokenWithPersistenceAtom);
@@ -34,7 +34,7 @@ const Layout = () => {
 
   return (
     <div className="mx-36 max-[1000px]:mx-10 max-[700px]:mx-2">
-      {!token ? <Navigate to="/" /> : <AdminHeader />}
+      {!token ? <Navigate to="/" /> : <Header />}
       <Outlet />
     </div>
   );

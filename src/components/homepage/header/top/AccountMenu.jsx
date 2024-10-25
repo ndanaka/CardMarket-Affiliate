@@ -6,7 +6,7 @@ import { tokenWithPersistenceAtom } from "../../../../atoms";
 
 import Account from "../../account/Index";
 
-const AccountInfoModal = ({ show, setShow, affId }) => {
+const AccountMenu = ({ show, setShow, affId }) => {
   const [token, setToken] = useAtom(tokenWithPersistenceAtom);
   const [payload, setPayload] = useState(null);
 
@@ -28,4 +28,4 @@ const AccountInfoModal = ({ show, setShow, affId }) => {
   );
 };
 
-export default AccountInfoModal;
+export default AccountMenu;

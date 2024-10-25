@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
-import AccountInfo from "../../homepage/homeHeader/top/AccountInfoModal";
+import AccountInfo from "../../homepage/header/top/AccountMenu";
 import LanguageBar from "../../../utils/LanguageBar";
 import Item from "./Item";
 
@@ -20,10 +20,11 @@ const Index = () => {
           Pro Affiliate
         </h1>
         <ul className="flex gap-10 max-[1200px]:gap-5 font-medium ml-4">
-          <Item item={"manage"} />
+          <Item item={"admin"} />
+          <Item item={"affiliate"} />
+          <Item item={"rank"} />
           {/* <Item item={"payment"} />
           <Item item={"message"} /> */}
-          <Item item={"rank"} />
         </ul>
       </div>
 

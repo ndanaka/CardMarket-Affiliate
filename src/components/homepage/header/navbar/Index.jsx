@@ -30,8 +30,8 @@ const Navbar = () => {
     if (pathName[2] === "links") {
       setShowNav((nav) => ({ ...nav, color: t("links") }));
     }
-    if (pathName[2] === "payments") {
-      setShowNav((nav) => ({ ...nav, color: t("payments") }));
+    if (pathName[2] === "payment") {
+      setShowNav((nav) => ({ ...nav, color: t("payment") }));
     }
     if (pathName[2] === undefined) {
       setShowNav((nav) => ({ ...nav, color: t("homepage") }));
@@ -83,16 +83,16 @@ const Navbar = () => {
           label={t("links")}
           child={false}
           handle={() => {
-            navigate("/homepage/links/affiliatelinks");
+            navigate("/homepage/links");
             setShowNav((nav) => ({ ...nav, color: t("links") }));
           }}
         />
         <NavItem
-          label={t("payments")}
+          label={t("payment")}
           child={false}
           handle={() => {
-            navigate("/homepage/payments");
-            setShowNav((nav) => ({ ...nav, color: t("payments") }));
+            navigate("/homepage/payment");
+            setShowNav((nav) => ({ ...nav, color: t("payment") }));
           }}
         />
       </div>

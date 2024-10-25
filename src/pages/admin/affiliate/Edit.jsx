@@ -1,4 +1,4 @@
-import Edits from "../../../components/admin/manage/Edit";
+import Edits from "../../../components/admin/affiliate/Edit";
 
 const Edit = () => {
   return (

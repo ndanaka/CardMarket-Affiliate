@@ -16,19 +16,15 @@ const Index = () => {
   const [members, setMembers] = useState([]);
   const [fltSignal, setFltSignal] = useState(false);
 
-  const { op, GetMembers } = HomeApi();
+  const { GetMembers } = HomeApi();
 
   useEffect(() => {
     getMembers();
   }, [role]);
 
   const getMembers = async () => {
-    try {
-      const res = await GetMembers(role);
-      setMembers(res.data.members);
-    } catch (error) {
-      console.log(error);
-    }
+    const res = await GetMembers(role);
+    setMembers(res.data.members);
   };
 
   return (
@@ -71,7 +67,7 @@ const Index = () => {
           />
         </div>
         <button
-          onClick={() => navigate("/admin/manage/adduser")}
+          onClick={() => navigate("/admin/affiliate/adduser")}
           className="bg-indigo-600 rounded-md px-3 py-1 text-white hover:opacity-85 duration-50"
         >
           {t("add") + " " + t("user")}

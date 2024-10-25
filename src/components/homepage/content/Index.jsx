@@ -44,7 +44,7 @@ const Content = ({ aff_Id }) => {
 
   return (
     <div className="mx-8 my-4">
-      <p className="font-sans font-semibold text-2xl pb-3">{t("statistics")}</p>
+      {/* <p className="font-sans font-semibold text-2xl pb-3">{t("statistics")}</p> */}
       <div className="flex flex-wrap justify-center gap-2">
         <TotalStats affId={affId} setPeriod={setPeriod} />
         <ClientStats affId={affId} period={period} />

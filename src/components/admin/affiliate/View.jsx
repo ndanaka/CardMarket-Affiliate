@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import Button from "./Button";
 import AccountInfo from "../../homepage/account/AccountInfo";
 import HomeContent from "../../homepage/content/Index";
-import PaymentHistroy from "../../homepage/payment/History";
+import PaymentHistroy from "../../homepage/payments/History";
 
 import HomeApi from "../../../api/homeApi";
 
 const View = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const { GetAffInfo } = HomeApi();
 
-  const [select, setSelect] = useState("Profile");
+  const [select, setSelect] = useState(t("profile"));
   const [affInfo, setAffInfo] = useState();
 
   const { affId } = location.state || {};
@@ -40,32 +42,34 @@ const View = () => {
           onClick={() => navigate(-1)}
         >
           <i className="fas fa-arrow-left" />
-          &nbsp;<span>To Manage</span>
+          &nbsp;<span>{t("back")}</span>
         </button>
         <div className="mt-2">
           <Button
-            label={"Profile"}
-            handle={() => setSelect("Profile")}
+            label={t("profile")}
+            handle={() => setSelect(t("profile"))}
             select={select}
           />
           <Button
-            label={"Progress"}
-            handle={() => setSelect("Progress")}
+            label={t("statistics")}
+            handle={() => setSelect(t("statistics"))}
             select={select}
           />
           <Button
-            label={"Payment History"}
-            handle={() => setSelect("Payment History")}
+            label={t("payment") + " " + t("history")}
+            handle={() => setSelect(t("payment") + " " + t("history"))}
             select={select}
           />
         </div>
       </div>
-      {select === "Profile" ? (
+      {select === t("profile") ? (
         <AccountInfo affInfo={affInfo} />
-      ) : select === "Progress" ? (
+      ) : select === t("statistics") ? (
         <HomeContent aff_Id={affId} />
       ) : (
-        <PaymentHistroy aff_Id={affId} />
+        <div className="py-4">
+          <PaymentHistroy aff_Id={affId} />
+        </div>
       )}
     </div>
   );

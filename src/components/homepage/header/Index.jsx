@@ -2,7 +2,7 @@ import Top from "./top/Index";
 import Main from "./main/Index";
 import Navbar from "./navbar/Index";
 
-const HomeHeader = () => {
+const Header = () => {
   return (
     <div className="font-sans">
       <Top />
@@ -11,4 +11,4 @@ const HomeHeader = () => {
     </div>
   );
 };
-export default HomeHeader;
+export default Header;

@@ -85,7 +85,7 @@ const AffiLinks = () => {
 
   return (
     <div className="mx-8 my-4">
-      <p className="font-sans font-semibold text-2xl pb-3">{t("affLinks")}</p>
+      {/* <p className="font-sans font-semibold text-2xl pb-3">{t("affLinks")}</p> */}
       <div className="flex flex-wrap justify-center gap-2">
         <div className="flex flex-col justify-between w-[35%] max-[900px]:w-full h-fit">
           <div className="font-sans font-semibold text-gray-500 text-lg">

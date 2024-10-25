@@ -9,7 +9,7 @@ import ChangePsd from "../../components/homepage/account/ChangePsd";
 
 import HomeApi from "../../api/homeApi";
 
-const AccountInfo = () => {
+const Profile = () => {
   const [show, setShow] = useState(true);
   const [affInfo, setAffInfo] = useState();
 
@@ -41,4 +41,4 @@ const AccountInfo = () => {
   );
 };
 
-export default AccountInfo;
+export default Profile;

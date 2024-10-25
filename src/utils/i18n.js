@@ -71,7 +71,6 @@ const resources = {
       homepage: "ホームページ",
       links: "リンク",
       payment: "支払い",
-      payments: "支払い",
       current: "現在",
       Normal: "ノーマル",
       Bronze: "ブロンズ",
@@ -196,6 +195,7 @@ const resources = {
       wrongUser: "アフィリエイトIDまたはパスワードが正しくありません。",
       failedLogin: "ログインに失敗しました。",
       successLoggedIn: "ログインに成功しました。",
+      profile: "プロフィール",
     },
   },
   en: {
@@ -381,7 +381,6 @@ const resources = {
       last: "Last",
       yes: "Yes",
       no: "No",
-      payments: "Payments",
       moreInfoStatistic: "For more information, click here",
       client: "Client",
       existEmail: "Email already exists. Try with a different one.",
@@ -392,6 +391,7 @@ const resources = {
       wrongUser: "Affiliate ID or Password not correct.",
       failedLogin: "Failed to login.",
       successLoggedIn: "Successfully logged in.",
+      profile: "Profile",
     },
   },
 };

@@ -45,9 +45,9 @@ const Account = ({ setShow }) => {
         <>
           <Button
             src={"setting.svg"}
-            label={t("account")}
+            label={t("profile")}
             handle={() => {
-              navigate("/homepage/accountsetting");
+              navigate("/homepage/profile");
               setShow(false);
               setShowNav((t) => ({ ...t, color: "" }));
             }}

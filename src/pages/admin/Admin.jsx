@@ -1,4 +1,4 @@
-const Introduce = () => {
+const Admin = () => {
   return (
     <div className="flex justify-center mt-[30vh]">
       <h6 className="text-3xl font-semibold text-center">
@@ -8,4 +8,4 @@ const Introduce = () => {
   );
 };
 
-export default Introduce;
+export default Admin;

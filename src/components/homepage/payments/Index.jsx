@@ -11,10 +11,10 @@ const PaymentRequest = () => {
   const [navItem, setNavItem] = useState("account");
 
   return (
-    <div className="m-10 max-[500px]:m-3 mt-4">
-      <p className="font-sans font-semibold text-2xl pb-5">
+    <div className="mx-8 my-4">
+      {/* <p className="font-sans font-semibold text-2xl pb-5">
         {t("withdrawDesc")}
-      </p>
+      </p> */}
       <NavBar setNavItem={setNavItem} navItem={navItem} />
       <div className="bg-gray-100 px-5 py-5">
         {navItem === "account" ? (

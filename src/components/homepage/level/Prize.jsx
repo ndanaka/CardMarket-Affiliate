@@ -20,7 +20,7 @@ const Prize = ({
       <img className={`h-[120px] max-[500px]:h-[80px]`} src={`${url}`} />
       <p className=" font-semibold border-b-[1px] border-b-gray-400 py-2 text-center text-[14px]">
         <span className="text-[red] text-3xl font-semibold ">
-          {deposite} %<br />
+          {deposite}%<br />
         </span>
         &nbsp; {t("perDeposit")}
       </p>

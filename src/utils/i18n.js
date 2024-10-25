@@ -197,6 +197,9 @@ const resources = {
       failedLogin: "ログインに失敗しました。",
       successLoggedIn: "ログインに成功しました。",
       profile: "プロフィール",
+      colse: "閉じる",
+      delete: "削除",
+      noData: "データなし",
     },
   },
   en: {

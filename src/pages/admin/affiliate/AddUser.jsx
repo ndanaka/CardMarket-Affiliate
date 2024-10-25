@@ -1,4 +1,4 @@
-import AddUsers from "../../../components/admin/manage/AddUser";
+import AddUsers from "../../../components/admin/affiliate/AddUser";
 
 const AddUser = () => {
   return <AddUsers />;

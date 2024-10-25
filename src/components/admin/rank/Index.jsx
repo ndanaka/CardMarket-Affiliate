@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import AddRank from "./AddRank";
-import LevelOverview from "../../homepage/levelUpgrade/LevelOverview";
+import AllLevel from "../../homepage/level/AllLevel";
 
 import HomeApi from "../../../api/homeApi";
 import formatPrice from "../../../utils/formatPrice";
@@ -68,7 +68,7 @@ const Rank = () => {
         />
       </div>
       <div className="text-center p-2 w-full sm:w-2/3 py-4 border-[1px] border-gray-200">
-        <LevelOverview ranks={ranks} />
+        <AllLevel ranks={ranks} />
         <table className="mt-4 w-full border-t-[1px] text-center">
           <thead className="h-8">
             <tr>

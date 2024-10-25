@@ -47,7 +47,7 @@ const Members = ({ members }) => {
               <td className="w-[10%]">
                 <button
                   onClick={() =>
-                    navigate("/admin/manage/view", {
+                    navigate("/admin/affiliate/view", {
                       state: {
                         affId: item._id,
                       },
@@ -58,7 +58,7 @@ const Members = ({ members }) => {
                   {t("view")}
                 </button>
                 <button
-                  onClick={() => navigate("/admin/manage/edit")}
+                  onClick={() => navigate("/admin/affiliate/edit")}
                   className="text-indigo-600 hover:bg-indigo-600 hover:text-white p-2 py-1 rounded-md duration-75"
                 >
                   {t("edit")}

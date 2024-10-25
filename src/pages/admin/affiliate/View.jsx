@@ -1,4 +1,4 @@
-import ViewUser from "../../../components/admin/manage/View";
+import ViewUser from "../../../components/admin/affiliate/View";
 
 const View = () => {
   return <ViewUser />;

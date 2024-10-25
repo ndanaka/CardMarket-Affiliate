@@ -5,7 +5,7 @@ import { jwtDecode } from "jwt-decode";
 import { useAtom } from "jotai";
 import { tokenWithPersistenceAtom } from "../../atoms";
 
-import HomeHeader from "../../components/homepage/homeHeader/Index";
+import Header from "../../components/homepage/header/Index";
 
 const Layout = () => {
   const [token, setToken] = useAtom(tokenWithPersistenceAtom);
@@ -34,7 +34,7 @@ const Layout = () => {
 
   return (
     <>
-      {!token ? <Navigate to="/" /> : <HomeHeader />}
+      {!token ? <Navigate to="/" /> : <Header />}
       <Outlet />
     </>
   );

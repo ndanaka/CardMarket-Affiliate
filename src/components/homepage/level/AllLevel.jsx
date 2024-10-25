@@ -4,7 +4,7 @@ import Prize from "./Prize";
 import formatPrice from "../../../utils/formatPrice";
 import { SERVER_URL } from "../../../constant/baseUrl";
 
-const LevelOverview = ({ ranks }) => {
+const AllLevel = ({ ranks }) => {
   const { t } = useTranslation();
 
   return (
@@ -30,4 +30,4 @@ const LevelOverview = ({ ranks }) => {
   );
 };
 
-export default LevelOverview;
+export default AllLevel;

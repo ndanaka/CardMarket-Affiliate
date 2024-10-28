@@ -8,12 +8,15 @@ import { tokenWithPersistenceAtom } from "../../../atoms";
 import Statistics from "./Statistics";
 import ClientStatus from "./DepositStatus";
 import LinkStatus from "./LinkStatus";
+import MyLinks from "./MyLinks";
 import Toast from "../../../utils/toast";
 
 const Content = ({ aff_Id }) => {
   const { t } = useTranslation();
 
   const [period, setPeriod] = useState("today");
+  const [selectedLinkId, setSelectedLinkId] = useState("");
+  const [selectedLinkName, setSelectedLinkName] = useState("");
   const [token, setToken] = useAtom(tokenWithPersistenceAtom);
   const [toastVisible, setToastVisible] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
@@ -49,7 +52,22 @@ const Content = ({ aff_Id }) => {
         </div>
         <div className="max-[900px]:w-full w-[39%]">
           <ClientStatus affId={affId} period={period} />
-          <LinkStatus affId={affId} period={period} />
+        </div>
+      </div>
+      <div className="flex flex-wrap justify-center gap-2">
+        <div className="w-[49%] max-[900px]:w-full my-2">
+          <MyLinks
+            affId={affId}
+            setSelectedLinkId={setSelectedLinkId}
+            setSelectedLinkName={setSelectedLinkName}
+          />
+        </div>
+        <div className="max-[900px]:w-full w-[50%]">
+          <LinkStatus
+            affId={affId}
+            linkId={selectedLinkId}
+            linkName={selectedLinkName}
+          />
         </div>
       </div>
       <Toast

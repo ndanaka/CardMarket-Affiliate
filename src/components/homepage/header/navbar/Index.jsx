@@ -58,7 +58,7 @@ const Navbar = () => {
 
   const getAffRank = async () => {
     try {
-      const res = await GetAffRank(jwtDecode(token).rank);
+      const res = await GetAffRank(jwtDecode(token).id);
       setAffRank(res.data.affRank);
     } catch (error) {
       console.log(error);

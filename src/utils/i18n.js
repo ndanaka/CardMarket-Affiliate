@@ -153,7 +153,7 @@ const resources = {
         "アフィリエイトレベルポイントを獲得してレベルアップし、手数料やその他の特典を増やしましょう。",
       howGetLevel: "どのように機能しますか？",
       howGetLevelDesc:
-        "新規アクティブ入金クライアントとその取引活動によりアフィリエイトレベルポイントを獲得します。ポイント獲得開始時点から30日間のパフォーマンスで評価され、できるだけ多くのポイントを集めます。十分なポイントを獲得すると、レベルが自動的に翌日にアップグレードされます。レベルアップごとに手数料が増加します。30日以内に新しいレベルに到達できなかった場合、ポイントは次の期間にリセットされます。",
+        "アフィリエイトレベルポイントは、新しいアクティブな入金クライアントと、クライアントの取引活動に応じて獲得されます。2ヶ月間の総入金額に基づき、パフォーマンスがランキングに反映されます。この期間内にできるだけ多くのポイントを集めることが目標です。十分なポイントを獲得すると、翌月に自動的にレベルがアップグレードされます。レベルが上がるたびに、コミッションも増加します。この期間内に新しいレベルに到達できない場合、ポイントは次の期間に向けてリセットされます。",
       all: "すべて",
       for2Months: "2ヶ月間",
       manage: "管理",
@@ -200,6 +200,7 @@ const resources = {
       colse: "閉じる",
       delete: "削除",
       noData: "データなし",
+      nextLevel: "次のレベル",
     },
   },
   en: {
@@ -354,7 +355,7 @@ const resources = {
         "Move through the levels by earning Affiliate Level Points and benefit from increased commissions and other exclusive rewards.",
       howGetLevel: "How Does It Work?",
       howGetLevelDesc:
-        "Affiliate Level Points are earned from new active depositing clients, as well as your clients’ trading activity. Your performance is measured across a 30-day period, starting the first time you earn points. The goal is to collect as many points as possible in that period. Your level will be automatically upgraded the day after you earn enough points. Each time you level-up, your commission increases. In the event you are unable to reach a new level within 30 days, your points will be reset for the next period.",
+        "Affiliate Level Points are earned from new active depositing clients, as well as your clients’ trading activity. Your performance is changed the ranking based on the total deposit amount for 2 months. The goal is to collect as many points as possible in that period. Your level will be automatically upgraded the month after you earn enough points. Each time you level-up, your commission increases. In the event you are unable to reach a new level within that period, your points will be reset for the next period.",
       all: "All",
       for2Months: "For 2 Months",
       manage: "Manage",
@@ -400,6 +401,7 @@ const resources = {
       colse: "Colse",
       delete: "Delete",
       noData: "No data",
+      nextLevel: "The Next Level",
     },
   },
 };

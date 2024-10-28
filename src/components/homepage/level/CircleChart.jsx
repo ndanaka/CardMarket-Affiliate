@@ -7,9 +7,13 @@ const CircleChart = ({ now, end }) => {
 
   useEffect(() => {
     // Ensure now and end are valid numbers and end is not zero
-    if (typeof now === "number" && typeof end === "number" && end !== 0) {
-      const temp = (now / end) * 100;
-      setProgress(Math.round(temp));
+    if (now > end) {
+      setProgress(100);
+    } else {
+      if (typeof now === "number" && typeof end === "number" && end !== 0) {
+        const temp = (now / end) * 100;
+        setProgress(Math.round(temp));
+      }
     }
   }, [now, end]); // Added dependencies to avoid infinite loops
 

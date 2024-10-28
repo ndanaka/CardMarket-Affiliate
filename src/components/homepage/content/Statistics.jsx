@@ -33,10 +33,10 @@ const Statistics = ({ affId, setPeriod }) => {
         <thead className="h-10 text-[14px] text-white bg-[#4B5563]">
           <tr>
             <th>{t("period")}</th>
-            <th>{t("deposit")}</th>
             <th>{t("clicks")}</th>
             <th>{t("registeration")}</th>
             <th>CVR</th>
+            <th>{t("deposit")}</th>
             <th>{t("earn")}</th>
           </tr>
         </thead>
@@ -51,12 +51,12 @@ const Statistics = ({ affId, setPeriod }) => {
               data-tooltip-content={t("moreInfoStatistic")}
             >
               <td>{t(item.period)}</td>
-              <td>¥{formatPrice(item.payment)}</td>
               <td>{item.clicks}</td>
               <td>{item.regist}</td>
               <td>
                 {isNaN(item.cvr) || item.cvr === "Infinity" ? 0 : item.cvr}
               </td>
+              <td>¥{formatPrice(item.payment)}</td>
               <td>¥{formatPrice(item.earn)}</td>
             </tr>
           ))}

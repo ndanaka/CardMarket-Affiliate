@@ -32,7 +32,7 @@ const AffiLinks = () => {
 
   const getAllLinks = async () => {
     try {
-      const res = await GetAllLinks();
+      const res = await GetAllLinks({ aff_id: affId });
       setLinks(res.data.allLinks);
     } catch (error) {
       console.log(error);

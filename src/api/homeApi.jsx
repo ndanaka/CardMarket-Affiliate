@@ -105,11 +105,11 @@ const HomeApi = () => {
     }
   };
 
-  const GetLinkStatus = async (affId, period) => {
+  const GetLinkStatus = async (affId, linkId) => {
     try {
       const formData = {
-        affId: affId,
-        period: period,
+        aff_id: affId,
+        link_id: linkId,
       };
 
       return await axios.post(GET_LINK_STATUS, formData, postConfig);
@@ -210,10 +210,10 @@ const HomeApi = () => {
     }
   };
 
-  const GetAffRank = async (rankId) => {
+  const GetAffRank = async (affId) => {
     try {
       const formData = {
-        _id: rankId,
+        aff_id: affId,
       };
       return await axios.post(GET_AFF_RANK, formData, postConfig);
     } catch (error) {
@@ -246,9 +246,9 @@ const HomeApi = () => {
     }
   };
 
-  const GetAllLinks = async () => {
+  const GetAllLinks = async (formData) => {
     try {
-      return await axios.get(GET_ALL_LINK, postConfig);
+      return await axios.post(GET_ALL_LINK, formData, postConfig);
     } catch (error) {
       setOp({
         appErr: error?.response?.data?.message,

@@ -36,12 +36,12 @@ const Content = ({ aff_id }) => {
   };
 
   useEffect(() => {
-    if (firstLogin) {
-      setToastVisible(true);
-      setToastType("success");
-      setToastMessage(t("successLoggedIn"));
-      localStorage.removeItem("firstLogin");
-    }
+    // if (firstLogin) {
+    //   setToastVisible(true);
+    //   setToastType("success");
+    //   setToastMessage(t("successLoggedIn"));
+    //   localStorage.removeItem("firstLogin");
+    // }
   });
 
   return (

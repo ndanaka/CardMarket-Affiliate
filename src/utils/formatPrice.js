@@ -1,5 +1,5 @@
 const formatPrice = (price) => {
-  if (price >= 1000) {
+  if (price >= 100000) {
     return (price / 1000).toFixed(1) + "K";
   }
 

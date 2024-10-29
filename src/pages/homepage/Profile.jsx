@@ -13,6 +13,7 @@ const Profile = () => {
   const [show, setShow] = useState(true);
   const [affInfo, setAffInfo] = useState();
   const [affRank, setAffRank] = useState();
+  const [affBank, setAffBank] = useState();
 
   const [token, setToken] = useAtom(tokenWithPersistenceAtom);
 
@@ -26,11 +27,17 @@ const Profile = () => {
     const res = await GetAffInfo(jwtDecode(token).id);
     setAffInfo(res.data.affInfo);
     setAffRank(res.data.affRank);
+    setAffBank(res.data.affBank);
   };
 
   return (
     <div className="px-10">
-      <AccountInfo setShow={setShow} affInfo={affInfo} affRank={affRank} />
+      <AccountInfo
+        setShow={setShow}
+        affInfo={affInfo}
+        affRank={affRank}
+        affBank={affBank}
+      />
     </div>
   );
 };

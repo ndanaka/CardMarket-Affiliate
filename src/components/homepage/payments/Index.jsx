@@ -12,9 +12,6 @@ const PaymentRequest = () => {
 
   return (
     <div className="mx-8 my-4">
-      {/* <p className="font-sans font-semibold text-2xl pb-5">
-        {t("withdrawDesc")}
-      </p> */}
       <NavBar setNavItem={setNavItem} navItem={navItem} />
       <div className="bg-gray-100 px-5 py-5">
         {navItem === "account" ? (

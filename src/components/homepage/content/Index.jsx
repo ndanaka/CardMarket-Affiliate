@@ -11,7 +11,7 @@ import LinkStatus from "./LinkStatus";
 import MyLinks from "./MyLinks";
 import Toast from "../../../utils/toast";
 
-const Content = ({ aff_Id }) => {
+const Content = ({ aff_id }) => {
   const { t } = useTranslation();
 
   const [period, setPeriod] = useState("today");
@@ -25,8 +25,8 @@ const Content = ({ aff_Id }) => {
   const firstLogin = localStorage.getItem("firstLogin");
 
   let affId;
-  if (aff_Id) {
-    affId = aff_Id;
+  if (aff_id) {
+    affId = aff_id;
   } else {
     if (token) affId = jwtDecode(token).id;
   }

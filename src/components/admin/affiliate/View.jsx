@@ -19,33 +19,37 @@ const View = () => {
   const [select, setSelect] = useState(t("profile"));
   const [affInfo, setAffInfo] = useState();
   const [affRank, setAffRank] = useState();
+  const [affBank, setAffBank] = useState();
 
   const { affId } = location.state || {};
 
   useEffect(() => {
     getAffInfo();
-  }, [affId]);
+  }, []);
 
   const getAffInfo = async () => {
     const res = await GetAffInfo(affId);
     setAffInfo(res.data.affInfo);
     setAffRank(res.data.affRank);
+    setAffBank(res.data.affBank);
   };
 
   const renderContent = () => {
     switch (select) {
       case t("profile"):
-        return <AccountInfo affInfo={affInfo} affRank={affRank} />;
+        return (
+          <AccountInfo affInfo={affInfo} affRank={affRank} affBank={affBank} />
+        );
       case t("statistics"):
         return (
           <div className="py-4">
-            <HomeContent aff_Id={affId} />
+            <HomeContent aff_id={affId} />
           </div>
         );
       case t("payment") + " " + t("history"):
         return (
           <div className="py-8">
-            <PaymentHistroy aff_Id={affId} />
+            <PaymentHistroy aff_id={affId} />
           </div>
         );
       default:

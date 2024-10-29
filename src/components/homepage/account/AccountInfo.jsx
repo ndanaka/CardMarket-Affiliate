@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import Item from "./Item";
 import formatDate from "../../../utils/formatDate";
 
-const AccountInfo = ({ affInfo, affRank }) => {
+const AccountInfo = ({ affInfo, affRank, affBank }) => {
   const { t } = useTranslation();
 
   return (
@@ -41,23 +41,8 @@ const AccountInfo = ({ affInfo, affRank }) => {
       <Item
         icon={"far fa-credit-card"}
         label={t("bank") + " " + t("account")}
-        content={"700546324"}
+        content={affBank?.accountNumber}
       />
-      {/* <Item icon={"fa fa-key"} label={"Password"} content={"*********"} />
-        {role == "admin" || (
-          <div className="relative">
-            <Item icon={"fas fa-cogs"} label={"Change Password"} />
-            <button
-              onClick={() => {
-                setShow(false);
-              }}
-              className=" absolute right-0 top-0 w-14 h-6 text-right text-[red] font-semibold "
-            >
-              <i className="fas fa-pencil-alt" />
-              &nbsp; Edit
-            </button>
-          </div>
-        )} */}
     </div>
   );
 };

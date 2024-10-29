@@ -201,6 +201,8 @@ const resources = {
       delete: "削除",
       noData: "データなし",
       nextLevel: "次のレベル",
+      successReqest: "リクエストの送信に成功しました",
+      pending: "保留中",
     },
   },
   en: {
@@ -402,6 +404,8 @@ const resources = {
       delete: "Delete",
       noData: "No data",
       nextLevel: "The Next Level",
+      successReqest: "Successfully sent request.",
+      pending: "Pending",
     },
   },
 };

@@ -20,6 +20,8 @@ import {
   GET_ALL_LINK,
   DELETE_LINK,
   DELETE_MEMBER,
+  GET_AFF_BALANCE,
+  GET_AFF_PAY_HISTORY,
 } from "../constant/api";
 
 import { useAtom } from "jotai";
@@ -257,6 +259,34 @@ const HomeApi = () => {
     }
   };
 
+  const GetAffBalance = async () => {
+    try {
+      const payload = jwtDecode(token);
+
+      return await axios.post(
+        GET_AFF_BALANCE,
+        { aff_id: payload.id },
+        postConfig
+      );
+    } catch (error) {
+      setOp({
+        appErr: error?.response?.data?.message,
+        serverErr: error?.message,
+      });
+    }
+  };
+
+  const GetAffPayHistory = async (formDate) => {
+    try {
+      return await axios.post(GET_AFF_PAY_HISTORY, formDate, postConfig);
+    } catch (error) {
+      setOp({
+        appErr: error?.response?.data?.message,
+        serverErr: error?.message,
+      });
+    }
+  };
+
   return {
     op,
     setOp,
@@ -276,6 +306,8 @@ const HomeApi = () => {
     SubmitDeleteLink,
     GetAllLinks,
     DeleteMember,
+    GetAffBalance,
+    GetAffPayHistory,
   };
 };
 

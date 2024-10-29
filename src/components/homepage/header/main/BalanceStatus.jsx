@@ -1,59 +1,53 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router";
-import { useAtom } from "jotai";
+import React, { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { useAtom } from "jotai";
 
-import { timeAtom } from "../../../../atoms/index";
-
-import AuthApi from "../../../../api/authApi";
-
-import PaymentTimer from "./PaymentTimer";
+import HomeApi from "../../../../api/homeApi";
+import { balanceAtom } from "../../../../atoms/balanceAtom";
+import formatPrice from "../../../../utils/formatPrice";
 
 const BlanceStatus = () => {
   const { t } = useTranslation();
-  const [props, setProps] = useState({ registerDate: "", currentTime: "" });
+  const [balance, setBalance] = useAtom(balanceAtom);
 
-  const location = useLocation();
-  const [time] = useAtom(timeAtom);
+  const { GetAffBalance } = HomeApi();
+  const hasFetchedData = useRef(false);
 
   useEffect(() => {
-    const { registerDate, currentTime } = { ...time };
-    setProps({ registerDate, currentTime });
-  }, [time]);
+    if (!hasFetchedData.current) {
+      getAffBalance(); // Make sure this function is defined
+      hasFetchedData.current = true;
+    }
+  }, []);
+
+  const getAffBalance = async () => {
+    const res = await GetAffBalance();
+    setBalance({
+      peding: res.data.pendingPrices,
+      withdrawable: res.data.withdrawablePrices,
+      withdrawn: 0,
+    });
+  };
 
   return (
     <div className="flex flex-wrap max-[800px]:flex-col max-[800px]:gap-3 text-[14px] font-semibold font-sans">
-      <div className="lg:border-r-[1px]  lg:border-r-gray-500  lg:px-5 px-2">
-        <p className="text-[13px] text-gray-500 font-medium ">
-          {t("unrelaizedBalance")}
-        </p>
-        <i className="far fa-credit-card" />
-        <span>&nbsp;{t("total")}:&nbsp;</span>
-        <span className="text-red-600 ">$1320</span>
-      </div>
-      <div className=" lg:border-r-[1px]  lg:border-r-gray-500 lg:px-5 px-2">
+      <div className="lg:border-r-[1px] lg:border-r-gray-500 lg:px-5 px-2">
         <p className="text-[13px] text-gray-500 font-medium ">
           {t("widthrawalBalance")}
         </p>
         <i className="fas fa-university" />
         <span>&nbsp;{t("balance")}:&nbsp;</span>
-        <span className="text-red-600 ">$2580</span>
+        <span className="text-red-600 ">¥{formatPrice(balance.peding)}</span>
       </div>
       <div className="lg:px-5 px-2">
         <p className="text-[13px] text-gray-500 font-medium ">
-          {t("nextBalance")}
+          {t("pending") + " " + t("balance")}
         </p>
-        <div className="flex flex-wrap">
-          <div>
-            {t("total")}: <span className="text-red-600 ">$3900 </span>
-          </div>
-          {/* <PaymentTimer
-            registerDate={props.registerDate}
-            currentTime={props.currentTime}
-          /> */}
-        </div>
-        {/* <i className="far fas fa-calendar-days" aria-hidden="true" />
-        <span>&nbsp;06/08-12/8/2024</span> */}
+        <i className="fas fa-university" />
+        <span>&nbsp;{t("balance")}:&nbsp;</span>
+        <span className="text-red-600 ">
+          ¥{formatPrice(balance.withdrawable)}
+        </span>
       </div>
     </div>
   );

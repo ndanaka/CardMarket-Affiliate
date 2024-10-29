@@ -4,12 +4,11 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useAtom } from "jotai";
 
-import { idAtom, timeAtom, tokenWithPersistenceAtom } from "../atoms/index";
-import { CHANGEPSD, GETTIME, LOGIN, REGISTER } from "../constant/api";
+import { idAtom, tokenWithPersistenceAtom } from "../atoms/index";
+import { CHANGEPSD, LOGIN, REGISTER } from "../constant/api";
 
 const AuthApi = () => {
   // operation characteristics
-  const [, setTime] = useAtom(timeAtom);
   const [token, setToken] = useAtom(tokenWithPersistenceAtom);
   const [, setId] = useAtom(idAtom);
 
@@ -102,13 +101,6 @@ const AuthApi = () => {
     }
   };
 
-  const GetTime = async () => {
-    try {
-      const { data } = await axios.get(GETTIME, postConfig);
-      setTime(data);
-    } catch (error) {}
-  };
-
   const submitChangePsd = async () => {
     try {
       const { data } = await axios.post(CHANGEPSD, postConfig);
@@ -122,7 +114,7 @@ const AuthApi = () => {
     }
   };
 
-  return { submitRegister, submitLogin, setOp, op, GetTime };
+  return { submitRegister, submitLogin, setOp, op };
 };
 
 export default AuthApi;

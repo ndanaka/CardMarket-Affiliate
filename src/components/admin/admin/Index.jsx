@@ -6,6 +6,7 @@ import HomeApi from "../../../api/homeApi";
 
 import Search from "../common/Search";
 import Table from "../common/Table";
+import Toast from "../../../utils/toast";
 
 const Index = () => {
   const { t } = useTranslation();
@@ -13,10 +14,20 @@ const Index = () => {
 
   const [members, setMembers] = useState([]);
   const [fltSignal, setFltSignal] = useState(false);
+  const [toastVisible, setToastVisible] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastType, setToastType] = useState("");
 
   const { GetMembers } = HomeApi();
+  const firstLogin = localStorage.getItem("firstLogin");
 
   useEffect(() => {
+    if (firstLogin) {
+      setToastVisible(true);
+      setToastType("success");
+      setToastMessage(t("successLoggedIn"));
+      localStorage.removeItem("firstLogin");
+    }
     getMembers();
   }, []);
 
@@ -24,6 +35,10 @@ const Index = () => {
     const res = await GetMembers("Admin");
     const admins = res.data.members.filter((admin) => admin.role === "Admin");
     setMembers(admins);
+  };
+
+  const handleCloseToast = () => {
+    setToastVisible(false);
   };
 
   return (
@@ -54,6 +69,12 @@ const Index = () => {
       <div className=" overflow-auto">
         <Table members={members} setMembers={setMembers} role={"Admin"} />
       </div>
+      <Toast
+        type={toastType}
+        message={toastMessage}
+        isVisible={toastVisible}
+        onClose={handleCloseToast}
+      />
     </div>
   );
 };

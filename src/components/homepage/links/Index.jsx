@@ -14,6 +14,7 @@ import Input from "../../sign/Input";
 
 import { tokenWithPersistenceAtom } from "../../../atoms";
 import HomeApi from "../../../api/homeApi";
+import Spinner from "../../../utils/Spinner";
 
 const AffiLinks = () => {
   const { t } = useTranslation();
@@ -23,6 +24,7 @@ const AffiLinks = () => {
   const [toastVisible, setToastVisible] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [toastType, setToastType] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const affId = token ? jwtDecode(token).id : "";
 
@@ -32,7 +34,9 @@ const AffiLinks = () => {
 
   const getAllLinks = async () => {
     try {
+      setLoading(true);
       const res = await GetAllLinks({ aff_id: affId });
+      setLoading(false);
       setLinks(res.data.allLinks);
     } catch (error) {
       console.log(error);
@@ -59,7 +63,9 @@ const AffiLinks = () => {
   });
 
   const handleSubmitAddRank = async () => {
+    setLoading(true);
     const res = await SubmitAddLink(formik.values);
+    setLoading(false);
 
     if (res.data.status) {
       setToastVisible(true);
@@ -85,7 +91,7 @@ const AffiLinks = () => {
 
   return (
     <div className="mx-8 my-4">
-      {/* <p className="font-sans font-semibold text-2xl pb-3">{t("affLinks")}</p> */}
+      {loading && <Spinner />}
       <div className="flex flex-wrap justify-center gap-2">
         <div className="flex flex-col justify-between w-[35%] max-[900px]:w-full h-fit">
           <div className="font-sans font-semibold text-gray-500 text-lg">

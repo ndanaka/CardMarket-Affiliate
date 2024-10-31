@@ -7,6 +7,7 @@ import HomeApi from "../../../api/homeApi";
 import AppServerErr from "../../../errors/AppServerErr";
 import FormikErr from "../../../errors/FormikErr";
 import Toast from "../../../utils/toast";
+import Spinner from "../../../utils/Spinner";
 
 const Account = () => {
   const { t } = useTranslation();
@@ -14,6 +15,7 @@ const Account = () => {
   const [toastVisible, setToastVisible] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [toastType, setToastType] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const { op, SubmitAddBank, GetAffBankInfo } = HomeApi();
 
@@ -22,7 +24,9 @@ const Account = () => {
   }, [toastVisible]);
 
   const getAffBankInfo = async () => {
+    setLoading(true);
     const res = await GetAffBankInfo();
+    setLoading(false);
     setBankInfo(res.data.bankInfo);
   };
 
@@ -50,7 +54,9 @@ const Account = () => {
       accountHolder: bankInfo?.accountHolder || "",
     },
     onSubmit: async (values) => {
+      setLoading(true);
       const result = await SubmitAddBank(values);
+      setLoading(false);
 
       if (result.data.status) {
         setToastType("success");
@@ -70,6 +76,7 @@ const Account = () => {
 
   return (
     <div className="bg-white py-8 px-4 md:px-8 lg:px-12 mx-auto w-full md:w-4/5 lg:w-3/5">
+      {loading && <Spinner />}
       <p className="text-[22px] font-semibold text-center mb-8">
         {bankInfo ? t("edit") : t("add")} {" " + t("transferAccount")}
       </p>

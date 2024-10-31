@@ -12,6 +12,7 @@ import Input from "./Input";
 import PayButton from "./PayButton";
 import Modal from "./Modal";
 import Toast from "../../../utils/toast";
+import Spinner from "../../../utils/Spinner";
 
 const WithDraw = () => {
   const { t } = useTranslation();
@@ -24,6 +25,7 @@ const WithDraw = () => {
   const [toastMessage, setToastMessage] = useState("");
   const [toastType, setToastType] = useState("");
   const [balance, setBalance] = useAtom(balanceAtom);
+  const [loading, setLoading] = useState(false);
 
   const { SubmitWithdraw, GetAffBankInfo } = HomeApi();
 
@@ -32,7 +34,9 @@ const WithDraw = () => {
   }, [modal]);
 
   const getAffBankInfo = async () => {
+    setLoading(true);
     const res = await GetAffBankInfo();
+    setLoading(false);
     if (res.data.status) {
       setBankInfo(res.data.bankInfo);
       setAffBalance(res.data.affBalance);
@@ -65,12 +69,14 @@ const WithDraw = () => {
   // excute the pay request
   const handlePay = async () => {
     formik.values.bankInfo = bankInfo;
+    setLoading(true);
     const res = await SubmitWithdraw(formik.values);
+    setLoading(false);
 
     setToastVisible(true);
     if (res.data.status) {
       setBalance({
-        peding: res.data.pendingPrices,
+        pending: res.data.pendingPrices,
         withdrawable: res.data.withdrawablePrices,
         withdrawn: 0,
       });
@@ -90,6 +96,7 @@ const WithDraw = () => {
 
   return (
     <div className="bg-white py-8 px-4 md:px-8 lg:px-12 mx-auto w-full md:w-4/5 lg:w-3/5">
+      {loading && <Spinner />}
       <p className="text-[22px] font-semibold text-center mb-8">
         {t("request") + " " + t("withdrawal")}
       </p>

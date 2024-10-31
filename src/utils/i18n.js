@@ -203,6 +203,8 @@ const resources = {
       nextLevel: "次のレベル",
       successReqest: "リクエストの送信に成功しました",
       pending: "保留中",
+      alreadyWithdrawn: "このリクエストはすでに取り下げられています。",
+      changeStatus: "このリクエストのステータスが正常に変更されました。",
     },
   },
   en: {
@@ -406,6 +408,8 @@ const resources = {
       nextLevel: "The Next Level",
       successReqest: "Successfully sent request.",
       pending: "Pending",
+      alreadyWithdrawn: "This request has already withdrawn.",
+      changeStatus: "Successfully change status of this request.",
     },
   },
 };

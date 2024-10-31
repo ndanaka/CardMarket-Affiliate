@@ -20,7 +20,7 @@ const LinkStatus = ({ affId, linkId, linkName }) => {
   };
 
   return (
-    <div className="my-2 mt-2 relative">
+    <div className="my-2 mt-2">
       <div className="font-sans font-semibold text-gray-500 text-lg">
         {linkName}
       </div>

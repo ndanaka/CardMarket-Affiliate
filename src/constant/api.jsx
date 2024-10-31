@@ -34,6 +34,9 @@ export const GET_AFF_PAY_HISTORY = `${API_BASE_URL}/members/getAffPayHistory`;
 export const ADD_RANK = `${API_BASE_URL}/admin/addRank`;
 export const GET_ALL_RANK = `${API_BASE_URL}/admin/getRanks`;
 export const DELETE_RANK = `${API_BASE_URL}/admin/deleteRank`;
+export const GET_ALL_PAYMENTS = `${API_BASE_URL}/admin/getPayments`;
+export const CHANGE_PAY_STATUS = `${API_BASE_URL}/admin/changePayStatus`;
+
 // link
 export const ADD_LINK = `${API_BASE_URL}/link/addLink`;
 export const GET_ALL_LINK = `${API_BASE_URL}/link/getLinks`;

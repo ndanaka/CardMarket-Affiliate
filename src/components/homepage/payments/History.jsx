@@ -3,16 +3,19 @@ import { useTranslation } from "react-i18next";
 import { useAtom } from "jotai";
 import { jwtDecode } from "jwt-decode";
 
+import { tokenWithPersistenceAtom } from "../../../atoms";
+
 import formatPrice from "../../../utils/formatPrice";
 import formatDate from "../../../utils/formatDate";
 import HomeApi from "../../../api/homeApi";
-import { tokenWithPersistenceAtom } from "../../../atoms";
+import Spinner from "../../../utils/Spinner";
 
 const History = ({ aff_id }) => {
   const { t } = useTranslation();
   const [more, setMore] = useState(true);
   const [payments, setPayments] = useState([]);
   const [token, setToken] = useAtom(tokenWithPersistenceAtom);
+  const [loading, setLoading] = useState(false);
 
   const { GetAffPayHistory } = HomeApi();
 
@@ -28,19 +31,22 @@ const History = ({ aff_id }) => {
   }, []);
 
   const getAffPayHistory = async () => {
+    setLoading(true);
     const res = await GetAffPayHistory({ aff_id: affId });
+    setLoading(false);
     setPayments(res.data.affBalance);
   };
 
   return (
-    <div className="relative flex justify-center pb-6">
+    <div className="flex justify-center pb-6">
+      {loading && <Spinner />}
       <table className="w-[900px] text-[13px] border-gray-400 border-[1px] text-center">
         <thead className="h-10 text-[14px] text-white bg-[#4B5563]">
           <tr>
             <th>No</th>
             <th>{t("type")}</th>
             <th>{t("amount")}</th>
-            <th>{t("address")}</th>
+            <th>{t("bank") + " " + t("address")}</th>
             <th>{t("request") + " " + t("date")}</th>
             <th>{t("withdrawal") + " " + t("date")}</th>
           </tr>

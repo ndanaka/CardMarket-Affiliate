@@ -8,6 +8,7 @@ import FormikErr from "../../../errors/FormikErr";
 import Toast from "../../../utils/toast";
 import HomeApi from "../../../api/homeApi";
 import { SERVER_URL } from "../../../constant/baseUrl";
+import Spinner from "../../../utils/Spinner";
 
 import Input from "../../sign/Input";
 
@@ -37,6 +38,7 @@ const AddRank = ({
   const [toastMessage, setToastMessage] = useState("");
   const [toastType, setToastType] = useState("");
   const [editFlag, setEditFlag] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     selectedImgUrl ? SERVER_URL + selectedImgUrl : "/image/upload.png";
@@ -80,7 +82,9 @@ const AddRank = ({
   };
 
   const handleSubmitAddRank = async () => {
+    setLoading(true);
     const res = await SubmitAddRank(formik.values);
+    setLoading(false);
 
     if (res.data.status) {
       setToastVisible(true);
@@ -125,6 +129,7 @@ const AddRank = ({
 
   return (
     <>
+      {loading && <Spinner />}
       <h3 className="py-3 font-semibold text-center">
         {t("add") + " " + t("new") + " " + t("rank")}
       </h3>

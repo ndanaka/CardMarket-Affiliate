@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
@@ -22,15 +21,14 @@ import {
   DELETE_MEMBER,
   GET_AFF_BALANCE,
   GET_AFF_PAY_HISTORY,
+  GET_ALL_PAYMENTS,
+  CHANGE_PAY_STATUS,
 } from "../constant/api";
 
 import { useAtom } from "jotai";
 import { tokenWithPersistenceAtom } from "../atoms/index";
 
 const HomeApi = () => {
-  const navigate = useNavigate();
-
-  // operation characteristics
   const [token, setToken] = useAtom(tokenWithPersistenceAtom);
 
   const [op, setOp] = useState({
@@ -287,6 +285,28 @@ const HomeApi = () => {
     }
   };
 
+  const GetAllPayments = async (formData) => {
+    try {
+      return await axios.get(GET_ALL_PAYMENTS, postConfig);
+    } catch (error) {
+      setOp({
+        appErr: error?.response?.data?.message,
+        serverErr: error?.message,
+      });
+    }
+  };
+
+  const ChangePayStatus = async (formData) => {
+    try {
+      return await axios.post(CHANGE_PAY_STATUS, formData, postConfig);
+    } catch (error) {
+      setOp({
+        appErr: error?.response?.data?.message,
+        serverErr: error?.message,
+      });
+    }
+  };
+
   return {
     op,
     setOp,
@@ -308,6 +328,8 @@ const HomeApi = () => {
     DeleteMember,
     GetAffBalance,
     GetAffPayHistory,
+    GetAllPayments,
+    ChangePayStatus,
   };
 };
 

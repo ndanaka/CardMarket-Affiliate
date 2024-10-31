@@ -24,10 +24,10 @@ const Search = ({ setMembers, setFltSignal, searchHolder, role }) => {
   };
 
   return (
-    <div className=" relative">
+    <>
       <input
         onChange={(e) => handleSearch(e.target.value.toUpperCase())}
-        className="border-gray-600 border-[1px] rounded-full outline-none focus:ring-1 focus:ring-gray-400 pl-8 pr-3  py-1 "
+        className="border-gray-600 border-[1px] rounded-full outline-none focus:ring-1 focus:ring-gray-400 pl-8 pr-3 py-1 "
         placeholder={searchHolder}
         type="search"
       />
@@ -35,7 +35,7 @@ const Search = ({ setMembers, setFltSignal, searchHolder, role }) => {
         className="w-4 absolute left-3 top-1/2 -translate-y-1/2"
         src="/image/icon/search.svg"
       />
-    </div>
+    </>
   );
 };
 

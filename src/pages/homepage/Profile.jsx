@@ -6,6 +6,7 @@ import { tokenWithPersistenceAtom } from "../../atoms";
 
 import AccountInfo from "../../components/homepage/account/AccountInfo";
 import ChangePsd from "../../components/homepage/account/ChangePsd";
+import Spinner from "../../utils/Spinner";
 
 import HomeApi from "../../api/homeApi";
 
@@ -14,6 +15,7 @@ const Profile = () => {
   const [affInfo, setAffInfo] = useState();
   const [affRank, setAffRank] = useState();
   const [affBank, setAffBank] = useState();
+  const [loading, setLoading] = useState(false);
 
   const [token, setToken] = useAtom(tokenWithPersistenceAtom);
 
@@ -24,7 +26,9 @@ const Profile = () => {
   }, []);
 
   const getAffInfo = async () => {
+    setLoading(true);
     const res = await GetAffInfo(jwtDecode(token).id);
+    setLoading(false);
     setAffInfo(res.data.affInfo);
     setAffRank(res.data.affRank);
     setAffBank(res.data.affBank);
@@ -32,6 +36,7 @@ const Profile = () => {
 
   return (
     <div className="px-10">
+      {loading && <Spinner />}
       <AccountInfo
         setShow={setShow}
         affInfo={affInfo}

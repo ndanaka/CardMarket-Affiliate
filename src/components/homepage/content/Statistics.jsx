@@ -4,10 +4,12 @@ import { useTranslation } from "react-i18next";
 
 import formatPrice from "../../../utils/formatPrice";
 import HomeApi from "../../../api/homeApi";
+import Spinner from "../../../utils/Spinner";
 
 const Statistics = ({ affId, setPeriod }) => {
   const { t } = useTranslation();
   const [statistics, setStatistics] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const { GetStatistics } = HomeApi();
   const hasFetchedData = useRef(false);
@@ -20,12 +22,15 @@ const Statistics = ({ affId, setPeriod }) => {
   }, []);
 
   const getStatistics = async () => {
+    setLoading(true);
     const res = await GetStatistics(affId);
+    setLoading(false);
     setStatistics(res.data.statistics);
   };
 
   return (
     <>
+      {loading && <Spinner />}
       <div className="font-sans font-semibold text-gray-500 text-lg">
         {t("statistics")} ({t("statisticsDesc")})
       </div>

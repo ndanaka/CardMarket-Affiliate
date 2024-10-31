@@ -25,13 +25,16 @@ const Edit = () => {
 
   const [affInfo, setAffInfo] = useState();
   const [showPassword, SetShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getAffInfo();
   }, [affId]);
 
   const getAffInfo = async () => {
+    setLoading(true);
     const affInfo = await GetAffInfo(affId);
+    setLoading(false);
     setAffInfo(affInfo.data.affInfo);
   };
 
@@ -76,6 +79,8 @@ const Edit = () => {
 
   return (
     <div className="flex justify-center py-4">
+      {loading && <Spinner />}
+
       <div className="w-[500px]">
         <Heading label={t("edit") + " " + t("affiliate")} />
         <AppServerErr>

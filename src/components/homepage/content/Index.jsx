@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { tokenWithPersistenceAtom } from "../../../atoms";
 
 import Statistics from "./Statistics";
-import ClientStatus from "./DepositStatus";
+import DepositStatus from "./DepositStatus";
 import LinkStatus from "./LinkStatus";
 import MyLinks from "./MyLinks";
 import Toast from "../../../utils/toast";
@@ -51,7 +51,7 @@ const Content = ({ aff_id }) => {
           <Statistics affId={affId} setPeriod={setPeriod} />
         </div>
         <div className="max-[900px]:w-full w-[39%]">
-          <ClientStatus affId={affId} period={period} />
+          <DepositStatus affId={affId} period={period} />
         </div>
       </div>
       <div className="flex flex-wrap justify-center gap-2">

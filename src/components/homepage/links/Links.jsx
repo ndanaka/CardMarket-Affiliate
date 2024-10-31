@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 
 import { tokenWithPersistenceAtom } from "../../../atoms";
 import HomeApi from "../../../api/homeApi";
+import Spinner from "../../../utils/Spinner";
 
 const Links = ({
   type,
@@ -23,6 +24,7 @@ const Links = ({
   const [copy, setCopy] = useState("");
   const [textToCopy, setTextToCopy] = useState("");
   const { SubmitDeleteLink } = HomeApi();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     let affiliateID;
@@ -53,7 +55,9 @@ const Links = ({
   };
 
   const handleSubmitDeleteLink = async () => {
+    setLoading(true);
     const res = await SubmitDeleteLink({ _id: linkId });
+    setLoading(false);
 
     if (res.data.status) {
       setToastVisible(true);

@@ -25,6 +25,7 @@ const Index = () => {
           <Item item={"admin"} />
           <Item item={"affiliate"} />
           <Item item={"rank"} />
+          <Item item={"payment"} />
         </ul>
       </div>
 
@@ -72,6 +73,15 @@ const Index = () => {
           className={`text-gray-300 m-3 border-white font-semibold`}
         >
           {t("rank")}
+        </button>
+        <button
+          onClick={() => {
+            navigate("/admin/payment");
+            setCollapse(false);
+          }}
+          className={`text-gray-300 m-3 border-white font-semibold`}
+        >
+          {t("payment")}
         </button>
       </div>
 

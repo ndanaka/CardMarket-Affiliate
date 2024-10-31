@@ -20,6 +20,7 @@ import AddAffiliate from "./components/admin/affiliate/Add";
 import ViewAffiliate from "./components/admin/affiliate/View";
 import Edit from "./components/admin/affiliate/Edit";
 import Rank from "./pages/admin/Rank";
+import Payment from "./components/admin/payment/Index";
 import Message from "./pages/admin/Message";
 import ContactUs from "./pages/contactUs/Index";
 
@@ -50,6 +51,7 @@ const App = () => {
           <Route path="/admin/affiliate/view" element={<ViewAffiliate />} />
           <Route path="/admin/affiliate/edit" element={<Edit />} />
           <Route path="/admin/rank" element={<Rank />} />
+          <Route path="/admin/payment" element={<Payment />} />
           <Route path="/admin/message" element={<Message />} />
         </Route>
       </Routes>

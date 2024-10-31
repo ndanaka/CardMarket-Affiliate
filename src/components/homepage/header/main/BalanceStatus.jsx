@@ -23,7 +23,7 @@ const BlanceStatus = () => {
   const getAffBalance = async () => {
     const res = await GetAffBalance();
     setBalance({
-      peding: res.data.pendingPrices,
+      pending: res.data.pendingPrices,
       withdrawable: res.data.withdrawablePrices,
       withdrawn: 0,
     });
@@ -37,7 +37,9 @@ const BlanceStatus = () => {
         </p>
         <i className="fas fa-university" />
         <span>&nbsp;{t("balance")}:&nbsp;</span>
-        <span className="text-red-600 ">¥{formatPrice(balance.peding)}</span>
+        <span className="text-red-600 ">
+          ¥{formatPrice(balance.withdrawable)}
+        </span>
       </div>
       <div className="lg:px-5 px-2">
         <p className="text-[13px] text-gray-500 font-medium ">
@@ -45,9 +47,7 @@ const BlanceStatus = () => {
         </p>
         <i className="fas fa-university" />
         <span>&nbsp;{t("balance")}:&nbsp;</span>
-        <span className="text-red-600 ">
-          ¥{formatPrice(balance.withdrawable)}
-        </span>
+        <span className="text-red-600 ">¥{formatPrice(balance.pending)}</span>
       </div>
     </div>
   );

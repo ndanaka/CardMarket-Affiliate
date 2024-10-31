@@ -26,7 +26,7 @@ const DepositStatus = ({ affId, period }) => {
   };
 
   return (
-    <div className="my-2 relative">
+    <div className="my-2">
       <div className="font-sans font-semibold text-gray-500 text-lg">
         {t(period)}
         {t("sDeposit")}

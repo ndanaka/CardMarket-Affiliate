@@ -8,6 +8,7 @@ import HomeApi from "../../../api/homeApi";
 import formatPrice from "../../../utils/formatPrice";
 import { SERVER_URL } from "../../../constant/baseUrl";
 import Toast from "../../../utils/toast";
+import Spinner from "../../../utils/Spinner";
 
 const Rank = () => {
   const { t } = useTranslation();
@@ -18,6 +19,7 @@ const Rank = () => {
   const [toastVisible, setToastVisible] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [toastType, setToastType] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getAllRanks();
@@ -25,7 +27,9 @@ const Rank = () => {
 
   const getAllRanks = async () => {
     try {
+      setLoading(true);
       const res = await GetAllRanks();
+      setLoading(false);
       setRanks(res.data.allRanks);
     } catch (error) {
       console.log(error);
@@ -39,7 +43,9 @@ const Rank = () => {
 
   const handleDelete = async (rankId) => {
     try {
+      setLoading(true);
       const res = await DeleteRank({ _id: rankId });
+      setLoading(false);
       setToastVisible(true);
       if (res.status) {
         setToastType("success");
@@ -58,6 +64,8 @@ const Rank = () => {
 
   return (
     <div className="flex flex-wrap w-full my-4">
+      {loading && <Spinner />}
+
       <div className="px-2 w-full sm:w-1/3 py-4 border-[1px] border-gray-200 h-fit">
         <AddRank
           selectedRank={selectedRank}

@@ -11,6 +11,7 @@ import HomeApi from "../../../api/homeApi";
 import AllLevel from "./AllLevel";
 import CircleChart from "./CircleChart";
 import formatPrice from "../../../utils/formatPrice";
+import Spinner from "../../../utils/Spinner";
 
 const LevelUpgrade = () => {
   const { t } = useTranslation();
@@ -21,6 +22,7 @@ const LevelUpgrade = () => {
   const [ranks, setRanks] = useState(null);
   const [affRank, setAffRank] = useState(null);
   const [totalPointsAmount, setTotalPointsAmount] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getAllRanks();
@@ -29,7 +31,9 @@ const LevelUpgrade = () => {
 
   const getAllRanks = async () => {
     try {
+      setLoading(true);
       const res = await GetAllRanks();
+      setLoading(false);
       setRanks(res.data.allRanks);
     } catch (error) {
       console.log(error);
@@ -37,7 +41,9 @@ const LevelUpgrade = () => {
   };
 
   const getAffRank = async () => {
+    setLoading(true);
     const res = await GetAffRank(jwtDecode(token).id);
+    setLoading(false);
     if (res.data.status) {
       setTotalPointsAmount(res.data.totalPointsAmount);
       setAffRank(res.data.affRank);
@@ -46,6 +52,7 @@ const LevelUpgrade = () => {
 
   return (
     <div className="py-5 font-sans flex flex-wrap justify-center gap-5 max-[900px]:px-20 max-[800px]:px-2">
+      {loading && <Spinner />}
       <div
         className="flex flex-wrap justify-center bg-white shadow-lg shadow-gray-400 px-5 py-5
          gap-5 max-[900px]:w-full lg:px-10 w-[40%] pb-10 max-[600px]:px-10 h-fit"

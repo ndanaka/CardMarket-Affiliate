@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Modal = ({ modal, setModal, setConfirmErr, handlePay }) => {
+  const { t } = useTranslation();
   const [animate, setAnimate] = useState(false);
 
   const handle = () => {
@@ -27,23 +29,23 @@ const Modal = ({ modal, setModal, setConfirmErr, handlePay }) => {
         } duration-300 bg-white text-[18px]
                 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 py-10 px-10 rounded-md w-[400px] max-[600px]:w-[300px]  text-center`}
       >
-        Confirm the address once more.
+        {t("confrimBankAddr")}
         <br />
-        Can you make sure?
+        {t("makeSure")}
         <div className="flex flex-wrap justify-around mt-5">
           <button
             onClick={() => handlePay()}
             type="button"
             className="text-white bg-emerald-600 rounded-md px-10 py-1"
           >
-            Yes
+            {t("yes")}
           </button>
           <button
             type="button"
             onClick={() => handle()}
             className="text-white bg-red-500 rounded-md px-10 py-1"
           >
-            No
+            {t("no")}
           </button>
         </div>
       </div>

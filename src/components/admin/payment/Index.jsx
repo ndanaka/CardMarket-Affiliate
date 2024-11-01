@@ -5,11 +5,13 @@ import HomeApi from "../../../api/homeApi";
 import formatDate from "../../../utils/formatDate";
 import Toast from "../../../utils/toast";
 import Spinner from "../../../utils/Spinner";
+import { Tooltip } from "react-tooltip";
+import Modal from "./Modal";
 
 const Payment = () => {
   const { t } = useTranslation();
   const hasFetchedData = useRef(false);
-  const { GetAllPayments, ChangePayStatus } = HomeApi();
+  const { GetAllPayments, ChangePayStatus, GetAffBankInfo } = HomeApi();
 
   const [payments, setPayments] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,6 +19,8 @@ const Payment = () => {
   const [toastMessage, setToastMessage] = useState("");
   const [toastType, setToastType] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [bankInfo, setBankInfo] = useState();
 
   useEffect(() => {
     if (!hasFetchedData.current) {
@@ -77,6 +81,12 @@ const Payment = () => {
     setToastVisible(false);
   };
 
+  const showBankInfo = async (affId) => {
+    setShowModal(true);
+    const res = await GetAffBankInfo(affId);
+    setBankInfo(res.data.bankInfo);
+  };
+
   return (
     <div className="mt-4 border-[1px] border-gray-200 rounded-lg p-10 pb-5 max-[700px]:p-2">
       <div className="flex flex-wrap justify-end gap-3 pb-3 items-center">
@@ -113,7 +123,13 @@ const Payment = () => {
               filteredPayments.map((payment, index) => (
                 <tr
                   key={index}
-                  className={`border-t-gray-300 border-b-[1px] text-gray-600 h-9`}
+                  data-tooltip-id="totalTable"
+                  data-tooltip-place="top"
+                  data-tooltip-content={t("moreInfoStatistic")}
+                  className={`border-t-gray-300 border-b-[1px] text-gray-600 h-9 cursor-pointer`}
+                  onClick={() => {
+                    showBankInfo(payment.user._id);
+                  }}
                 >
                   <td>{payment.user.fullName}</td>
                   <td>{payment.user.country}</td>
@@ -152,6 +168,14 @@ const Payment = () => {
           </tbody>
         </table>
       </div>
+
+      <Tooltip id="totalTable" />
+
+      <Modal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        bankInfo={bankInfo}
+      />
 
       <Toast
         type={toastType}

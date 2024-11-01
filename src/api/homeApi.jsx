@@ -132,15 +132,17 @@ const HomeApi = () => {
     }
   };
 
-  const GetAffBankInfo = async () => {
+  const GetAffBankInfo = async (affId) => {
     try {
-      const payload = jwtDecode(token);
+      let aff_id;
+      if (affId) {
+        aff_id = affId;
+      } else {
+        const payload = jwtDecode(token);
+        aff_id = payload.id;
+      }
 
-      return await axios.post(
-        GET_BANK_INFO,
-        { aff_id: payload.id },
-        postConfig
-      );
+      return await axios.post(GET_BANK_INFO, { aff_id: aff_id }, postConfig);
     } catch (error) {
       setOp({
         appErr: error?.response?.data?.message,

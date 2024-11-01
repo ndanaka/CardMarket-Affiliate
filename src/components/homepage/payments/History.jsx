@@ -69,7 +69,9 @@ const History = ({ aff_id }) => {
                 <td>¥{formatPrice(payment.price)}</td>
                 <td>{payment.bank_address}</td>
                 <td>{formatDate(payment.createdAt)}</td>
-                <td>{payment.withdrawnDate}</td>
+                <td>
+                  {payment.withdrawnDate && formatDate(payment.withdrawnDate)}
+                </td>
               </tr>
             ))
           )}

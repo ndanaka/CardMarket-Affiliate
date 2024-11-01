@@ -205,6 +205,10 @@ const resources = {
       pending: "保留中",
       alreadyWithdrawn: "このリクエストはすでに取り下げられています。",
       changeStatus: "このリクエストのステータスが正常に変更されました。",
+      confrimBankAddr: "もう一度住所を確認してください。",
+      makeSure: "確認していただけますか？",
+      ok: "はい",
+      detail: "詳細",
     },
   },
   en: {
@@ -329,7 +333,7 @@ const resources = {
       transferType2: "Japan Post Bank",
       financialName: "Name of finacial institution",
       number: "Number",
-      ordinary: "Ordinar",
+      ordinary: "Ordinary",
       noteAccountNumber:
         "Note: If the number is less than 7 digits, please add a leading zero.",
       nameAccountHolder: "Name of Account Holder",
@@ -410,6 +414,10 @@ const resources = {
       pending: "Pending",
       alreadyWithdrawn: "This request has already withdrawn.",
       changeStatus: "Successfully change status of this request.",
+      confrimBankAddr: "Confirm the address once more.",
+      makeSure: "Can you make sure?",
+      ok: "Ok",
+      detail: "Detail",
     },
   },
 };

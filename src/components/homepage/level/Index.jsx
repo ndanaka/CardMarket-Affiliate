@@ -62,7 +62,7 @@ const LevelUpgrade = () => {
             {t("current") + " " + t("level") + " " + t("benifit")}
           </h3>
           <img src={SERVER_URL + affRank?.img_url} />
-          <p className=" font-semibold border-b-[1px] border-b-gray-400 py-2 text-center">
+          <p className="font-semibold border-b-[1px] border-b-gray-400 py-2 text-center">
             <span className="te`xt-[red] text-[red] text-4xl font-bold ">
               {t(affRank?.name)}
             </span>
@@ -88,7 +88,7 @@ const LevelUpgrade = () => {
             {formatPrice(totalPointsAmount)} {" / "}
             {affRank?.end_amount ? formatPrice(affRank?.end_amount) : ""}
           </p>
-          <div className=" relative">
+          <div className="relative">
             <CircleChart now={totalPointsAmount} end={affRank?.end_amount} />
             <div className="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
               <p className="text-[red] text-xl font-semibold">
@@ -108,8 +108,6 @@ const LevelUpgrade = () => {
               </p>
             </div>
           </div>
-        </div>
-        <div className="w-full max-[500px]:w-full">
           <p className="text-gray-500 text-justify">{t("levelHint")}</p>
         </div>
       </div>

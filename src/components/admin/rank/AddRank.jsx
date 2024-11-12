@@ -108,7 +108,6 @@ const AddRank = ({
 
   const handleSubmitEdit = () => {
     formik.id = selectedRank._id;
-    handleSubmitAddRank();
   };
 
   const handleSubmitCancel = () => {

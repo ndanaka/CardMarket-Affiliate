@@ -22,6 +22,7 @@ const BlanceStatus = () => {
 
   const getAffBalance = async () => {
     const res = await GetAffBalance();
+
     setBalance({
       pending: res.data.pendingPrices,
       withdrawable: res.data.withdrawablePrices,

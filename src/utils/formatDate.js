@@ -1,19 +1,6 @@
 const formatDate = (time) => {
-  const date = new Date(time);
-
-  const formattedDate = date
-    .toLocaleString("en-GB", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      hour12: false,
-    })
-    .replace(",", "");
-
-  return formattedDate;
+  const temp = time.replace("T", " ");
+  return temp.split(".")[0];
 };
 
 export default formatDate;

@@ -3,8 +3,8 @@ const RegComment = ({ order, title, content }) => {
     <>
       <div className="mt-6 font-sans h-[120px] w-full flex gap-10 items-center">
         <p
-          className="  border-red-600 border-[1px] border-l-[0px] h-full w-[70px]
-                text-[70px] text-gray-300 font-semibold text-center py-1"
+          className="  border-emerald-600 border-[1px] border-l-[0px] h-full w-[70px]
+                text-[70px] text-emerald-500 font-semibold text-center py-1"
         >
           {order}
         </p>

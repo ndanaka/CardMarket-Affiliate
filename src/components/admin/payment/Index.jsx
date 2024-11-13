@@ -127,17 +127,54 @@ const Payment = () => {
                   data-tooltip-place="top"
                   data-tooltip-content={t("moreInfoStatistic")}
                   className={`border-t-gray-300 border-b-[1px] text-gray-600 h-9 cursor-pointer`}
-                  onClick={() => {
-                    showBankInfo(payment.user._id);
-                  }}
                 >
-                  <td>{payment.user.fullName}</td>
-                  <td>{payment.user.country}</td>
-                  <td>{payment.user.email}</td>
-                  <td>{payment.user.phoneNumber}</td>
-                  <td>{formatDate(payment.pay.createdAt)}</td>
-                  <td>{payment.pay.bank_address}</td>
-                  <td>
+                  <td
+                    onClick={() => {
+                      showBankInfo(payment.user._id);
+                    }}
+                  >
+                    {payment.user.fullName}
+                  </td>
+                  <td
+                    onClick={() => {
+                      showBankInfo(payment.user._id);
+                    }}
+                  >
+                    {payment.user.country}
+                  </td>
+                  <td
+                    onClick={() => {
+                      showBankInfo(payment.user._id);
+                    }}
+                  >
+                    {payment.user.email}
+                  </td>
+                  <td
+                    onClick={() => {
+                      showBankInfo(payment.user._id);
+                    }}
+                  >
+                    {payment.user.phoneNumber}
+                  </td>
+                  <td
+                    onClick={() => {
+                      showBankInfo(payment.user._id);
+                    }}
+                  >
+                    {formatDate(payment.pay.createdAt)}
+                  </td>
+                  <td
+                    onClick={() => {
+                      showBankInfo(payment.user._id);
+                    }}
+                  >
+                    {payment.pay.bank_address}
+                  </td>
+                  <td
+                    onClick={() => {
+                      showBankInfo(payment.user._id);
+                    }}
+                  >
                     {payment.pay.withdrawnDate
                       ? formatDate(payment.pay.withdrawnDate)
                       : ""}

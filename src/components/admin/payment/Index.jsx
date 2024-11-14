@@ -30,9 +30,9 @@ const Payment = () => {
   }, []);
 
   const getAllPayments = async () => {
-    setLoading(true); // Start loading
+    setLoading(true);
     const res = await GetAllPayments();
-    setLoading(false); // Stop loading
+    setLoading(false);
 
     if (res.data.status) {
       setPayments(res.data.payments);
@@ -112,8 +112,9 @@ const Payment = () => {
               <th>{t("country")}</th>
               <th>{t("email")}</th>
               <th>{t("phNumber")}</th>
-              <th>{t("request") + " " + t("date")}</th>
+              <th>{t("amount")}</th>
               <th>{t("bank") + " " + t("address")}</th>
+              <th>{t("request") + " " + t("date")}</th>
               <th>{t("withdrawal") + " " + t("date")}</th>
               <th>{t("status")}</th>
             </tr>
@@ -161,7 +162,7 @@ const Payment = () => {
                       showBankInfo(payment.user._id);
                     }}
                   >
-                    {formatDate(payment.pay.createdAt)}
+                    ¥{payment.pay.price}
                   </td>
                   <td
                     onClick={() => {
@@ -169,6 +170,13 @@ const Payment = () => {
                     }}
                   >
                     {payment.pay.bank_address}
+                  </td>
+                  <td
+                    onClick={() => {
+                      showBankInfo(payment.user._id);
+                    }}
+                  >
+                    {formatDate(payment.pay.createdAt)}
                   </td>
                   <td
                     onClick={() => {

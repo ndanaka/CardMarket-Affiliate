@@ -150,21 +150,6 @@ const AffiLinks = () => {
           </form>
         </div>
         <div className="flex flex-col justify-between w-[64%] max-[900px]:w-full h-fit">
-          {/* <div className="font-sans font-semibold text-gray-500 text-lg">
-            Main links
-          </div>
-          <div className="border-[1px] border-gray-400 font-sans px-4 py-2">
-            <Links
-              title={"Homepage"}
-              icon={"fas fa-home"}
-              link={`${ORIPA_BASE_URL}/user/index`}
-            />
-            <Links
-              title={"Register"}
-              icon={"fas fa-user-plus"}
-              link={`${ORIPA_BASE_URL}/auth/register`}
-            />
-          </div> */}
           <div className="font-sans font-semibold text-gray-500 text-lg">
             {t("my") + " " + t("links")}
           </div>
@@ -175,11 +160,9 @@ const AffiLinks = () => {
               links?.map((link, i) => (
                 <Links
                   key={i}
-                  type="mine"
+                  id={link._id}
+                  url={link.url}
                   title={link.title}
-                  icon={"fa fa-exchange"}
-                  link={link.url}
-                  linkId={link._id}
                   setLinks={setLinks}
                   setToastType={setToastType}
                   setToastMessage={setToastMessage}

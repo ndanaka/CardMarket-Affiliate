@@ -209,6 +209,7 @@ const resources = {
       makeSure: "確認していただけますか？",
       ok: "はい",
       detail: "詳細",
+      levelUpgrade: "ここをクリックしてレベルアップ方法を確認してください。",
     },
   },
   en: {
@@ -418,6 +419,7 @@ const resources = {
       makeSure: "Can you make sure?",
       ok: "Ok",
       detail: "Detail",
+      levelUpgrade: "Clck here to see how to upgrade your level.",
     },
   },
 };

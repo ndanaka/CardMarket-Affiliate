@@ -9,11 +9,9 @@ import HomeApi from "../../../api/homeApi";
 import Spinner from "../../../utils/Spinner";
 
 const Links = ({
-  type,
-  link,
+  id,
+  url,
   title,
-  icon,
-  linkId,
   setLinks,
   setToastVisible,
   setToastMessage,
@@ -32,7 +30,7 @@ const Links = ({
 
     if (token) {
       affiliateID = jwtDecode(token).id;
-      affiliateLink = `${link}?link_id=${linkId}&aff_id=${affiliateID}&first=${true}`;
+      affiliateLink = `${url}?link_id=${id}&aff_id=${affiliateID}&first=${true}`;
 
       setTextToCopy(affiliateLink);
     }
@@ -56,7 +54,7 @@ const Links = ({
 
   const handleSubmitDeleteLink = async () => {
     setLoading(true);
-    const res = await SubmitDeleteLink({ _id: linkId });
+    const res = await SubmitDeleteLink({ _id: id });
     setLoading(false);
 
     if (res.data.status) {
@@ -72,45 +70,37 @@ const Links = ({
 
   return (
     <div className="flex flex-wrap justify-between p-3 items-center">
-      <i className={`${icon} w-[10%] text-center`} />
+      {loading && <Spinner />}
+      <i className="fa fa-exchange w-[10%] text-center" />
       <p className="no-underline text-center w-[20%]">{title}</p>
       <span
         href={textToCopy}
-        className="w-[50%] hover:scale-[102%] underline underline-offset-[5px] max-[500px]:hidden text-center overflow-hidden"
+        className="w-[50%] hover:scale-[102%] underline max-[500px]:hidden text-center overflow-hidden"
       >
-        {link}
+        {url}
       </span>
       <div
-        className="w-[10%] flex flex-wrap justify-center w-6 cursor-pointer items-center"
+        className="w-[10%] h-[20px] flex flex-wrap justify-center cursor-pointer items-center"
         data-tooltip-id="copy"
         data-tooltip-content={`${copy === "" ? t("copyLink") : t("copied")}`}
+        onClick={() => handleCopy(title)}
       >
         {copy === title ? (
           <i className="fa fa-check" />
         ) : (
-          <i
-            value={textToCopy}
-            onClick={() => handleCopy(title)}
-            className="far fa-copy text-[20px] cursor-pointer"
-          />
+          <i value={textToCopy} className="far fa-copy text-[20px]" />
         )}
         <Tooltip id="copy" />
       </div>
-      {type === "mine" ? (
-        <div
-          className="w-[10%] flex flex-wrap justify-center w-6 cursor-pointer items-center"
-          data-tooltip-id="delete"
-          data-tooltip-content={t("delLink")}
-        >
-          <i
-            className="fa fa-trash text-center cursor-pointer"
-            onClick={() => handleSubmitDeleteLink()}
-          />
-          <Tooltip id="delete" />
-        </div>
-      ) : (
-        ""
-      )}
+      <div
+        className="w-[10%] h-[20px] flex flex-wrap justify-center cursor-pointer items-center"
+        data-tooltip-id="delete"
+        data-tooltip-content={t("delLink")}
+        onClick={() => handleSubmitDeleteLink()}
+      >
+        <i className="fa fa-trash text-center" />
+        <Tooltip id="delete" />
+      </div>
     </div>
   );
 };

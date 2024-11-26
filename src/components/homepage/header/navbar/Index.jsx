@@ -96,18 +96,19 @@ const Navbar = () => {
           }}
         />
       </div>
-      <div className="text-gray-400 font-semibold flex items-center justify-center px-5">
+      <div className="text-gray-400 font-semibold flex items-center justify-center px-5 cursor-pointer">
         {t("current") + " " + t("level")} :&nbsp;
-        <span className="text-[#759ce4] font-semibold">
-          {t(affRank?.name)}&nbsp;
-        </span>
-        <i
-          className="cursor-pointer	far fa-question-circle text-[green]"
+        <div
           data-tooltip-id="levelHelp"
-          data-tooltip-content={"Clck here to see how to upgrade your level."}
+          data-tooltip-content={t("levelUpgrade")}
           onClick={() => navigate("/homepage/level")}
-        />
-        <Tooltip id="levelHelp" />
+        >
+          <span className="text-[#759ce4] font-semibold">
+            {t(affRank?.name)}&nbsp;
+          </span>
+          <i className="fa fa-question-circle text-white" />
+          <Tooltip id="levelHelp" />
+        </div>
       </div>
     </nav>
   );
